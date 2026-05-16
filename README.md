@@ -1,2 +1,1 @@
-# notmybugs.github.io
-Website for NMB Team
+# [Website for NMB Team](https://nmb-team.github.io/)
