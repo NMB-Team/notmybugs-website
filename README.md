@@ -1,1 +1,1 @@
-# [Website for NMB Team](https://nmb-team.github.io/)
+# [Website for NMB Team](https://notmybugs-team.netlify.app/)
