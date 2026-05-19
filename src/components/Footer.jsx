@@ -77,7 +77,7 @@ export default function Footer() {
 				<a href='https://github.com/NMB-Team' target='_blank' rel='noreferrer'>
 					GitHub
 				</a>
-				<span>©2026 NMB Team</span>
+				<span>© 2026 NMB Team</span>
 			</div>
 		</footer>
 	)
