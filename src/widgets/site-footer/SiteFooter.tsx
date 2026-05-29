@@ -8,20 +8,28 @@ const DELETE_SPEED_MS = 45
 const CYCLE_MS = 5000
 const START_DELAY_MS = 1400
 
-function TypewriterStatus() {
+type SiteFooterProps = {
+	isStarted: boolean
+}
+
+function TypewriterStatus({ isStarted }: SiteFooterProps) {
 	const [messageIndex, setMessageIndex] = useState(0)
 	const [visibleLength, setVisibleLength] = useState(0)
 	const [isDeleting, setIsDeleting] = useState(false)
-	const [isStarted, setIsStarted] = useState(false)
+	const [isTypingActive, setIsTypingActive] = useState(false)
 	const message = STATUS_MESSAGES[messageIndex]
 
 	useEffect(() => {
-		const timeout = setTimeout(() => setIsStarted(true), START_DELAY_MS)
+		if (!isStarted) {
+			return undefined
+		}
+
+		const timeout = setTimeout(() => setIsTypingActive(true), START_DELAY_MS)
 		return () => clearTimeout(timeout)
-	}, [])
+	}, [isStarted])
 
 	useEffect(() => {
-		if (!isStarted) {
+		if (!isTypingActive) {
 			return undefined
 		}
 
@@ -59,19 +67,19 @@ function TypewriterStatus() {
 		}, TYPE_SPEED_MS)
 
 		return () => clearTimeout(timeout)
-	}, [isDeleting, isStarted, message, visibleLength])
+	}, [isDeleting, isTypingActive, message, visibleLength])
 
 	return (
-		<p className='status-text' aria-live='polite' data-started={isStarted}>
+		<p className='status-text' aria-live='polite' data-started={isTypingActive}>
 			<span>{message.slice(0, visibleLength)}</span>
 			<span className='status-cursor' aria-hidden='true' />
 		</p>
 	)
 }
 
-export default function SiteFooter() {
+export default function SiteFooter({ isStarted }: SiteFooterProps) {
 	return (
-		<footer className='site-footer'>
+		<footer className={`site-footer${isStarted ? ' site-footer--started' : ''}`}>
 			<img
 				className='footer-logo'
 				src='/NMB-logo.png'
@@ -81,7 +89,7 @@ export default function SiteFooter() {
 				onCopy={preventProtectedAssetAction}
 				onDragStart={preventProtectedAssetAction}
 			/>
-			<TypewriterStatus />
+			<TypewriterStatus isStarted={isStarted} />
 			<div className='footer-meta'>
 				<a href='mailto:notmybugs.team@gmail.com'>notmybugs.team@gmail.com</a>
 				<a href='https://github.com/NMB-Team' target='_blank' rel='noreferrer'>
