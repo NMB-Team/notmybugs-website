@@ -1,0 +1,62 @@
+.site-shell {
+	position: relative;
+	display: grid;
+	grid-template-rows: minmax(0, 1fr) auto;
+	height: 100vh;
+	min-height: 100vh;
+	overflow: hidden;
+	background:
+		radial-gradient(
+			circle at 50% 43%,
+			rgba(37, 254, 42, 0.06),
+			transparent 32%
+		),
+		linear-gradient(180deg, #050705 0%, #020302 100%);
+}
+
+.animated-gradient {
+	position: absolute;
+	inset: auto -150vh -24vh;
+	height: 48vh;
+	pointer-events: none;
+	background: radial-gradient(
+		ellipse at 50% 100%,
+		rgba(25, 255, 29, 0.6),
+		transparent 58%
+	);
+	filter: blur(28px);
+	opacity: 0.66;
+	animation: green-glow 2.5s ease-in-out infinite alternate;
+}
+
+.startup-fade {
+	position: fixed;
+	z-index: 10;
+	inset: 0;
+	pointer-events: none;
+	background: #000;
+	opacity: 1;
+	transition: opacity 1.15s ease;
+	will-change: opacity;
+}
+
+.startup-fade--hidden {
+	opacity: 0;
+}
+
+@media (max-width: 640px) {
+	body {
+		overflow: auto;
+	}
+
+	.site-shell {
+		height: 100svh;
+		min-height: 100svh;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.startup-fade {
+		transition-duration: 0.01ms;
+	}
+}

@@ -1,0 +1,79 @@
+:root {
+	font-family: Consolas, 'Courier New', 'Lucida Console', Monaco, monospace;
+	color: #f2f7f0;
+	background: #030503;
+	font-synthesis: none;
+	text-rendering: optimizeLegibility;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+	width: 100%;
+	min-height: 100%;
+	margin: 0;
+}
+
+body {
+	overflow: hidden;
+	background: #030503;
+}
+
+a {
+	color: inherit;
+	text-decoration: none;
+}
+
+@keyframes fade-in {
+	from {
+		opacity: 0;
+		transform: translateY(10px);
+	}
+
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+@keyframes green-glow {
+	from {
+		opacity: 0.44;
+		transform: translate3d(-2%, 1%, 0) scaleX(0.96);
+	}
+
+	to {
+		opacity: 0.78;
+		transform: translate3d(2%, -1%, 0) scaleX(1.04);
+	}
+}
+
+@keyframes cursor-blink {
+	0%,
+	50% {
+		opacity: 1;
+	}
+
+	50.01%,
+	100% {
+		opacity: 0;
+	}
+}
+
+@keyframes footer-logo-settle {
+	from {
+		opacity: 0;
+		transform: translateY(10px) scale(0.96);
+	}
+
+	to {
+		opacity: 1;
+		transform: translateY(0) scale(1);
+	}
+}
