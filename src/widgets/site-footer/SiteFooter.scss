@@ -40,10 +40,17 @@
 	display: block;
 	width: 180px;
 	height: auto;
+	opacity: 0;
+	transform: translateY(10px) scale(0.96);
 	user-select: none;
 	will-change: transform, opacity;
-	animation: footer-logo-settle 1.2s cubic-bezier(0.2, 0.8, 0.2, 1) both;
 	-webkit-user-drag: none;
+}
+
+.site-footer--started {
+	.footer-logo {
+		animation: footer-logo-settle 1.2s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+	}
 }
 
 .footer-meta {
