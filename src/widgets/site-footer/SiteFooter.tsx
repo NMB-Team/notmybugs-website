@@ -1,4 +1,6 @@
 import { useEffect, useState } from 'react'
+import { preventProtectedAssetAction } from '../../shared/protectAsset'
+import './SiteFooter.scss'
 
 const STATUS_MESSAGES = ['Coming soon', 'Work in progress']
 const TYPE_SPEED_MS = 70
@@ -67,10 +69,18 @@ function TypewriterStatus() {
 	)
 }
 
-export default function Footer() {
+export default function SiteFooter() {
 	return (
 		<footer className='site-footer'>
-			<img className='footer-logo' src='/NMB-logo.png' alt='NMB Team' />
+			<img
+				className='footer-logo'
+				src='/NMB-logo.png'
+				alt='NMB Team'
+				draggable={false}
+				onContextMenu={preventProtectedAssetAction}
+				onCopy={preventProtectedAssetAction}
+				onDragStart={preventProtectedAssetAction}
+			/>
 			<TypewriterStatus />
 			<div className='footer-meta'>
 				<a href='mailto:notmybugs.team@gmail.com'>notmybugs.team@gmail.com</a>

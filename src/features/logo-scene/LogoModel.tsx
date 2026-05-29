@@ -5,14 +5,34 @@ import * as THREE from 'three'
 
 const MODEL_PATH = '/models/NMB-logo.glb'
 const FRONT_FACE_ROTATION_X = -Math.PI * 0.5
-const SCREEN_Y_FLIP_SCALE = [1, -1, 1]
+const SCREEN_Y_FLIP_SCALE = [1, -1, 1] as const
 const LOGO_MATERIAL = new THREE.MeshStandardMaterial({
 	color: '#ffffff',
 	roughness: 0.5,
 	metalness: 1,
 })
 
-function getTargetSize(viewport) {
+type DragState = {
+	active: boolean
+	pointerId: number | null
+	lastX: number
+	lastY: number
+	targetX: number
+	targetY: number
+	idleDirection: 1 | -1
+}
+
+type PointerState = {
+	x: number
+	previousX: number
+	moveX: number
+}
+
+type LogoModelProps = {
+	modelPath?: string
+}
+
+function getTargetSize(viewport: { width: number; height: number }) {
 	const shortestSide = Math.min(viewport.width, viewport.height)
 	const aspect = viewport.width / viewport.height
 	const aspectCompensation = THREE.MathUtils.clamp(aspect, 0.74, 1.18)
@@ -24,9 +44,9 @@ function getTargetSize(viewport) {
 	)
 }
 
-export default function LogoModel({ modelPath = MODEL_PATH }) {
-	const groupRef = useRef()
-	const dragRef = useRef({
+export default function LogoModel({ modelPath = MODEL_PATH }: LogoModelProps) {
+	const groupRef = useRef<THREE.Group>(null)
+	const dragRef = useRef<DragState>({
 		active: false,
 		pointerId: null,
 		lastX: 0,
@@ -35,9 +55,9 @@ export default function LogoModel({ modelPath = MODEL_PATH }) {
 		targetY: 0,
 		idleDirection: 1,
 	})
-	const pointerRef = useRef({ x: 0, previousX: 0, moveX: 0 })
+	const pointerRef = useRef<PointerState>({ x: 0, previousX: 0, moveX: 0 })
 	const { gl, viewport } = useThree()
-	const [scene, setScene] = useState(null)
+	const [scene, setScene] = useState<THREE.Group | null>(null)
 	const model = useMemo(() => scene?.clone(true), [scene])
 	const modelScale = useMemo(() => {
 		if (!scene) {
@@ -55,44 +75,25 @@ export default function LogoModel({ modelPath = MODEL_PATH }) {
 		let active = true
 		const loader = new GLTFLoader()
 
-		const loadModel = async () => {
-			try {
-				const response = await fetch(modelPath, { method: 'HEAD' })
-				const contentType = response.headers.get('content-type') || ''
-
-				if (!response.ok || contentType.includes('text/html')) {
-					console.error(`NMB logo model was not found at ${modelPath}`)
-					return
-				}
-
-				loader.load(
-					modelPath,
-					gltf => {
-						if (active) {
-							gltf.scene.traverse(object => {
-								if (object.isMesh) {
-									object.castShadow = false
-									object.receiveShadow = false
-									object.material = LOGO_MATERIAL
-								}
-							})
-							setScene(gltf.scene)
+		loader.load(
+			modelPath,
+			gltf => {
+				if (active) {
+					gltf.scene.traverse(object => {
+						if (object instanceof THREE.Mesh) {
+							object.castShadow = false
+							object.receiveShadow = false
+							object.material = LOGO_MATERIAL
 						}
-					},
-					undefined,
-					error => {
-						console.error(
-							`Unable to load NMB logo model from ${modelPath}`,
-							error,
-						)
-					},
-				)
-			} catch (error) {
+					})
+					setScene(gltf.scene)
+				}
+			},
+			undefined,
+			error => {
 				console.error(`Unable to load NMB logo model from ${modelPath}`, error)
-			}
-		}
-
-		loadModel()
+			},
+		)
 
 		return () => {
 			active = false
@@ -113,7 +114,7 @@ export default function LogoModel({ modelPath = MODEL_PATH }) {
 		const canvas = gl.domElement
 		const state = dragRef.current
 
-		const onPointerMove = event => {
+		const onPointerMove = (event: PointerEvent) => {
 			const pointer = pointerRef.current
 			const deltaPointerX = event.clientX - pointer.previousX
 			pointer.x = event.clientX
@@ -140,7 +141,7 @@ export default function LogoModel({ modelPath = MODEL_PATH }) {
 			state.lastY = event.clientY
 		}
 
-		const onPointerDown = event => {
+		const onPointerDown = (event: PointerEvent) => {
 			state.active = true
 			state.pointerId = event.pointerId
 			state.lastX = event.clientX

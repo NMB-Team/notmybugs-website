@@ -1,13 +1,13 @@
 {
-  "version": "0.2.0",
-  "configurations": [
-    {
-      "name": "Start NMB Team site",
-      "type": "chrome",
-      "request": "launch",
-      "url": "http://localhost:5173",
-      "webRoot": "${workspaceFolder}/src",
-      "preLaunchTask": "npm: dev"
-    }
-  ]
+	"version": "0.2.0",
+	"configurations": [
+		{
+			"name": "Start NMB Team site",
+			"type": "editor-browser",
+			"request": "launch",
+			"url": "http://localhost:5173",
+			"webRoot": "${workspaceFolder}/src",
+			"preLaunchTask": "npm: dev"
+		}
+	]
 }
