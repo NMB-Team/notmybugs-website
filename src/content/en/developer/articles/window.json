@@ -1,0 +1,18 @@
+{
+  "intro.heading": "Window",
+  "intro.summary": "Create and manage a native window, including its size, title, display mode, and icon.",
+  "create.heading": "Create a window",
+  "create.paragraph": "<code>Window.create()</code> takes <code>title</code>, <code>width</code>, and <code>height</code>, plus optional <code>resizable</code>, <code>visible</code>, <code>flags</code>, <code>x</code>, and <code>y</code> settings.",
+  "methods.heading": "Properties and methods",
+  "methods.row.title.description": "The window title. You can change it after creation.",
+  "methods.row.width-height.description": "Window size in logical coordinates.",
+  "methods.row.pixelWidth-pixelHeight.description": "Client area size in pixels.",
+  "methods.row.resize-w-h.description": "Resizes the window.",
+  "methods.row.setMinSize-w-h.description": "Sets the minimum window size.",
+  "methods.row.setDarkMode-enabled.description": "Requests a dark title bar.",
+  "methods.row.setIconFile-path.description": "Sets the window icon from an ICO file.",
+  "methods.row.destroy.description": "Destroys the native window.",
+  "references.heading": "Source code",
+  "references.resource-row.Window-hx.title": "Window.hx",
+  "references.resource-row.Window-hx.description": "Implementation and full method list"
+}

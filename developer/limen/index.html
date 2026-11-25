@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>NMB Team Developer Wiki</title>
+  <script type="module">
+    import { getWikiLanguage } from '/src/pages/developer/language.ts'
+
+    const destination = new URL(window.location.href)
+    destination.pathname = destination.pathname.replace(/\/(?:index\.html)?$/, '') + '/' + getWikiLanguage() + '/'
+    window.location.replace(destination)
+  </script>
+</head>
+<body>
+  <a href="./en/">Open the English Developer Wiki</a>
+</body>
+</html>

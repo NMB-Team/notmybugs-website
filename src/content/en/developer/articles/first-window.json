@@ -1,0 +1,22 @@
+{
+  "intro.heading": "Create your first window",
+  "intro.summary": "Build an app that runs without a GPU. It opens a window, handles the close request, and releases resources before exiting.",
+  "intro.pill": "Haxe example",
+  "create.heading": "1. Create Main.hx",
+  "create.paragraph": "After <a href=\"#/installation\">installing LIMEN</a>, open the <code>Limen</code> directory that contains <code>README.md</code> and the <code>limen</code> subdirectory. Create a <code>my-window</code> directory inside it. In a plain text editor, save the code as <code>my-window/Main.hx</code>. Check that the filename ends in <code>.hx</code>.",
+  "compile.heading": "2. Compile and run",
+  "compile.paragraph": "Copy <code>limen.hdll</code> from the build output into <code>my-window</code>. If your Windows bundle includes <code>hl.exe</code> and <code>libhl.dll</code>, copy both files there too. On Linux and macOS, make sure HashLink is on your <code>PATH</code> and its system dependencies are installed.",
+  "compile.paragraph2": "Save the following block as <code>my-window/build.hxml</code>. The <code>-cp ..</code> line adds the parent directory containing the LIMEN sources, and <code>-hl main.hl</code> sets the bytecode output file.",
+  "compile.run": "Open a terminal in <code>my-window</code>. If you're using the bundled Windows runtime, use <code>.\\hl.exe main.hl</code> as the second command.",
+  "compile.expected": "A window titled <code>Hello, LIMEN!</code> should open. Close it using the close button. Change the title in <code>Main.hx</code>, run both commands again, and check the result. Next, build an <a href=\"#/first-app\">app</a> or a <a href=\"#/first-game\">game</a>.",
+  "how-it-works.heading": "3. Walk through the code",
+  "how-it-works.haxe": "<code>import</code> brings a class name into scope. HashLink starts execution at <code>Main.main()</code>. A <code>final</code> variable cannot be reassigned, while a <code>var</code> variable can. The outer <code>while</code> loop keeps the app running, and the inner loop drains the event queue. When <code>running</code> becomes <code>false</code>, the program destroys the window and exits. See the <a href=\"https://haxe.org/manual/introduction.html\">Haxe manual</a> for more.",
+  "how-it-works.pathway-step.platform.title": "Platform.init()",
+  "how-it-works.pathway-step.window.title": "Window.create()",
+  "how-it-works.pathway-step.event-loop.title": "Platform.pollEvent()",
+  "how-it-works.title": "Shut down cleanly",
+  "how-it-works.paragraph": "Before exiting, call <code>window.destroy()</code>, then <code>Platform.quit()</code>.",
+  "how-it-works.pathway-step.platform.description": "Initializes SDL3 and selects a graphics driver.",
+  "how-it-works.pathway-step.window.description": "Creates a window with a title and size.",
+  "how-it-works.pathway-step.event-loop.description": "Reads events from the event queue."
+}

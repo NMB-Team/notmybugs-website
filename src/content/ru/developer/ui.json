@@ -1,0 +1,136 @@
+{
+	"copy": "Копировать",
+	"copied": "Скопировано в буфер обмена",
+	"copyFailed": "Не удалось скопировать",
+	"loadFailed": "Не удалось загрузить статью. Обновите страницу и попробуйте снова.",
+	"api": {
+		"apiTitle": "API Limen",
+		"apiDescription": "Справочник по типам, полям и методам API Limen для Haxe и HashLink.",
+		"apiBrowse": "Поиск и дерево API",
+		"apiGuides": "Руководства Limen"
+	},
+	"pages": {
+		"start": {
+			"title": "Обзор",
+			"description": "Нативные окна, события и графика на Haxe / HashLink."
+		},
+		"installation": {
+			"title": "Установка",
+			"description": "Зависимости, сборка и подготовка окружения."
+		},
+		"first-window": {
+			"title": "Первое окно",
+			"description": "Минимальное приложение с настоящим SDL3-окном."
+		},
+		"event-loop": {
+			"title": "Цикл событий",
+			"description": "Как получать и обрабатывать события окон и устройств ввода."
+		},
+		"graphics": {
+			"title": "Графические backend-ы",
+			"description": "None, OpenGL, Vulkan и Direct3D."
+		},
+		"first-app": {
+			"title": "Первая программа: счётчик слов",
+			"navTitle": "Счётчик слов",
+			"description": "С нуля: открыть текстовый файл, посчитать слова и скопировать результат."
+		},
+		"first-game": {
+			"title": "Target Rush",
+			"description": "Сделайте 2D-игру на OpenGL с мишенями, таймером, очками и перезапуском."
+		},
+		"recipes": {
+			"title": "Возможности и примеры API",
+			"description": "Мониторы, файлы, курсоры, контроллеры, тач, перо, трей, Vulkan, Direct3D, DLSS и FSR."
+		},
+		"opengl": {
+			"title": "OpenGL",
+			"description": "Создание графического контекста и первый кадр."
+		},
+		"vulkan": {
+			"title": "Vulkan",
+			"description": "Поверхность, цепочка обмена и первый кадр с dynamic rendering."
+		},
+		"d3d11": {
+			"title": "Direct3D 11",
+			"description": "Устройство, цель рендеринга и первый кадр на Windows."
+		},
+		"d3d12": {
+			"title": "Direct3D 12",
+			"description": "Очередь GPU, список команд и первый кадр на Windows."
+		},
+		"modules": {
+			"title": "Нативные модули",
+			"description": "Что загружает HashLink и какие DLL нужны."
+		},
+		"platform": {
+			"title": "Platform",
+			"description": "Инициализация, цикл событий и остановка платформы."
+		},
+		"window": {
+			"title": "Window",
+			"description": "Создание и управление нативным окном."
+		},
+		"events": {
+			"title": "Event & EventType",
+			"description": "Типы событий, ввод, мышь и состояния окна."
+		},
+		"renderer-api": {
+			"title": "API рендереров",
+			"description": "Вызовы OpenGL, Vulkan, Direct3D 11 и Direct3D 12 для первого кадра."
+		},
+		"examples": {
+			"title": "Готовые примеры",
+			"description": "Официальные примеры из репозитория LIMEN."
+		},
+		"build": {
+			"title": "Сборка из исходников",
+			"description": "Нативная сборка через CMake и build.sh / build.bat."
+		}
+	},
+	"navigationLabels": {
+		"setup": "Установка и сборка",
+		"firstSteps": "Первые шаги",
+		"projects": "Проекты и примеры",
+		"platformFeatures": "Возможности платформы",
+		"platformApi": "API платформы"
+	},
+	"articleLabels": {
+		"documentation": "Документация",
+		"nextPage": "Следующая страница",
+		"sectionLink": "Ссылка на раздел",
+		"gettingStarted": "Начало работы",
+		"guides": "Руководства",
+		"apiReference": "Справочник API",
+		"apiValue": "API / значение",
+		"purpose": "Для чего нужно",
+		"noGpu": "Без GPU",
+		"buildCommands": "Команды сборки",
+		"buildPlatform": "Выбор платформы",
+		"terminal": "терминал",
+		"buildPrerequisites": "Перед сборкой потребуется рабочий HashLink и подходящий набор инструментов C/C++.",
+		"optional": "по необходимости",
+		"separateBuild": "отдельная сборка",
+		"required": "обязательный"
+	},
+	"shell": {
+		"language": "ru",
+		"description": "Руководства, примеры кода и справочники API для проектов NMB Team.",
+		"title": "NMB Team Developer Wiki",
+		"returnToHome": "← Сайт NMB Team",
+		"languageSwitcher": "Язык документации",
+		"navigation": "Основная навигация",
+		"menu": "☰ Меню",
+		"overview": "Обзор документации",
+		"nmbProjects": "Проекты NMB",
+		"developersLink": "Разработчикам",
+		"limenRepository": "Репозиторий LIMEN",
+		"wikiNavigation": "Навигация wiki",
+		"limenSections": "Разделы LIMEN",
+		"links": "Ссылки",
+		"sourceCode": "Исходный код",
+		"reportIssue": "Сообщить об ошибке",
+		"noscript": "Для навигации по документации включите JavaScript.",
+		"sourceCredit": "Сведения основаны на открытых исходниках LIMEN ·"
+	}
+}

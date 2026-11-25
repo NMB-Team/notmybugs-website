@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="{{language}}">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <meta name="theme-color" content="#030503">
+  <meta name="description" content="{{description}}">
+  <title>{{title}}</title>
+  <link rel="icon" href="/nmb-bug.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/src/pages/developer/DeveloperPage.scss">
+</head>
+<body>
+<div class="app">
+  <div id="siteHeader" data-hub-href="{{hubHref}}"></div>
+  <div class="workspace">
+    <div class="mobile-shade" id="mobileShade"></div>
+    <aside class="sidebar" id="sidebar" aria-label="{{wikiNavigation}}">
+      <nav id="sideNav" aria-label="{{limenSections}}"></nav>
+      <div class="sidebar-tools">
+        <div class="sidebar-heading">{{links}}</div>
+        <ul>
+          <li><a href="https://github.com/NMB-Team/Limen" target="_blank" rel="noopener noreferrer">{{sourceCode}}</a></li>
+          <li><a href="https://github.com/NMB-Team/Limen/issues" target="_blank" rel="noopener noreferrer">{{reportIssue}}</a></li>
+        </ul>
+      </div>
+    </aside>
+    <main class="wiki-main" id="main" tabindex="-1">
+      <article class="wiki-article-surface" id="docContent">
+        <noscript><p class="doc-inner">{{noscript}}</p></noscript>
+      </article>
+    </main>
+  </div>
+  <footer class="site-footer"><span>{{title}}</span><span>{{sourceCredit}} <a href="https://github.com/NMB-Team/Limen" target="_blank" rel="noopener noreferrer">GitHub ↗</a></span></footer>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</div>
+<script type="module" src="/src/pages/developer/main.ts"></script>
+</body>
+</html>

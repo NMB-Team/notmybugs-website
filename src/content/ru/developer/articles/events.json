@@ -1,0 +1,17 @@
+{
+	"intro.current": "Event & EventType",
+	"intro.heading": "Event и EventType",
+	"intro.summary": "События описывают ввод пользователя и изменения состояния приложения.",
+	"reading.heading": "Как использовать",
+	"reading.paragraph": "Создайте объект <code>Event</code> и передайте его в <code>Platform.pollEvent()</code>. После этого проверьте значение <code>event.type</code>.",
+	"event-reference.heading": "Основные категории событий",
+	"event-reference.row.Quit-WindowState.description": "Закрытие, resize, другие изменения окна.",
+	"event-reference.row.MouseMove-MouseDown-MouseUp.description": "Положение указателя и нажатие кнопок.",
+	"event-reference.row.KeyDown-KeyUp-TextInput.description": "Клавиатура и текстовый ввод.",
+	"event-reference.row.GamepadAdded-GamepadAxis.description": "Подключение контроллера и изменение осей.",
+	"event-reference.row.TouchDown-TouchMove.description": "Сенсорный ввод.",
+	"event-reference.row.PenDown-PenMove.description": "Перо и его движение.",
+	"reference-source.heading": "Полный список",
+	"reference-source.resource-row.EventType-hx.title": "EventType.hx",
+	"reference-source.resource-row.EventType-hx.description": "Все типы событий и описания полей"
+}

@@ -1,0 +1,16 @@
+{
+	"teamName": "NMB Team",
+	"logoLabel": "NMB Team logo",
+	"developerLink": "Developer Wiki",
+	"github": "GitHub",
+	"copyright": "© 2026 NMB Team",
+	"status": [
+		"Coming soon",
+		"Work in progress"
+	],
+	"meta": {
+		"language": "en",
+		"title": "NotMyBugs - Coming Soon!",
+		"description": "NMB Team website is coming soon. Work in progress."
+	}
+}

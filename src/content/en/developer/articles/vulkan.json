@@ -1,0 +1,14 @@
+{
+  "intro.summary": "Create a window, clear its back buffer with Vulkan, and present your first frame.",
+  "overview.heading": "When to use Vulkan",
+  "overview.purpose": "Vulkan is a cross-platform API for graphics and GPU compute. It suits engines and complex scenes that need control over memory, command queues, and execution order.",
+  "overview.choice": "Choose Vulkan if you need low-level control across platforms such as Windows and Linux. It gives you a similar level of control to Direct3D 12 and requires more setup and synchronization code than OpenGL or Direct3D 11.",
+  "requirements.heading": "1. Set up the project",
+  "requirements.folder": "In the LIMEN source directory, create a folder named <code>first-vulkan</code>. Save the next section's code as <code>Main.hx</code> inside it.",
+  "requirements.paragraph": "Follow the <a href=\"#/installation\">LIMEN installation guide</a> and copy <code>limen.hdll</code> and <code>vulkan.limen</code> into the app directory. You need a Vulkan driver that supports dynamic rendering, synchronization2, and timeline semaphores. Use source files and native modules from the same LIMEN version.",
+  "program.heading": "2. Render your first frame",
+  "program.intro": "Acquire a swapchain image, record the clear command, and present the frame. The event loop then keeps the window open.",
+  "run.heading": "3. Build, run, and experiment",
+  "run.runtime": "Run the commands from the directory containing <code>Main.hx</code>. If you use the bundled Windows runtime, copy <code>hl.exe</code> and <code>libhl.dll</code> from the build output into that directory and run <code>.\\hl.exe main.hl</code>.",
+  "run.result": "A window with a blue background should open. Close it, change the color or title in <code>Main.hx</code>, and run both commands again."
+}

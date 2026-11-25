@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react'
+import copy from '../../content/en/home.json'
 import { preventProtectedAssetAction } from '../../shared/protectAsset'
 import './SiteFooter.scss'
 
-const STATUS_MESSAGES = ['Coming soon', 'Work in progress']
+const STATUS_MESSAGES = copy.status
 const TYPE_SPEED_MS = 70
 const DELETE_SPEED_MS = 45
 const CYCLE_MS = 5000
@@ -82,8 +83,8 @@ export default function SiteFooter({ isStarted }: SiteFooterProps) {
 		<footer className={`site-footer${isStarted ? ' site-footer--started' : ''}`}>
 			<img
 				className='footer-logo'
-				src='/NMB-logo.png'
-				alt='NMB Team'
+				src={`${import.meta.env.BASE_URL}NMB-logo.png`}
+				alt={copy.teamName}
 				draggable={false}
 				onContextMenu={preventProtectedAssetAction}
 				onCopy={preventProtectedAssetAction}
@@ -93,9 +94,9 @@ export default function SiteFooter({ isStarted }: SiteFooterProps) {
 			<div className='footer-meta'>
 				<a href='mailto:notmybugs.team@gmail.com'>notmybugs.team@gmail.com</a>
 				<a href='https://github.com/NMB-Team' target='_blank' rel='noreferrer'>
-					GitHub
+					{copy.github}
 				</a>
-				<span>© 2026 NMB Team</span>
+				<span>{copy.copyright}</span>
 			</div>
 		</footer>
 	)

@@ -1,4 +1,5 @@
 import { Suspense, lazy, useCallback, useEffect, useRef, useState } from 'react'
+import copy from '../../content/en/home.json'
 import SiteFooter from '../../widgets/site-footer/SiteFooter'
 import './HomePage.scss'
 
@@ -59,6 +60,9 @@ export default function HomePage() {
 	return (
 		<main className='site-shell'>
 			<AnimatedGradient />
+			<a className='developer-link' href={`${import.meta.env.BASE_URL}developer/`}>
+				{copy.developerLink}<span aria-hidden='true'> →</span>
+			</a>
 			<Suspense fallback={null}>
 				<LogoScene />
 			</Suspense>

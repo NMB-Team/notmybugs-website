@@ -1,0 +1,14 @@
+{
+  "intro.heading": "Graphics backends",
+  "intro.summary": "LIMEN can run without a GPU or use a separate graphics backend. Choose a driver based on the app and its target platforms.",
+  "drivers.heading": "Drivers and guides",
+  "drivers.row.None.description": "Windows, system events, and input. No GPU required.",
+  "drivers.row.OpenGL.description": "OpenGL context and rendering commands.",
+  "drivers.row.Vulkan.description": "Explicit control over the GPU and graphics resources.",
+  "drivers.row.D3D11.description": "Direct3D 11 graphics on Windows.",
+  "drivers.row.D3D12.description": "Direct3D 12 graphics on Windows.",
+  "drivers.row.Metal.description": "Reserved for a future backend.",
+  "select-driver.heading": "Choose a driver at startup",
+  "select-driver.paragraph": "<code>Platform.init()</code> takes a preferred driver. If you allow multiple backends, LIMEN can fall back to one the system supports. Read <code>Platform.graphicsDriver</code> to see which driver was selected.",
+  "select-driver.paragraph2": "If your app requires OpenGL, pass a list of supported drivers:"
+}

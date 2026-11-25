@@ -1,0 +1,18 @@
+{
+  "intro.summary": "Build Target Rush. Click ten targets in twenty seconds. The game tracks your score, shows a timer, handles wins and losses, and lets you restart.",
+  "prepare.heading": "1. Set up the project and OpenGL",
+  "prepare.body": "Create <code>Limen/target-rush</code>. Copy <code>build.hxml</code> and the native files from the <a href=\"#/first-window\">first window tutorial</a>, then add <code>opengl.limen</code> from the same build. You need a working driver that supports OpenGL 3.3 or later.",
+  "source.heading": "2. Copy the game code",
+  "source.body": "Save the code as <code>target-rush/Main.hx</code>. The game draws rectangles by limiting where OpenGL clears the framebuffer. This keeps the project in one file, with no textures or shader files.",
+  "play.heading": "3. Play a round",
+  "play.step.1": "In a terminal opened in <code>target-rush</code>, run <code>haxe build.hxml</code>, then <code>hl main.hl</code> or <code>.\\hl.exe main.hl</code> with the bundled Windows runtime.",
+  "play.step.2": "Left-click the green targets. Each hit adds a point and moves the target. The blue bar at the bottom shows the time left.",
+  "play.step.3": "Try winning, letting the timer run out, and hitting targets after resizing the window. Press <kbd>R</kbd> to start another round or <kbd>Esc</kbd> to quit.",
+  "explain.heading": "How the game works",
+  "explain.step.1": "The loop polls for events. On a click, it checks whether the pointer is inside the target and updates the score. The variables <code>score</code>, <code>targetX</code>, <code>targetY</code>, and <code>deadline</code> store the round state.",
+  "explain.step.2": "<code>Time.now()</code> returns seconds elapsed since SDL's timer started. Subtracting the current time from the deadline gives the time left, regardless of how many frames have rendered.",
+  "explain.step.3": "Clicks use window coordinates, while OpenGL draws in physical pixels. Positions expressed as fractions from 0 to 1 map between the two, including on high-DPI displays.",
+  "explain.step.4": "<code>State.scissor</code> restricts the clear to a rectangle. OpenGL's origin is at the bottom, so the target's Y position becomes <code>height - bottom</code>. <code>context.present()</code> displays the finished frame.",
+  "extend.heading": "Make it your own",
+  "extend.body": "Change <code>GOAL</code>, <code>ROUND_SECONDS</code>, and <code>TARGET_SIZE</code>. Add a penalty for misses or shrink the target after each hit. For sprites and shaders, continue with the <a href=\"#/opengl\">OpenGL guide</a>. To save a high score, see the <a href=\"#/recipes?s=desktop\">Paths example</a>."
+}

@@ -1,0 +1,197 @@
+<div class="crumbs">
+	<a href="{{links.hub}}">{{common.documentation}}</a><span class="crumb-divider">/</span><a href="#/start">LIMEN</a><span class="crumb-divider">/</span><span class="current">{{pages.vulkan.title}}</span>
+</div>
+<div class="page-hero">
+	<div class="page-kicker">{{common.guides}}</div>
+	<h1>{{pages.vulkan.title}}</h1>
+	<p class="lede">{{intro.summary}}</p>
+</div>
+<section class="article-section" id="overview">
+	<div class="section-head">
+		<h2>{{overview.heading}}</h2>
+		<a class="h-anchor" href="#/vulkan?s=overview" title="{{common.sectionLink}}" aria-label="{{common.sectionLink}} {{overview.heading}}">#</a>
+	</div>
+	<p>{{overview.purpose}}</p>
+	<p>{{overview.choice}}</p>
+</section>
+<section class="article-section" id="requirements">
+	<div class="section-head">
+		<h2>{{requirements.heading}}</h2>
+		<a class="h-anchor" href="#/vulkan?s=requirements" title="{{common.sectionLink}}" aria-label="{{common.sectionLink}} {{requirements.heading}}">#</a>
+	</div>
+	<p>{{{requirements.folder}}}</p>
+	<p>{{{requirements.paragraph}}}</p>
+</section>
+<section class="article-section" id="program">
+	<div class="section-head">
+		<h2>{{program.heading}}</h2>
+		<a class="h-anchor" href="#/vulkan?s=program" title="{{common.sectionLink}}" aria-label="{{common.sectionLink}} {{program.heading}}">#</a>
+	</div>
+	<p>{{program.intro}}</p>
+	<div class="code-card">
+		<div class="code-header">
+			<div class="code-header-left">
+				<span class="file-dot"></span><span class="filename">Main.hx</span>
+			</div>
+			<div class="code-header-right">
+				<span class="language">HAXE</span><button class="copy-btn" type="button" data-copy><svg viewBox="0 0 24 24" aria-hidden="true"><use href="{{assets.icons}}#copy"/></svg><span></span></button>
+			</div>
+		</div>
+		<pre><code>import limen.graphics.GraphicsDriver;
+import limen.graphics.renderer.vulkan.Vulkan;
+import limen.graphics.renderer.vulkan.command.Commands;
+import limen.graphics.renderer.vulkan.internal.VulkanBindings.VkSwapchainInfo;
+import limen.graphics.renderer.vulkan.internal.VulkanBindings.VkWsiStatus;
+import limen.graphics.renderer.vulkan.memory.Memory.VkImage;
+import limen.graphics.renderer.vulkan.memory.Memory.VkImageViewCreateInfo;
+import limen.platform.window.WindowFlags;
+import limen.platform.Platform;
+import limen.platform.event.Event;
+import limen.platform.event.WindowStateChange;
+import limen.platform.window.Window;
+
+class Main {
+    static function main():Void {
+        // require Vulkan and disable driver fallback
+        Platform.init(GraphicsDriver.Vulkan, [GraphicsDriver.Vulkan]);
+
+        // change the title and starting size here
+        final window = Window.create({
+            title: "LIMEN Vulkan",
+            width: 800,
+            height: 450,
+            resizable: false,
+            flags: WindowFlags.SDL_WINDOW_VULKAN
+        });
+
+        final surface = Vulkan.createSurface(window);
+        // createContext writes the graphics queue family index here
+        var queueFamily = 0;
+        final context = Vulkan.createContext(surface, queueFamily);
+
+        // the swapchain fills this array with its images
+        final images = new hl.NativeArray&lt;VkImage&gt;(8);
+        final swapchain = new VkSwapchainInfo(window.width, window.height, VSync);
+        final swapchainStatus = context.initSwapchain(swapchain, images);
+        if (swapchainStatus != Success)
+            throw Vulkan.error('Swapchain initialization failed ($swapchainStatus)');
+
+        // allocate a command buffer for the graphics queue
+        final poolInfo = new VkCommandPoolCreateInfo();
+        poolInfo.queueFamilyIndex = queueFamily;
+        final pool = context.createCommandPool(poolInfo);
+        final buffers = new hl.NativeArray&lt;VkCommandBuffer&gt;(1);
+        final allocation = new VkCommandBufferAllocateInfo();
+        allocation.commandPool = pool;
+        allocation.level = PRIMARY;
+        allocation.commandBufferCount = 1;
+        check(context.allocateCommandBuffers(allocation, buffers), "Allocate command buffer");
+
+        // use separate semaphores for image acquisition and rendering
+        final acquired = context.createSemaphore(new VkSemaphoreCreateInfo());
+        final finished = context.createSemaphore(new VkSemaphoreCreateInfo());
+        var index = 0;
+        checkWsi(context.acquireNextImage(acquired, index), "Acquire image");
+
+        // create a color view for the acquired image
+        final viewInfo = new VkImageViewCreateInfo();
+        viewInfo.image = images[index];
+        viewInfo.viewType = TYPE_2D;
+        viewInfo.format = swapchain.format;
+        viewInfo.levelCount = 1;
+        viewInfo.layerCount = 1;
+        viewInfo.aspectMask.set(COLOR);
+        final view = context.createImageView(viewInfo);
+
+        final clear = new VkDynamicRenderingClearInfo();
+        clear.colorImage = images[index];
+        clear.colorView = view;
+        clear.width = swapchain.actualWidth;
+        clear.height = swapchain.actualHeight;
+        clear.firstUse = 1;
+        // change red, green, and blue from 0 to 1
+        clear.red = 0.12;
+        clear.green = 0.25;
+        clear.blue = 0.48;
+        clear.alpha = 1;
+
+        // record the clear and prepare the image for presentation
+        final commands = buffers[0];
+        check(commands.begin(new VkCommandBufferBeginInfo()), "Begin commands");
+        commands.beginDynamicRenderingClear(clear);
+        commands.endDynamicRenderingPresent(clear.colorImage);
+        check(commands.end(), "End commands");
+
+        // wait for acquisition on the GPU and signal when rendering finishes
+        check(context.submitFrame(commands, acquired, finished, null), "Submit frame");
+        checkWsi(context.present(finished, index), "Present frame");
+
+        // keep the window responsive until it closes
+        final event = new Event();
+        var running = true;
+
+        while (running) {
+            while (Platform.pollEvent(event)) {
+                switch (event.type) {
+                    case Quit:
+                        running = false;
+                    case WindowState if (event.windowId == window.id &amp;&amp; event.state == WindowStateChange.Close):
+                        running = false;
+                    default:
+                }
+            }
+
+            if (running)
+                Platform.delay(10);
+        }
+
+        // wait for the GPU before releasing resources
+        check(context.waitIdle(), "Wait for device");
+        context.destroyImageView(view);
+        context.destroySemaphore(finished);
+        context.destroySemaphore(acquired);
+        context.destroyCommandPool(pool);
+        Vulkan.destroyContext(context);
+        surface.destroy();
+        window.destroy();
+        Platform.quit();
+    }
+
+    static function check(result:Int, operation:String):Void {
+        if (result != 0)
+            throw Vulkan.error('$operation failed ($result)');
+    }
+
+    static function checkWsi(status:VkWsiStatus, operation:String):Void {
+        if (status != Success &amp;&amp; status != Suboptimal)
+            throw Vulkan.error('$operation failed ($status)');
+    }
+}</code></pre>
+	</div>
+</section>
+<section class="article-section" id="run">
+	<div class="section-head">
+		<h2>{{run.heading}}</h2>
+		<a class="h-anchor" href="#/vulkan?s=run" title="{{common.sectionLink}}" aria-label="{{common.sectionLink}} {{run.heading}}">#</a>
+	</div>
+	<p>{{{run.runtime}}}</p>
+	<div class="code-card">
+		<div class="code-header">
+			<div class="code-header-left">
+				<span class="file-dot"></span><span class="filename">terminal</span>
+			</div>
+			<div class="code-header-right">
+				<span class="language">SHELL</span><button class="copy-btn" type="button" data-copy><svg viewBox="0 0 24 24" aria-hidden="true"><use href="{{assets.icons}}#copy"/></svg><span></span></button>
+			</div>
+		</div>
+		<pre><code>haxe -cp .. -main Main -hl main.hl
+hl main.hl</code></pre>
+	</div>
+	<p>{{{run.result}}}</p>
+</section>
+<a class="next-card" href="#/renderer-api?s=vulkan">
+	<div>
+		<span class="next-label">{{common.nextPage}}</span><span class="next-title">{{pages.renderer-api.title}} · Vulkan</span>
+	</div>
+	<svg viewBox="0 0 24 24" aria-hidden="true"><use href="{{assets.icons}}#arrow"/></svg>
+</a>

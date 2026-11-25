@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="{{language}}">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <meta name="description" content="{{apiDescription}}">
+  <title>{{apiTitle}}</title>
+  <link rel="icon" href="/nmb-bug.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/src/pages/developer/DeveloperPage.scss">
+</head>
+<body>
+  <div class="app api-reference-app">
+    <div id="siteHeader" data-hub-href="{{hubHref}}"></div>
+    <div class="api-workspace api-reference">
+      <details class="api-browser" open>
+        <summary>{{apiBrowse}}</summary>
+        <div id="apiBrowser"></div>
+      </details>
+      <main id="apiContent" tabindex="-1" class="doc-inner wiki-article-surface">
+        <noscript><p>{{noscript}}</p></noscript>
+      </main>
+    </div>
+  </div>
+  <script type="module" src="/src/pages/developer/apiReference.ts"></script>
+</body>
+</html>

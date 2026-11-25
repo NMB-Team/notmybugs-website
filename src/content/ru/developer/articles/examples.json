@@ -1,0 +1,21 @@
+{
+	"run.otherExamples": "Для остальных примеров откройте терминал в папке с именем из комментария. Запустите только две команды под именем выбранного примера. В <code>touch-pen</code> нужен <code>opengl.limen</code>, как и для OpenGL-демо. Остальным достаточно платформенного модуля <code>limen.hdll</code> и HashLink.",
+	"intro.heading": "Примеры кода",
+	"intro.summary": "В репозитории есть небольшие Haxe-программы, которые показывают отдельные возможности библиотеки.",
+	"example-list.heading": "Выберите пример",
+	"example-list.resource-row.window.title": "Window",
+	"example-list.resource-row.window.description": "Окно, дисплеи, ввод и обработка событий",
+	"example-list.resource-row.gl.description": "Контекст, шейдеры и рендеринг",
+	"example-list.resource-row.clipboard.title": "Clipboard",
+	"example-list.resource-row.clipboard.description": "Чтение, запись и MIME-данные",
+	"example-list.resource-row.file-dialog.title": "File dialog",
+	"example-list.resource-row.file-dialog.description": "Открытие нативного выбора файлов",
+	"example-list.resource-row.tray.title": "Tray",
+	"example-list.resource-row.tray.description": "Иконка и меню в системном трее",
+	"example-list.resource-row.touch-pen.title": "Touch & Pen",
+	"example-list.resource-row.touch-pen.description": "Сенсорное рисование и работа с пером",
+	"run.heading": "Как запускать примеры",
+	"run.paragraph": "У каждой программы собственный файл <code>.hxml</code>. Компилируйте из её папки после сборки LIMEN.",
+	"run.paragraph2": "Пример с OpenGL дополнительно требует <code>opengl.limen</code>:",
+	"intro.rendererGuides": "Чтобы написать свой первый кадр, откройте <a href=\"#/graphics?s=drivers\">руководства по OpenGL, Vulkan и Direct3D</a>."
+}

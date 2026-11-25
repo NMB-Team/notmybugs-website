@@ -1,0 +1,21 @@
+{
+  "run.otherExamples": "For the other examples, open a terminal in the directory named in the comment. Run only the two commands under the example you chose. The <code>touch-pen</code> demo requires <code>opengl.limen</code>, just like the OpenGL demo. The others only need <code>limen.hdll</code> and HashLink.",
+  "intro.heading": "Code examples",
+  "intro.summary": "The repository contains small Haxe programs that demonstrate individual library features.",
+  "example-list.heading": "Choose an example",
+  "example-list.resource-row.window.title": "Window",
+  "example-list.resource-row.window.description": "Windows, displays, input, and event handling",
+  "example-list.resource-row.gl.description": "Context creation, shaders, and rendering",
+  "example-list.resource-row.clipboard.title": "Clipboard",
+  "example-list.resource-row.clipboard.description": "Reading, writing, and MIME data",
+  "example-list.resource-row.file-dialog.title": "File dialog",
+  "example-list.resource-row.file-dialog.description": "Opening a native file picker",
+  "example-list.resource-row.tray.title": "Tray",
+  "example-list.resource-row.tray.description": "System tray icon and menu",
+  "example-list.resource-row.touch-pen.title": "Touch & Pen",
+  "example-list.resource-row.touch-pen.description": "Drawing with touch and pen input",
+  "run.heading": "Run the examples",
+  "run.paragraph": "Each program has its own <code>.hxml</code> file. After building LIMEN, compile each example from its own directory.",
+  "run.paragraph2": "The OpenGL example also requires <code>opengl.limen</code>:",
+  "intro.rendererGuides": "To render your first frame, follow the <a href=\"#/graphics?s=drivers\">OpenGL, Vulkan, and Direct3D guides</a>."
+}

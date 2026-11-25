@@ -1,0 +1,19 @@
+{
+  "intro.heading": "Platform",
+  "intro.summary": "Application initialization, event queue processing, and system services.",
+  "usage.heading": "Typical usage",
+  "usage.paragraph": "Call <code>init()</code> before creating windows and <code>quit()</code> when the app exits.",
+  "usage.title": "Default driver",
+  "usage.paragraph2": "With no arguments, <code>Platform.init()</code> prefers OpenGL. If your app does no rendering, pass <code>GraphicsDriver.None</code>.",
+  "methods.heading": "Core methods",
+  "methods.row.init-preferred-supported.description": "Initializes the platform and selects a graphics driver.",
+  "methods.row.pollEvent-target.description": "Reads an event from the queue and returns a Bool.",
+  "methods.row.processEvents-onEvent.description": "Calls your handler for queued events.",
+  "methods.row.addEventWatchListener-listener.description": "Registers an event watch. The callback can run on a different thread.",
+  "methods.row.delay-milliseconds.description": "Sleeps for the given number of milliseconds.",
+  "methods.row.getTime.description": "Returns the time as a Float.",
+  "methods.row.quit.description": "Releases platform resources.",
+  "utilities.heading": "Other methods",
+  "utilities.resource-row.Platform-hx.title": "Platform.hx source",
+  "utilities.resource-row.Platform-hx.description": "Browse all available methods"
+}

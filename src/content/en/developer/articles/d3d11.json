@@ -1,0 +1,14 @@
+{
+  "intro.summary": "Create a window, clear its back buffer with Direct3D 11, and present your first frame.",
+  "overview.heading": "When to use Direct3D 11",
+  "overview.purpose": "Direct3D 11 is Microsoft's graphics API for Windows. It works well for 3D games, editors, and visualizations. The runtime tracks resource states and handles much of the synchronization.",
+  "overview.choice": "Choose Direct3D 11 for a Windows project if you want a simpler way into DirectX than Direct3D 12, or if you already have a Direct3D 11 renderer. For a similarly approachable cross-platform option, consider OpenGL.",
+  "requirements.heading": "1. Set up the project",
+  "requirements.folder": "In the LIMEN source directory, create a folder named <code>first-d3d11</code>. Save the next section's code as <code>Main.hx</code> inside it.",
+  "requirements.paragraph": "Follow the <a href=\"#/installation\">LIMEN installation guide</a> and copy <code>limen.hdll</code> and <code>d3d11.limen</code> into the app directory. You need Windows and a GPU that supports Direct3D 11. Use source files and native modules from the same LIMEN version.",
+  "program.heading": "2. Render your first frame",
+  "program.intro": "Get the back buffer, create a render target view, and clear it. After presenting the frame, the event loop keeps the window open.",
+  "run.heading": "3. Build, run, and experiment",
+  "run.runtime": "Run the commands from the directory containing <code>Main.hx</code>. If you use the bundled Windows runtime, copy <code>hl.exe</code> and <code>libhl.dll</code> from the build output into that directory and run <code>.\\hl.exe main.hl</code>.",
+  "run.result": "A window with a blue background should open. Close it, change the color or title in <code>Main.hx</code>, and run both commands again."
+}

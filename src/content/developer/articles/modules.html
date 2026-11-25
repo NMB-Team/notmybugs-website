@@ -1,0 +1,138 @@
+<div class="crumbs">
+	<a href="{{links.hub}}">{{common.documentation}}</a><span class="crumb-divider">/</span><a href="#/start">LIMEN</a><span class="crumb-divider">/</span><span class="current">{{pages.modules.title}}</span>
+</div>
+<div class="page-hero">
+	<div class="page-kicker">
+		{{common.guides}}
+	</div>
+	<h1>{{intro.heading}}</h1>
+	<p class="lede">{{intro.summary}}</p>
+	<div class="metadata">
+		<span class="pill">HashLink</span><span class="pill">SDL3</span>
+	</div>
+</div>
+<section class="article-section" id="module-list">
+	<div class="section-head">
+		<h2>{{module-list.heading}}</h2>
+		<a class="h-anchor" href="#/modules?s=module-list" title="{{common.sectionLink}}" aria-label="{{common.sectionLink}} {{module-list.heading}}">#</a>
+	</div>
+	<p>{{module-list.intro}}</p>
+	<div class="module-list">
+		<div class="module-row">
+			<div class="module-main">
+				<strong>limen.hdll</strong><span>{{module-list.module.limen-hdll.description}}</span>
+			</div>
+			<span class="module-tag">{{common.required}}</span>
+		</div>
+		<div class="module-row">
+			<div class="module-main">
+				<strong><a href="#/opengl">opengl.limen</a></strong><span>{{module-list.module.opengl-limen.description}}</span>
+			</div>
+			<span class="module-tag">{{common.optional}}</span>
+		</div>
+		<div class="module-row">
+			<div class="module-main">
+				<strong><a href="#/vulkan">vulkan.limen</a></strong><span>{{module-list.module.vulkan-limen.description}}</span>
+			</div>
+			<span class="module-tag">{{common.optional}}</span>
+		</div>
+		<div class="module-row">
+			<div class="module-main">
+				<strong><a href="#/d3d11">d3d11.limen</a></strong><span>{{module-list.module.d3d11-limen.description}}</span>
+			</div>
+			<span class="module-tag">{{common.optional}}</span>
+		</div>
+		<div class="module-row">
+			<div class="module-main">
+				<strong><a href="#/d3d12">d3d12.limen</a></strong><span>{{module-list.module.d3d12-limen.description}}</span>
+			</div>
+			<span class="module-tag">{{common.optional}}</span>
+		</div>
+		<div class="module-row">
+			<div class="module-main">
+				<strong>dlss.limen</strong><span>{{module-list.module.dlss-limen.description}}</span>
+			</div>
+			<span class="module-tag">{{common.separateBuild}}</span>
+		</div>
+		<div class="module-row">
+			<div class="module-main">
+				<strong>fsr.limen</strong><span>{{module-list.module.fsr-limen.description}}</span>
+			</div>
+			<span class="module-tag">{{common.separateBuild}}</span>
+		</div>
+	</div>
+</section>
+<section class="article-section" id="loading">
+	<div class="section-head">
+		<h2>{{loading.heading}}</h2>
+		<a class="h-anchor" href="#/modules?s=loading" title="{{common.sectionLink}}" aria-label="{{common.sectionLink}} {{loading.heading}}">#</a>
+	</div>
+	<p>{{{loading.paragraph}}}</p>
+	<p>{{{loading.abi}}}</p>
+	<p>{{{loading.lifecycle}}}</p>
+</section>
+<section class="article-section" id="selection">
+	<div class="section-head">
+		<h2>{{selection.heading}}</h2>
+		<a class="h-anchor" href="#/modules?s=selection" title="{{common.sectionLink}}" aria-label="{{common.sectionLink}} {{selection.heading}}">#</a>
+	</div>
+	<p>{{{selection.paragraph}}}</p>
+	<div class="code-card">
+		<div class="code-header">
+			<div class="code-header-left">
+				<span class="file-dot"></span><span class="filename">Main.hx</span>
+			</div>
+			<div class="code-header-right">
+				<span class="language">HAXE</span><button class="copy-btn" type="button" data-copy><svg viewBox="0 0 24 24" aria-hidden="true"><use href="{{assets.icons}}#copy"/></svg><span></span></button>
+			</div>
+		</div>
+		<pre><code>import limen.graphics.GraphicsDriver;
+import limen.platform.Platform;
+
+class Main {
+	static function main() {
+		Platform.init(GraphicsDriver.Vulkan, [GraphicsDriver.Vulkan, GraphicsDriver.OpenGL]);
+		trace(Platform.graphicsDriver);
+		Platform.quit();
+	}
+}</code></pre>
+	</div>
+	<p>{{{selection.example}}}</p>
+	<div class="info-block">
+		<span class="info-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="{{assets.icons}}#info"/></svg></span>
+		<div class="info-content">
+			<strong>{{selection.note.title}}</strong>
+			<p>{{{selection.note.paragraph}}}</p>
+		</div>
+	</div>
+</section>
+<section class="article-section" id="postprocess">
+	<div class="section-head">
+		<h2>{{postprocess.heading}}</h2>
+		<a class="h-anchor" href="#/modules?s=postprocess" title="{{common.sectionLink}}" aria-label="{{common.sectionLink}} {{postprocess.heading}}">#</a>
+	</div>
+	<p>{{{postprocess.paragraph}}}</p>
+	<p>{{{postprocess.dlss}}}</p>
+	<p>{{{postprocess.fsr}}}</p>
+	<p>{{{postprocess.availability}}}</p>
+	<a class="resource-row" href="https://github.com/NMB-Team/Limen/tree/master/limen/graphics/postprocess" target="_blank" rel="noopener noreferrer"><span><strong>{{postprocess.resource.title}}</strong><small>{{postprocess.resource.description}}</small></span><span class="resource-arrow">↗</span></a>
+</section>
+<section class="article-section" id="where">
+	<div class="section-head">
+		<h2>{{where.heading}}</h2>
+		<a class="h-anchor" href="#/modules?s=where" title="{{common.sectionLink}}" aria-label="{{common.sectionLink}} {{where.heading}}">#</a>
+	</div>
+	<p>{{{where.paragraph}}}</p>
+	<ul>
+		<li>{{{where.platform}}}</li>
+		<li>{{{where.single}}}</li>
+		<li>{{{where.fallback}}}</li>
+	</ul>
+	<p>{{{where.troubleshooting}}}</p>
+	<a class="resource-row" href="https://github.com/NMB-Team/Limen/blob/master/README.md" target="_blank" rel="noopener noreferrer"><span><strong>{{where.resource-row.README-md.title}}</strong><small>{{where.resource-row.README-md.description}}</small></span><span class="resource-arrow">↗</span></a>
+</section>
+<a class="next-card" href="#/platform">
+<div>
+	<span class="next-label">{{common.nextPage}}</span><span class="next-title">{{pages.platform.title}}</span>
+</div>
+<svg viewBox="0 0 24 24" aria-hidden="true"><use href="{{assets.icons}}#arrow"/></svg></a>

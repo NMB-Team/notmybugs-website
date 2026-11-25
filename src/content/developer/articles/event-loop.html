@@ -1,0 +1,123 @@
+<div class="crumbs">
+	<a href="{{links.hub}}">{{common.documentation}}</a><span class="crumb-divider">/</span><a href="#/start">LIMEN</a><span class="crumb-divider">/</span><span class="current">{{pages.event-loop.title}}</span>
+</div>
+<div class="page-hero">
+	<div class="page-kicker">
+		{{common.gettingStarted}}
+	</div>
+	<h1>{{intro.heading}}</h1>
+	<p class="lede">{{intro.summary}}</p>
+	<div class="metadata">
+		<span class="pill">Events</span><span class="pill">Input</span>
+	</div>
+</div>
+<section class="article-section" id="polling">
+	<div class="section-head">
+		<h2>{{polling.heading}}</h2>
+		<a class="h-anchor" href="#/event-loop?s=polling" title="{{common.sectionLink}}" aria-label="{{common.sectionLink}} {{polling.heading}}">#</a>
+	</div>
+	<p>{{{polling.paragraph}}}</p>
+	<div class="code-card">
+		<div class="code-header">
+			<div class="code-header-left">
+				<span class="file-dot"></span><span class="filename">Main.hx</span>
+			</div>
+			<div class="code-header-right">
+				<span class="language">HAXE</span><button class="copy-btn" type="button" data-copy><svg viewBox="0 0 24 24" aria-hidden="true"><use href="{{assets.icons}}#copy"/></svg><span></span></button>
+			</div>
+		</div>
+		<pre><code>final event = new Event();
+var running = true;
+
+while (running) {
+    while (Platform.pollEvent(event)) {
+        switch (event.type) {
+            case EventType.Quit:
+                running = false;
+            case EventType.MouseMove:
+                trace(event.mouseX, event.mouseY);
+            case EventType.KeyDown:
+                trace(event.keyCode);
+            default:
+        }
+    }
+    Platform.delay(8);
+}</code></pre>
+	</div>
+	<div class="info-block ">
+		<span class="info-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="{{assets.icons}}#info"/></svg></span>
+		<div class="info-content">
+			<strong>{{polling.title}}</strong>
+			<p>{{{polling.paragraph2}}}</p>
+		</div>
+	</div>
+</section>
+<section class="article-section" id="types">
+	<div class="section-head">
+		<h2>{{types.heading}}</h2>
+		<a class="h-anchor" href="#/event-loop?s=types" title="{{common.sectionLink}}" aria-label="{{common.sectionLink}} {{types.heading}}">#</a>
+	</div>
+	<div class="api-table-wrap">
+		<table class="api-table">
+			<thead>
+				<tr>
+					<th>{{common.apiValue}}</th><th>{{common.purpose}}</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td><code>EventType.Quit</code></td><td>{{types.row.EventType-Quit.description}}</td>
+				</tr>
+				<tr>
+					<td><code>EventType.WindowState</code></td><td>{{types.row.EventType-WindowState.description}}</td>
+				</tr>
+				<tr>
+					<td><code>EventType.MouseMove</code></td><td>{{types.row.EventType-MouseMove.description}}</td>
+				</tr>
+				<tr>
+					<td><code>EventType.KeyDown</code></td><td>{{types.row.EventType-KeyDown.description}}</td>
+				</tr>
+				<tr>
+					<td><code>EventType.MouseDown</code></td><td>{{types.row.EventType-MouseDown.description}}</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</section>
+<section class="article-section" id="listeners">
+	<div class="section-head">
+		<h2>{{listeners.heading}}</h2>
+		<a class="h-anchor" href="#/event-loop?s=listeners" title="{{common.sectionLink}}" aria-label="{{common.sectionLink}} {{listeners.heading}}">#</a>
+	</div>
+	<p>{{{listeners.paragraph}}}</p>
+	<div class="code-card">
+		<div class="code-header">
+			<div class="code-header-left">
+				<span class="file-dot"></span><span class="filename">Main.hx</span>
+			</div>
+			<div class="code-header-right">
+				<span class="language">HAXE</span><button class="copy-btn" type="button" data-copy><svg viewBox="0 0 24 24" aria-hidden="true"><use href="{{assets.icons}}#copy"/></svg><span></span></button>
+			</div>
+		</div>
+		<pre><code>// Listener can run outside the main thread.
+final listener = (event:Event) -&gt; {
+    trace(event.type);
+};
+
+Platform.addEventWatchListener(listener);
+// ...
+Platform.removeEventWatchListener(listener);</code></pre>
+	</div>
+	<div class="info-block ">
+		<span class="info-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="{{assets.icons}}#info"/></svg></span>
+		<div class="info-content">
+			<strong>{{listeners.title}}</strong>
+			<p>{{{listeners.paragraph2}}}</p>
+		</div>
+	</div>
+</section>
+<a class="next-card" href="#/graphics">
+<div>
+	<span class="next-label">{{common.nextPage}}</span><span class="next-title">{{pages.graphics.title}}</span>
+</div>
+<svg viewBox="0 0 24 24" aria-hidden="true"><use href="{{assets.icons}}#arrow"/></svg></a>

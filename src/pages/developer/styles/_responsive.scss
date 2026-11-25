@@ -1,0 +1,164 @@
+@use 'breakpoints';
+
+@media (max-width: breakpoints.$compact) {
+	.wiki-infobox {
+		width: 220px;
+	}
+}
+
+@media (max-width: breakpoints.$mobile) {
+	.app {
+		--side: 0px;
+		--layout-gutter: 12px;
+	}
+
+	.mobile-toggle {
+		display: block;
+		border: 0;
+		color: #e2f4e3;
+		font-size: 11px;
+		padding: 0 12px;
+	}
+
+	.workspace {
+		display: block;
+	}
+
+	.wiki-main {
+		padding-block: 13px;
+	}
+
+	.sidebar {
+		position: fixed;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		z-index: 150;
+		max-height: none;
+		width: min(290px, 85vw);
+		padding-top: 18px;
+		padding-left: 17px;
+		background: #0a110b;
+		border-right: 1px solid #566b57;
+		transform: translateX(-102%);
+		transition: transform .18s;
+		box-shadow: 10px 0 30px #0009;
+
+		&.open {
+			transform: translateX(0);
+		}
+	}
+
+	.mobile-shade {
+		display: block;
+		position: fixed;
+		inset: 0;
+		z-index: 140;
+		background: #000a;
+		pointer-events: none;
+		opacity: 0;
+		transition: opacity .18s;
+
+		&.visible {
+			opacity: 1;
+			pointer-events: auto;
+		}
+	}
+
+	.wiki-tab {
+		padding: 7px 9px;
+		font-size: 10px;
+	}
+
+	.wiki-infobox {
+		width: 190px;
+		margin-left: 14px;
+	}
+
+	h1 {
+		font-size: 25px;
+	}
+
+	.wiki-article-surface {
+		border-radius: 6px;
+	}
+
+	.sidebar:not(.open) {
+		visibility: hidden;
+	}
+}
+
+@media (max-width: breakpoints.$narrow) {
+	.wiki-tabs-right .wiki-tab {
+		padding-left: 7px;
+		padding-right: 7px;
+	}
+
+	.wiki-infobox {
+		float: none;
+		width: auto;
+		max-width: 340px;
+		margin: 0 0 14px;
+	}
+
+	.wiki-welcome {
+		padding: 10px;
+		gap: 10px;
+
+		img {
+			width: 48px;
+			height: 48px;
+		}
+	}
+
+	.wiki-columns,
+	.feature-grid {
+		grid-template-columns: 1fr;
+	}
+
+	.feature {
+		&:nth-child(odd) {
+			border-right: 0;
+		}
+
+		&:nth-last-child(2) {
+			border-bottom: 1px solid #374c3a;
+		}
+	}
+
+	.wiki-panel {
+		min-width: 0;
+	}
+
+	.code-card pre {
+		font-size: 10.5px;
+		padding: 10px;
+	}
+
+	.api-table {
+		font-size: 11px;
+
+		td,
+		th {
+			padding: 6px;
+		}
+	}
+
+	.module-row {
+		flex-wrap: wrap;
+	}
+
+	.next-card div {
+		flex-direction: column;
+		gap: 2px;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	*,
+	*:before,
+	*:after {
+		scroll-behavior: auto !important;
+		transition-duration: .01ms !important;
+	}
+}

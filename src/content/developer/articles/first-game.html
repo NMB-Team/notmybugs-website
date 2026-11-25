@@ -1,0 +1,176 @@
+<div class="crumbs">
+	<a href="{{links.hub}}">{{common.documentation}}</a><span class="crumb-divider">/</span><a href="#/start">LIMEN</a><span class="crumb-divider">/</span><span class="current">{{pages.first-game.title}}</span>
+</div>
+<div class="page-hero">
+	<h1>{{pages.first-game.title}}</h1>
+	<p class="lede">{{intro.summary}}</p>
+</div>
+<section class="article-section" id="prepare">
+	<div class="section-head">
+		<h2>{{prepare.heading}}</h2>
+		<a class="h-anchor" href="#/first-game?s=prepare" title="{{common.sectionLink}}" aria-label="{{common.sectionLink}} {{prepare.heading}}">#</a>
+	</div>
+	<p>{{{prepare.body}}}</p>
+</section>
+<section class="article-section" id="source">
+	<div class="section-head">
+		<h2>{{source.heading}}</h2>
+		<a class="h-anchor" href="#/first-game?s=source" title="{{common.sectionLink}}" aria-label="{{common.sectionLink}} {{source.heading}}">#</a>
+	</div>
+	<p>{{{source.body}}}</p>
+	<div class="code-card">
+		<div class="code-header">
+			<div class="code-header-left"><span class="file-dot"></span><span class="filename">Main.hx</span></div>
+			<div class="code-header-right"><span class="language">HAXE</span><button class="copy-btn" type="button" data-copy><svg viewBox="0 0 24 24" aria-hidden="true"><use href="{{assets.icons}}#copy"/></svg><span></span></button></div>
+		</div>
+		<pre><code>import limen.graphics.GraphicsDriver;
+import limen.graphics.renderer.opengl.OpenGL;
+import limen.graphics.renderer.opengl.command.Commands;
+import limen.graphics.renderer.opengl.pipeline.State;
+import limen.platform.Platform;
+import limen.platform.event.Event;
+import limen.platform.event.WindowStateChange;
+import limen.platform.system.Time;
+import limen.platform.window.Window;
+import limen.platform.window.WindowFlags;
+
+class Main {
+    static inline final TARGET_SIZE = 0.12;
+    static inline final GOAL = 10;
+    static inline final ROUND_SECONDS = 20;
+
+    static function main() {
+        Platform.init(GraphicsDriver.OpenGL, [GraphicsDriver.OpenGL]);
+
+        final window = Window.create({
+            title: "Target rush",
+            width: 800,
+            height: 500,
+            resizable: true,
+            flags: WindowFlags.SDL_WINDOW_OPENGL
+        });
+        final context = OpenGL.create(window, {minimumMajor: 3, minimumMinor: 3});
+        context.makeCurrent();
+
+        final event = new Event();
+        var targetX = 0.44;
+        var targetY = 0.44;
+        var score = 0;
+        var deadline = Time.now() + ROUND_SECONDS;
+        var running = true;
+
+        while (running) {
+            while (running &amp;&amp; Platform.pollEvent(event)) {
+                switch (event.type) {
+                    case Quit:
+                        running = false;
+                    case WindowState if (event.windowId == window.id &amp;&amp; event.state == WindowStateChange.Close):
+                        running = false;
+                    case KeyDown if (event.windowId == window.id &amp;&amp; !event.keyRepeat):
+                        switch (event.scanCode) {
+                            case 41: // Escape
+                                running = false;
+                            case 21: // R
+                                score = 0;
+                                targetX = 0.44;
+                                targetY = 0.44;
+                                deadline = Time.now() + ROUND_SECONDS;
+                            default:
+                        }
+                    case MouseDown if (event.windowId == window.id &amp;&amp; event.button == 1):
+                        if (score &lt; GOAL &amp;&amp; Time.now() &lt; deadline &amp;&amp; window.width &gt; 0 &amp;&amp; window.height &gt; 0) {
+                            final x = event.mouseX / window.width;
+                            final y = event.mouseY / window.height;
+
+                            if (x &gt;= targetX &amp;&amp; x &lt; targetX + TARGET_SIZE &amp;&amp; y &gt;= targetY &amp;&amp; y &lt; targetY + TARGET_SIZE) {
+                                score++;
+                                targetX = 0.05 + Math.random() * (0.9 - TARGET_SIZE);
+                                targetY = 0.05 + Math.random() * (0.86 - TARGET_SIZE);
+                            }
+                        }
+                    default:
+                }
+            }
+
+            if (!running) break;
+
+            final remaining = Math.max(0, deadline - Time.now());
+            final active = remaining &gt; 0 &amp;&amp; score &lt; GOAL;
+            final title = if (score == GOAL)
+                "You win! | R: restart"
+            else if (remaining == 0)
+                'Time is up: $score/$GOAL | R: restart'
+            else
+                'Target rush: $score/$GOAL | ${Math.ceil(remaining)}s | R: restart';
+
+            if (window.title != title) window.title = title;
+
+            final width = window.pixelWidth;
+            final height = window.pixelHeight;
+
+            if (width &gt; 0 &amp;&amp; height &gt; 0) {
+                Commands.clearColor(0.04, 0.07, 0.12, 1);
+                Commands.clear(Commands.COLOR_BUFFER_BIT);
+
+                if (active) {
+                    State.enable(State.SCISSOR_TEST);
+
+                    final left = Std.int(targetX * width);
+                    final right = Std.int((targetX + TARGET_SIZE) * width);
+                    final top = Std.int(targetY * height);
+                    final bottom = Std.int((targetY + TARGET_SIZE) * height);
+
+                    State.scissor(left, height - bottom, right - left, bottom - top);
+                    Commands.clearColor(0.30, 0.90, 0.57, 1);
+                    Commands.clear(Commands.COLOR_BUFFER_BIT);
+
+                    State.scissor(0, 0, Std.int(width * remaining / ROUND_SECONDS), Std.int(height * 0.04));
+                    Commands.clearColor(0.30, 0.62, 1.0, 1);
+                    Commands.clear(Commands.COLOR_BUFFER_BIT);
+
+                    State.disable(State.SCISSOR_TEST);
+                }
+
+                context.present();
+            }
+
+            Platform.delay(8);
+        }
+
+        context.destroy();
+        window.destroy();
+        Platform.quit();
+    }
+}</code></pre>
+	</div>
+</section>
+<section class="article-section" id="play">
+	<div class="section-head">
+		<h2>{{play.heading}}</h2>
+		<a class="h-anchor" href="#/first-game?s=play" title="{{common.sectionLink}}" aria-label="{{common.sectionLink}} {{play.heading}}">#</a>
+	</div>
+	<ol>
+		<li>{{{play.step.1}}}</li>
+		<li>{{{play.step.2}}}</li>
+		<li>{{{play.step.3}}}</li>
+	</ol>
+</section>
+<section class="article-section" id="explain">
+	<div class="section-head">
+		<h2>{{explain.heading}}</h2>
+		<a class="h-anchor" href="#/first-game?s=explain" title="{{common.sectionLink}}" aria-label="{{common.sectionLink}} {{explain.heading}}">#</a>
+	</div>
+	<ol>
+		<li>{{{explain.step.1}}}</li>
+		<li>{{{explain.step.2}}}</li>
+		<li>{{{explain.step.3}}}</li>
+		<li>{{{explain.step.4}}}</li>
+	</ol>
+</section>
+<section class="article-section" id="extend">
+	<div class="section-head">
+		<h2>{{extend.heading}}</h2>
+		<a class="h-anchor" href="#/first-game?s=extend" title="{{common.sectionLink}}" aria-label="{{common.sectionLink}} {{extend.heading}}">#</a>
+	</div>
+	<p>{{{extend.body}}}</p>
+</section>

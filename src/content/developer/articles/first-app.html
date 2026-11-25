@@ -1,0 +1,142 @@
+<div class="crumbs">
+	<a href="{{links.hub}}">{{common.documentation}}</a><span class="crumb-divider">/</span><a href="#/start">LIMEN</a><span class="crumb-divider">/</span><span class="current">{{pages.first-app.title}}</span>
+</div>
+<div class="page-hero">
+	<h1>{{pages.first-app.title}}</h1>
+	<p class="lede">{{intro.summary}}</p>
+</div>
+<section class="article-section" id="prepare">
+	<div class="section-head">
+		<h2>{{prepare.heading}}</h2>
+		<a class="h-anchor" href="#/first-app?s=prepare" title="{{common.sectionLink}}" aria-label="{{common.sectionLink}} {{prepare.heading}}">#</a>
+	</div>
+	<p>{{{prepare.body}}}</p>
+</section>
+<section class="article-section" id="source">
+	<div class="section-head">
+		<h2>{{source.heading}}</h2>
+		<a class="h-anchor" href="#/first-app?s=source" title="{{common.sectionLink}}" aria-label="{{common.sectionLink}} {{source.heading}}">#</a>
+	</div>
+	<p>{{{source.body}}}</p>
+	<div class="code-card">
+		<div class="code-header">
+			<div class="code-header-left"><span class="file-dot"></span><span class="filename">Main.hx</span></div>
+			<div class="code-header-right"><span class="language">HAXE</span><button class="copy-btn" type="button" data-copy><svg viewBox="0 0 24 24" aria-hidden="true"><use href="{{assets.icons}}#copy"/></svg><span></span></button></div>
+		</div>
+		<pre><code>import limen.graphics.GraphicsDriver;
+import limen.platform.Platform;
+import limen.platform.event.Event;
+import limen.platform.event.EventType;
+import limen.platform.event.WindowStateChange;
+import limen.platform.system.Clipboard;
+import limen.platform.system.dialog.FileDialog;
+import limen.platform.system.dialog.FileDialogResult;
+import limen.platform.window.Window;
+import sys.io.File;
+import sys.thread.Deque;
+
+class Main {
+    static function main() {
+        Platform.init(GraphicsDriver.None);
+
+        final window = Window.create({
+            title: "Text counter | O: open, C: copy",
+            width: 700,
+            height: 240
+        });
+        final results = new Deque&lt;FileDialogResult&gt;();
+        final event = new Event();
+
+        var running = true;
+        var choosing = false;
+        var report:Null&lt;String&gt; = null;
+
+        while (running) {
+            while (running &amp;&amp; Platform.pollEvent(event)) {
+                switch (event.type) {
+                    case Quit:
+                        running = false;
+                    case WindowState if (event.windowId == window.id &amp;&amp; event.state == WindowStateChange.Close):
+                        running = false;
+                    case KeyDown if (event.windowId == window.id &amp;&amp; !event.keyRepeat &amp;&amp; !choosing):
+                        switch (event.scanCode) {
+                            case 18: // O
+                                choosing = true;
+                                FileDialog.openFile(result -&gt; results.add(result), {
+                                    parent: window,
+                                    filters: [{name: "Text files", pattern: "txt;md"}]
+                                });
+                            case 6 if (report != null): // C
+                                window.title = Clipboard.setText(report)
+                                    ? report + " | Copied"
+                                    : report + " | Copy failed";
+                            default:
+                        }
+                    default:
+                }
+            }
+
+            if (!running) break;
+
+            final result = results.pop(false);
+            if (result != null) {
+                choosing = false;
+
+                switch (result) {
+                    case Selected(paths, _):
+                        try {
+                            final content = File.getContent(paths[0]);
+                            final words = [for (word in ~/\s+/g.split(content)) if (word != "") word];
+                            report = '${words.length} words';
+                            window.title = report + " | O: open, C: copy";
+                        } catch (error:Dynamic) {
+                            report = null;
+                            window.title = "Could not read the file | O: try again";
+                            Sys.println(Std.string(error));
+                        }
+                    case Cancelled:
+                    case Failed(message):
+                        window.title = "File dialog failed | O: try again";
+                        Sys.println(message);
+                }
+            }
+
+            Platform.delay(8);
+        }
+
+        window.destroy();
+        Platform.quit();
+    }
+}</code></pre>
+	</div>
+</section>
+<section class="article-section" id="try">
+	<div class="section-head">
+		<h2>{{try.heading}}</h2>
+		<a class="h-anchor" href="#/first-app?s=try" title="{{common.sectionLink}}" aria-label="{{common.sectionLink}} {{try.heading}}">#</a>
+	</div>
+	<ol>
+		<li>{{{try.step.1}}}</li>
+		<li>{{{try.step.2}}}</li>
+		<li>{{{try.step.3}}}</li>
+		<li>{{{try.step.4}}}</li>
+	</ol>
+</section>
+<section class="article-section" id="explain">
+	<div class="section-head">
+		<h2>{{explain.heading}}</h2>
+		<a class="h-anchor" href="#/first-app?s=explain" title="{{common.sectionLink}}" aria-label="{{common.sectionLink}} {{explain.heading}}">#</a>
+	</div>
+	<ol>
+		<li>{{{explain.step.1}}}</li>
+		<li>{{{explain.step.2}}}</li>
+		<li>{{{explain.step.3}}}</li>
+	</ol>
+</section>
+<section class="article-section" id="extend">
+	<div class="section-head">
+		<h2>{{extend.heading}}</h2>
+		<a class="h-anchor" href="#/first-app?s=extend" title="{{common.sectionLink}}" aria-label="{{common.sectionLink}} {{extend.heading}}">#</a>
+	</div>
+	<p>{{{extend.body}}}</p>
+</section>

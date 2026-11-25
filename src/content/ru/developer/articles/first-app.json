@@ -1,0 +1,18 @@
+{
+	"intro.summary": "Сделайте программу, которая открывает текстовый файл, считает слова и копирует результат в буфер обмена. Для проекта достаточно платформенного модуля LIMEN.",
+	"prepare.heading": "1. Подготовьте проект",
+	"prepare.body": "Пройдите урок <a href=\"#/first-window\">«Первое окно»</a>. Создайте рядом с папкой <code>my-window</code> новую папку <code>text-counter</code>, скопируйте в неё <code>build.hxml</code> и те же нативные файлы. Оба проекта находятся прямо внутри <code>Limen</code>.",
+	"source.heading": "2. Добавьте программу",
+	"source.body": "Сохраните код как <code>text-counter/Main.hx</code>. Программа использует заголовок окна для подсказок и вывода результата.",
+	"try.heading": "3. Соберите и проверьте",
+	"try.step.1": "Создайте файл <code>sample.txt</code> в кодировке UTF-8 и напишите в нём <code>Hello from Limen</code>.",
+	"try.step.2": "Откройте терминал в <code>text-counter</code>, выполните <code>haxe build.hxml</code> и запустите <code>hl main.hl</code>. Если на Windows вы скопировали комплектный рантайм, используйте <code>.\\hl.exe main.hl</code>.",
+	"try.step.3": "Щёлкните по окну программы, нажмите <kbd>O</kbd> и выберите <code>sample.txt</code>. В заголовке появится <code>3 words</code>.",
+	"try.step.4": "Нажмите <kbd>C</kbd>, откройте текстовый редактор и вставьте результат. Проверьте также пустой файл и кнопку «Отмена» в диалоге.",
+	"explain.heading": "Как устроена программа",
+	"explain.step.1": "<code>Platform.pollEvent</code> получает клавиши и запрос закрытия. <code>scanCode</code> обозначает физическую клавишу, а <code>keyRepeat</code> позволяет пропустить автоповтор. Коды клавиш приведены в <a href=\"https://wiki.libsdl.org/SDL3/SDL_Scancode\">справочнике SDL</a>.",
+	"explain.step.2": "<code>FileDialog.openFile</code> возвращает результат асинхронно. Обработчик кладёт его в потокобезопасную очередь, а основной цикл меняет заголовок и читает файл.",
+	"explain.step.3": "<code>File.getContent</code> читает небольшой UTF-8-файл целиком. Выражение <code>\\s+</code> делит текст по пробельным символам. <code>Clipboard.setText</code> передаёт итог системному буферу обмена.",
+	"extend.heading": "Что изменить самостоятельно",
+	"extend.body": "Начните с вывода длины файла рядом со счётчиком слов. Затем добавьте выбор нескольких файлов через <code>allowMultiple: true</code> и суммируйте результаты для всех <code>paths</code>. Для большого файла попробуйте читать его по строкам."
+}

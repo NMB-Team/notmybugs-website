@@ -1,0 +1,18 @@
+{
+	"intro.heading": "Обработка событий",
+	"intro.summary": "Цикл событий позволяет приложению реагировать на закрытие окна, нажатия клавиш и движения мыши.",
+	"polling.heading": "Чтение событий",
+	"polling.paragraph": "Вызов <code>Platform.pollEvent(event)</code> возвращает <code>true</code>, пока в очереди есть события. Обрабатывайте их внутри основного цикла.",
+	"polling.title": "Не загружайте процессор без необходимости",
+	"polling.paragraph2": "В примере без рендеринга используется <code>Platform.delay(8)</code>. Для приложений с графикой организация цикла и синхронизация могут отличаться.",
+	"types.heading": "Часто используемые события",
+	"types.row.EventType-Quit.description": "Операционная система запросила выход из приложения.",
+	"types.row.EventType-WindowState.description": "Закрытие, изменение размера и прочие изменения окна.",
+	"types.row.EventType-MouseMove.description": "Перемещение указателя внутри окна.",
+	"types.row.EventType-KeyDown.description": "Нажатие клавиши, также доступен scanCode.",
+	"types.row.EventType-MouseDown.description": "Нажатие кнопки мыши.",
+	"listeners.heading": "Подписка на события",
+	"listeners.paragraph": "<code>addEventWatchListener()</code> может доставлять события напрямую из SDL producer thread. Это удобно для некоторых интеграций, но требует синхронизации общих данных.",
+	"listeners.title": "Очередь всё равно нужно обрабатывать",
+	"listeners.paragraph2": "Даже если вы подписались на события, продолжайте вызывать <code>pollEvent()</code> или <code>processEvents()</code>, чтобы обновлять состояние и очищать очередь."
+}

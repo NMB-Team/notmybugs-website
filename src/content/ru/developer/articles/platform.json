@@ -1,0 +1,19 @@
+{
+	"intro.heading": "Platform",
+	"intro.summary": "Инициализация приложения, обработка очереди событий и системные функции.",
+	"usage.heading": "Основной сценарий",
+	"usage.paragraph": "Вызовите <code>init()</code> перед созданием окон и <code>quit()</code> при завершении приложения.",
+	"usage.title": "Драйвер по умолчанию",
+	"usage.paragraph2": "<code>Platform.init()</code> без аргументов предпочитает OpenGL. Для приложения без рендеринга передайте <code>GraphicsDriver.None</code>.",
+	"methods.heading": "Основные методы",
+	"methods.row.init-preferred-supported.description": "Инициализирует платформу и выбирает graphics driver.",
+	"methods.row.pollEvent-target.description": "Извлекает событие из очереди; возвращает Bool.",
+	"methods.row.processEvents-onEvent.description": "Вызывает обработчик для событий очереди.",
+	"methods.row.addEventWatchListener-listener.description": "Подписка на события; callback может работать в другом потоке.",
+	"methods.row.delay-milliseconds.description": "Пауза в миллисекундах.",
+	"methods.row.getTime.description": "Возвращает время в виде Float.",
+	"methods.row.quit.description": "Освобождает платформенные ресурсы.",
+	"utilities.heading": "Другие функции",
+	"utilities.resource-row.Platform-hx.title": "Platform.hx в исходниках",
+	"utilities.resource-row.Platform-hx.description": "Посмотреть все доступные методы"
+}

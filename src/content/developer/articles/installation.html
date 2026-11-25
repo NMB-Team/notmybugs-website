@@ -1,0 +1,150 @@
+<div class="crumbs">
+	<a href="{{links.hub}}">{{common.documentation}}</a><span class="crumb-divider">/</span><a href="#/start">LIMEN</a><span class="crumb-divider">/</span><span class="current">{{pages.installation.title}}</span>
+</div>
+<div class="page-hero">
+	<div class="page-kicker">
+		{{common.gettingStarted}}
+	</div>
+	<h1>{{intro.heading}}</h1>
+	<p class="lede">{{intro.summary}}</p>
+	<div class="metadata">
+		<span class="pill">Haxe</span><span class="pill">HashLink</span><span class="pill">CMake</span>
+	</div>
+</div>
+<section class="article-section" id="requirements">
+	<div class="section-head">
+		<h2>{{requirements.heading}}</h2>
+		<a class="h-anchor" href="#/installation?s=requirements" title="{{common.sectionLink}}" aria-label="{{common.sectionLink}} {{requirements.heading}}">#</a>
+	</div>
+	<p>{{{requirements.downloads}}}</p>
+	<p>{{{requirements.binaries}}}</p>
+	<div class="requirements">
+		<div class="requirement">
+			<span class="requirement-check"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="{{assets.icons}}#check"/></svg></span>
+			<div>
+				<strong>{{requirements.title}}</strong>
+				<p>{{{requirements.paragraph}}}</p>
+			</div>
+		</div>
+		<div class="requirement">
+			<span class="requirement-check"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="{{assets.icons}}#check"/></svg></span>
+			<div>
+				<strong>{{requirements.title2}}</strong>
+				<p>{{requirements.paragraph2}}</p>
+			</div>
+		</div>
+		<div class="requirement">
+			<span class="requirement-check"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="{{assets.icons}}#check"/></svg></span>
+			<div>
+				<strong>{{requirements.title3}}</strong>
+				<p>{{requirements.paragraph3}}</p>
+			</div>
+		</div>
+	</div>
+	<div class="info-block ">
+		<span class="info-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="{{assets.icons}}#info"/></svg></span>
+		<div class="info-content">
+			<strong>{{requirements.title4}}</strong>
+			<p>{{{requirements.paragraph4}}}</p>
+		</div>
+	</div>
+</section>
+<section class="article-section" id="install">
+	<div class="section-head">
+		<h2>{{install.heading}}</h2>
+		<a class="h-anchor" href="#/installation?s=install" title="{{common.sectionLink}}" aria-label="{{common.sectionLink}} {{install.heading}}">#</a>
+	</div>
+	<p>{{{install.paragraph}}}</p>
+	<div class="backend-switcher">
+		<div class="switcher-top">
+			<strong>{{common.buildCommands}}</strong><span>{{common.terminal}}</span>
+		</div>
+		<div class="tabs" role="group" aria-label="{{common.buildPlatform}}">
+			<button type="button" class="tab-button selected" aria-pressed="true" data-example="unix">Linux / macOS</button><button type="button" class="tab-button" aria-pressed="false" data-example="windows">Windows</button>
+		</div>
+		<div data-example-panel="unix">
+			<div class="code-card">
+				<div class="code-header">
+					<div class="code-header-left">
+						<span class="file-dot"></span><span class="filename">terminal</span>
+					</div>
+					<div class="code-header-right">
+						<span class="language">SHELL</span><button class="copy-btn" type="button" data-copy><svg viewBox="0 0 24 24" aria-hidden="true"><use href="{{assets.icons}}#copy"/></svg><span></span></button>
+					</div>
+				</div>
+				<pre><code>git clone https://github.com/NMB-Team/Limen.git
+cd Limen
+bash build.sh --no-open</code></pre>
+			</div>
+		</div>
+		<div data-example-panel="windows" hidden>
+			<div class="code-card">
+				<div class="code-header">
+					<div class="code-header-left">
+						<span class="file-dot"></span><span class="filename">terminal</span>
+					</div>
+					<div class="code-header-right">
+						<span class="language">SHELL</span><button class="copy-btn" type="button" data-copy><svg viewBox="0 0 24 24" aria-hidden="true"><use href="{{assets.icons}}#copy"/></svg><span></span></button>
+					</div>
+				</div>
+				<pre><code>git clone https://github.com/NMB-Team/Limen.git
+cd Limen
+.\build.bat --no-open</code></pre>
+			</div>
+		</div>
+		<div class="switcher-note">
+			{{common.buildPrerequisites}}
+		</div>
+	</div>
+</section>
+<section class="article-section" id="check">
+	<div class="section-head">
+		<h2>{{check.heading}}</h2>
+		<a class="h-anchor" href="#/installation?s=check" title="{{common.sectionLink}}" aria-label="{{common.sectionLink}} {{check.heading}}">#</a>
+	</div>
+	<p>{{{check.paragraph}}}</p>
+	<div class="code-card">
+		<div class="code-header">
+			<div class="code-header-left">
+				<span class="file-dot"></span><span class="filename">terminal</span>
+			</div>
+			<div class="code-header-right">
+				<span class="language">SHELL</span><button class="copy-btn" type="button" data-copy><svg viewBox="0 0 24 24" aria-hidden="true"><use href="{{assets.icons}}#copy"/></svg><span></span></button>
+			</div>
+		</div>
+		<pre><code>cd examples/window
+haxe build-window.hxml
+hl exwindow.hl</code></pre>
+	</div>
+	<div class="info-block ">
+		<span class="info-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="{{assets.icons}}#info"/></svg></span>
+		<div class="info-content">
+			<strong>{{check.title}}</strong>
+			<p>{{{check.paragraph2}}}</p>
+		</div>
+	</div>
+	<div class="info-block warn">
+		<span class="info-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="{{assets.icons}}#alert"/></svg></span>
+		<div class="info-content">
+			<strong>{{check.title2}}</strong>
+			<p>{{check.paragraph3}}</p>
+		</div>
+	</div>
+</section>
+<section class="article-section" id="troubleshooting">
+	<div class="section-head">
+		<h2>{{troubleshooting.heading}}</h2>
+		<a class="h-anchor" href="#/installation?s=troubleshooting" title="{{common.sectionLink}}" aria-label="{{common.sectionLink}} {{troubleshooting.heading}}">#</a>
+	</div>
+	<ul>
+		<li>{{{troubleshooting.haxe}}}</li>
+		<li>{{{troubleshooting.source}}}</li>
+		<li>{{{troubleshooting.native}}}</li>
+		<li>{{{troubleshooting.gl}}}</li>
+	</ul>
+</section>
+<a class="next-card" href="#/first-window">
+<div>
+	<span class="next-label">{{common.nextPage}}</span><span class="next-title">{{pages.first-window.title}}</span>
+</div>
+<svg viewBox="0 0 24 24" aria-hidden="true"><use href="{{assets.icons}}#arrow"/></svg></a>

@@ -1,0 +1,18 @@
+{
+  "intro.heading": "Handling events",
+  "intro.summary": "The event loop lets your app respond to window close requests, key presses, and mouse movement.",
+  "polling.heading": "Poll for events",
+  "polling.paragraph": "<code>Platform.pollEvent(event)</code> returns <code>true</code> while there are events in the queue. Handle them inside your main loop.",
+  "polling.title": "Avoid busy-waiting",
+  "polling.paragraph2": "The example uses <code>Platform.delay(8)</code> because it does no rendering. Apps that render may structure the loop and handle synchronization differently.",
+  "types.heading": "Common events",
+  "types.row.EventType-Quit.description": "The operating system requested that the app quit.",
+  "types.row.EventType-WindowState.description": "Window close, resize, and other window changes.",
+  "types.row.EventType-MouseMove.description": "Pointer movement inside the window.",
+  "types.row.EventType-KeyDown.description": "Key press. You can also read <code>scanCode</code>.",
+  "types.row.EventType-MouseDown.description": "Mouse button press.",
+  "listeners.heading": "Watch for events",
+  "listeners.paragraph": "<code>addEventWatchListener()</code> can deliver events directly on the SDL thread that produces them. This is useful for some integrations, but you need to synchronize access to shared data.",
+  "listeners.title": "Keep draining the event queue",
+  "listeners.paragraph2": "Even with an event watch, keep calling <code>pollEvent()</code> or <code>processEvents()</code> to update state and drain the queue."
+}

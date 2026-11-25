@@ -1,0 +1,102 @@
+<div class="crumbs">
+	<a href="{{links.hub}}">{{common.documentation}}</a><span class="crumb-divider">/</span><a href="#/start">LIMEN</a><span class="crumb-divider">/</span><span class="current">{{pages.renderer-api.title}}</span>
+</div>
+<div class="page-hero">
+	<div class="page-kicker">{{common.apiReference}}</div>
+	<h1>{{pages.renderer-api.title}}</h1>
+	<p class="lede">{{intro.summary}}</p>
+</div>
+<section class="article-section" id="opengl">
+	<div class="section-head">
+		<h2>OpenGL</h2>
+		<a class="h-anchor" href="#/renderer-api?s=opengl" title="{{common.sectionLink}}" aria-label="{{common.sectionLink}} OpenGL">#</a>
+	</div>
+	<p><a href="#/opengl">{{tutorial}} - OpenGL</a></p>
+	<div class="api-table-wrap">
+		<table class="api-table">
+			<thead>
+				<tr><th>{{common.apiValue}}</th><th>{{common.purpose}}</th></tr>
+			</thead>
+			<tbody>
+				<tr><td><code>OpenGL.create(window, ?options):OpenGL</code></td><td>{{{opengl.method1}}}</td></tr>
+				<tr><td><code>context.makeCurrent():Void</code></td><td>{{{opengl.method2}}}</td></tr>
+				<tr><td><code>Commands.clearColor(r, g, b, a) / Commands.clear(mask)</code></td><td>{{{opengl.method3}}}</td></tr>
+				<tr><td><code>context.present():Void / context.destroy():Void</code></td><td>{{{opengl.method4}}}</td></tr>
+			</tbody>
+		</table>
+	</div>
+	<p>{{source}} · <a href="https://github.com/NMB-Team/Limen/blob/master/limen/graphics/renderer/opengl/OpenGL.hx"><code>OpenGL.hx</code></a> · <a href="https://github.com/NMB-Team/Limen/blob/master/limen/graphics/renderer/opengl/command/Commands.hx"><code>command/Commands.hx</code></a></p>
+</section>
+<section class="article-section" id="vulkan">
+	<div class="section-head">
+		<h2>Vulkan</h2>
+		<a class="h-anchor" href="#/renderer-api?s=vulkan" title="{{common.sectionLink}}" aria-label="{{common.sectionLink}} Vulkan">#</a>
+	</div>
+	<p><a href="#/vulkan">{{tutorial}} - Vulkan</a></p>
+	<div class="api-table-wrap">
+		<table class="api-table">
+			<thead>
+				<tr><th>{{common.apiValue}}</th><th>{{common.purpose}}</th></tr>
+			</thead>
+			<tbody>
+				<tr><td><code>Vulkan.createSurface(window, enableValidation = false, ?requirements):Surface</code></td><td>{{{vulkan.method1}}}</td></tr>
+				<tr><td><code>Vulkan.createContext(surface, queueFamily, requiredCapabilities = Capabilities.FOUNDATION, ?requirements):VkContext</code></td><td>{{{vulkan.method2}}}</td></tr>
+				<tr><td><code>context.initSwapchain(info, outImages):VkWsiStatus</code></td><td>{{{vulkan.method3}}}</td></tr>
+				<tr><td><code>context.acquireNextImage(semaphore, outImage):VkWsiStatus</code></td><td>{{{vulkan.method4}}}</td></tr>
+				<tr><td><code>commands.beginDynamicRenderingClear(info) / endDynamicRenderingPresent(image)</code></td><td>{{{vulkan.method5}}}</td></tr>
+				<tr><td><code>context.submitFrame(command, acquired, finished, fence):Int</code></td><td>{{{vulkan.method6}}}</td></tr>
+				<tr><td><code>context.present(semaphore, currentImage):VkWsiStatus</code></td><td>{{{vulkan.method7}}}</td></tr>
+				<tr><td><code>context.waitIdle():Int / Vulkan.destroyContext(context) / surface.destroy()</code></td><td>{{{vulkan.method8}}}</td></tr>
+			</tbody>
+		</table>
+	</div>
+	<p>{{source}} · <a href="https://github.com/NMB-Team/Limen/blob/master/limen/graphics/renderer/vulkan/Vulkan.hx"><code>Vulkan.hx</code></a> · <a href="https://github.com/NMB-Team/Limen/blob/master/limen/graphics/renderer/vulkan/internal/VulkanBindings.hx"><code>internal/VulkanBindings.hx</code></a> · <a href="https://github.com/NMB-Team/Limen/blob/master/limen/graphics/renderer/vulkan/command/Commands.hx"><code>command/Commands.hx</code></a></p>
+</section>
+<section class="article-section" id="d3d11">
+	<div class="section-head">
+		<h2>Direct3D 11</h2>
+		<a class="h-anchor" href="#/renderer-api?s=d3d11" title="{{common.sectionLink}}" aria-label="{{common.sectionLink}} Direct3D 11">#</a>
+	</div>
+	<p><a href="#/d3d11">{{tutorial}} - Direct3D 11</a></p>
+	<div class="api-table-wrap">
+		<table class="api-table">
+			<thead>
+				<tr><th>{{common.apiValue}}</th><th>{{common.purpose}}</th></tr>
+			</thead>
+			<tbody>
+				<tr><td><code>D3D11.create(window, format, flags = None, ?minimumFeatureLevel):D3D11</code></td><td>{{{d3d11.method1}}}</td></tr>
+				<tr><td><code>D3D11Bindings.getBackBuffer():Resource</code></td><td>{{{d3d11.method2}}}</td></tr>
+				<tr><td><code>ResourceViews.createRenderTargetView(resource, ?desc):RenderTargetView</code></td><td>{{{d3d11.method3}}}</td></tr>
+				<tr><td><code>Commands.clearColor(target, r, g, b, a)</code></td><td>{{{d3d11.method4}}}</td></tr>
+				<tr><td><code>driver.present(intervals, flags):Void</code></td><td>{{{d3d11.method5}}}</td></tr>
+				<tr><td><code>driver.resize(width, height, format):Bool / driver.destroy():Void</code></td><td>{{{d3d11.method6}}}</td></tr>
+			</tbody>
+		</table>
+	</div>
+	<p>{{source}} · <a href="https://github.com/NMB-Team/Limen/blob/master/limen/graphics/renderer/d3d11/D3D11.hx"><code>D3D11.hx</code></a> · <a href="https://github.com/NMB-Team/Limen/blob/master/limen/graphics/renderer/d3d11/internal/D3D11Bindings.hx"><code>internal/D3D11Bindings.hx</code></a> · <a href="https://github.com/NMB-Team/Limen/blob/master/limen/graphics/renderer/d3d11/descriptor/ResourceViews.hx"><code>descriptor/ResourceViews.hx</code></a> · <a href="https://github.com/NMB-Team/Limen/blob/master/limen/graphics/renderer/d3d11/command/Commands.hx"><code>command/Commands.hx</code></a></p>
+</section>
+<section class="article-section" id="d3d12">
+	<div class="section-head">
+		<h2>Direct3D 12</h2>
+		<a class="h-anchor" href="#/renderer-api?s=d3d12" title="{{common.sectionLink}}" aria-label="{{common.sectionLink}} Direct3D 12">#</a>
+	</div>
+	<p><a href="#/d3d12">{{tutorial}} - Direct3D 12</a></p>
+	<div class="api-table-wrap">
+		<table class="api-table">
+			<thead>
+				<tr><th>{{common.apiValue}}</th><th>{{common.purpose}}</th></tr>
+			</thead>
+			<tbody>
+				<tr><td><code>D3D12.create(window, flags, ?deviceName):D3D12</code></td><td>{{{d3d12.method1}}}</td></tr>
+				<tr><td><code>driver.resize(queue, width, height, bufferCount, format):Void</code></td><td>{{{d3d12.method2}}}</td></tr>
+				<tr><td><code>D3D12Bindings.getCurrentBackBufferIndex():Int / getBackBuffer(index):GpuResource</code></td><td>{{{d3d12.method3}}}</td></tr>
+				<tr><td><code>DescriptorHeap.getHandle(gpu):Address / D3D12Bindings.createRenderTargetView(buffer, desc, target)</code></td><td>{{{d3d12.method4}}}</td></tr>
+				<tr><td><code>commands.resourceBarrier(barrier) / clearRenderTargetView(rtv, color) / close()</code></td><td>{{{d3d12.method5}}}</td></tr>
+				<tr><td><code>queue.executeCommandList(commandList) / present(interval)</code></td><td>{{{d3d12.method6}}}</td></tr>
+				<tr><td><code>queue.signal(fence, value) / fence.getValue():Int64</code></td><td>{{{d3d12.method7}}}</td></tr>
+				<tr><td><code>driver.destroy():Void</code></td><td>{{{d3d12.method8}}}</td></tr>
+			</tbody>
+		</table>
+	</div>
+	<p>{{source}} · <a href="https://github.com/NMB-Team/Limen/blob/master/limen/graphics/renderer/d3d12/D3D12.hx"><code>D3D12.hx</code></a> · <a href="https://github.com/NMB-Team/Limen/blob/master/limen/graphics/renderer/d3d12/internal/D3D12Bindings.hx"><code>internal/D3D12Bindings.hx</code></a> · <a href="https://github.com/NMB-Team/Limen/blob/master/limen/graphics/renderer/d3d12/descriptor/DescriptorHeap.hx"><code>descriptor/DescriptorHeap.hx</code></a> · <a href="https://github.com/NMB-Team/Limen/blob/master/limen/graphics/renderer/d3d12/command/Commands.hx"><code>command/Commands.hx</code></a></p>
+</section>

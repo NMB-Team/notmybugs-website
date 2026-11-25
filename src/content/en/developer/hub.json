@@ -1,0 +1,40 @@
+{
+	"meta": {
+		"language": "en",
+		"title": "NMB Team Developer Hub",
+		"description": "Explore NMB Team's open-source projects, developer guides, and runnable examples."
+	},
+	"title": "Developer documentation",
+	"intro": "Explore the tools we build for Haxe developers. Find a project, follow a guide, or open the source and see how it works.",
+	"guide": "First window tutorial",
+	"projectsTitle": "Projects to explore",
+	"docs": "Documentation",
+	"api": "API reference",
+	"search": {
+		"label": "Search the site",
+		"loading": "Loading search…",
+		"empty": "No results found.",
+		"error": "Search is unavailable.",
+		"retry": "Try again",
+		"guide": "LIMEN guide",
+		"api": "LIMEN API reference"
+	},
+	"projects": {
+		"limen": {
+			"category": "Platform library",
+			"description": "Open native windows, handle input, and render with OpenGL, Vulkan, or Direct3D. Start with a window and work up to a playable 2D game."
+		},
+		"hashlink": {
+			"category": "Runtime",
+			"description": "Our fork of the HashLink virtual machine for Haxe. Learn how to build the runtime and manage its installation and optional LIMEN modules."
+		},
+		"heaps": {
+			"category": "Game framework",
+			"description": "Our fork of Heaps, a Haxe framework for 2D and 3D games. Explore the samples to see how scenes, rendering, and shaders fit together."
+		},
+		"imgui": {
+			"category": "Developer tools",
+			"description": "Dear ImGui integration for Heaps. Use it to build debug panels, editors, and in-game tools in Haxe."
+		}
+	}
+}

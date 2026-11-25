@@ -1,0 +1,22 @@
+{
+	"intro.heading": "Создание первого окна",
+	"intro.summary": "Пример приложения без GPU. Он создаёт окно, обрабатывает запрос на закрытие и освобождает ресурсы.",
+	"intro.pill": "Пример Haxe",
+	"create.heading": "1. Создайте Main.hx",
+	"create.paragraph": "После <a href=\"#/installation\">установки</a> откройте папку <code>Limen</code>, в которой лежат <code>README.md</code> и подпапка <code>limen</code>. Создайте внутри папку <code>my-window</code>. Сохраните код как <code>my-window/Main.hx</code> в обычном текстовом редакторе. Проверьте, что имя файла заканчивается на <code>.hx</code>.",
+	"compile.heading": "2. Скомпилируйте и запустите",
+	"compile.paragraph": "Скопируйте <code>limen.hdll</code> из папки со сборкой в <code>my-window</code>. Если в комплекте для Windows есть <code>hl.exe</code> и <code>libhl.dll</code>, скопируйте оба файла туда же. На Linux и macOS HashLink и его системные зависимости должны быть доступны из терминала.",
+	"compile.paragraph2": "Сохраните следующий блок как <code>my-window/build.hxml</code>. Строка <code>-cp ..</code> добавляет родительскую папку с исходниками LIMEN, а <code>-hl main.hl</code> задаёт файл байткода.",
+	"compile.run": "Откройте терминал в папке <code>my-window</code>. Если используете комплектный рантайм под Windows, замените вторую команду на <code>.\\hl.exe main.hl</code>.",
+	"compile.expected": "Появится окно с заголовком <code>Hello, LIMEN!</code>. Закройте его крестиком. Затем поменяйте заголовок в <code>Main.hx</code>, снова выполните обе команды и проверьте результат. Следующий шаг - <a href=\"#/first-app\">программа</a> или <a href=\"#/first-game\">игра</a>.",
+	"how-it-works.heading": "3. Разберитесь, что происходит",
+	"how-it-works.haxe": "<code>import</code> подключает имя класса. HashLink начинает выполнение с <code>Main.main()</code>. <code>final</code> задаёт переменную, которой нельзя присвоить новое значение, а <code>var</code> позволяет менять значение. Внешний <code>while</code> держит программу открытой, внутренний забирает накопленные события. Когда <code>running</code> становится <code>false</code>, программа освобождает окно и завершает работу. Подробнее в <a href=\"https://haxe.org/manual/introduction.html\">руководстве Haxe</a>.",
+	"how-it-works.pathway-step.platform.title": "Platform.init()",
+	"how-it-works.pathway-step.window.title": "Window.create()",
+	"how-it-works.pathway-step.event-loop.title": "Platform.pollEvent()",
+	"how-it-works.title": "Завершайте приложение корректно",
+	"how-it-works.paragraph": "Перед выходом вызовите <code>window.destroy()</code>, затем <code>Platform.quit()</code>.",
+	"how-it-works.pathway-step.platform.description": "Инициализация SDL3 и выбор режима работы.",
+	"how-it-works.pathway-step.window.description": "Создание окна с размерами и заголовком.",
+	"how-it-works.pathway-step.event-loop.description": "Чтение событий из системной очереди."
+}

@@ -1,0 +1,39 @@
+{
+	"groups": {
+		"gettingStarted": [
+			"start",
+			{ "label": "setup", "pages": ["installation", "build"] },
+			{ "label": "firstSteps", "pages": ["first-window", "event-loop"] }
+		],
+		"guides": [
+			{ "label": "projects", "pages": ["first-app", "first-game", "examples"] },
+			{ "overview": "graphics", "pages": ["opengl", "d3d11",  "vulkan", "d3d12"] },
+			{ "label": "platformFeatures", "pages": ["recipes", "modules"] }
+		],
+		"apiReference": [
+			{ "label": "platformApi", "pages": ["platform", "window", "events"] },
+			"renderer-api"
+		]
+	},
+	"icons": {
+		"start": "book",
+		"installation": "terminal",
+		"first-window": "window",
+		"event-loop": "activity",
+		"first-app": "file",
+		"first-game": "window",
+		"recipes": "grid",
+		"graphics": "layers",
+		"opengl": "code",
+		"vulkan": "code",
+		"d3d11": "code",
+		"d3d12": "code",
+		"renderer-api": "code",
+		"modules": "box",
+		"platform": "settings",
+		"window": "window",
+		"events": "activity",
+		"examples": "grid",
+		"build": "terminal"
+	}
+}

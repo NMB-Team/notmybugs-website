@@ -1,0 +1,14 @@
+{
+  "intro.summary": "Create a window, clear its back buffer with Direct3D 12, and present your first frame.",
+  "overview.heading": "When to use Direct3D 12",
+  "overview.purpose": "Direct3D 12 is Microsoft's low-level graphics API. It's suited to engines and games that need direct control over the GPU. Your app records command lists, tracks resource states, and manages synchronization.",
+  "overview.choice": "Choose Direct3D 12 for a Windows project if you need explicit GPU control similar to Vulkan or want LIMEN's optional DLSS and FSR modules. It gives you more control over how a frame executes than OpenGL or Direct3D 11 and takes more code to set up.",
+  "requirements.heading": "1. Set up the project",
+  "requirements.folder": "In the LIMEN source directory, create a folder named <code>first-d3d12</code>. Save the next section's code as <code>Main.hx</code> inside it.",
+  "requirements.paragraph": "You need 64-bit Windows and a GPU that supports Direct3D 12. Follow the <a href=\"#/installation\">LIMEN installation guide</a> and copy <code>limen.hdll</code>, <code>d3d12.limen</code>, <code>dxcompiler.dll</code>, and <code>dxil.dll</code> from the build output into the app directory. Use source files and native modules from the same LIMEN version.",
+  "program.heading": "2. Render your first frame",
+  "program.intro": "Record a back-buffer clear in a command list. Submit the list to the queue and present the frame. A fence lets you wait for the GPU to finish.",
+  "run.heading": "3. Build, run, and experiment",
+  "run.runtime": "Run the commands from the directory containing <code>Main.hx</code>. If you use the bundled Windows runtime, copy <code>hl.exe</code> and <code>libhl.dll</code> from the build output into that directory and run <code>.\\hl.exe main.hl</code>.",
+  "run.result": "A window with a blue background should open. Close it, change the color or title in <code>Main.hx</code>, and run both commands again."
+}

@@ -1,0 +1,112 @@
+<div class="crumbs">
+	<a href="{{links.hub}}">{{common.documentation}}</a><span class="crumb-divider">/</span><a href="#/start">LIMEN</a><span class="crumb-divider">/</span><span class="current">{{pages.platform.title}}</span>
+</div>
+<div class="page-hero">
+	<div class="page-kicker">
+		{{common.apiReference}}
+	</div>
+	<h1>{{intro.heading}}</h1>
+	<p class="lede">{{intro.summary}}</p>
+	<div class="metadata">
+		<span class="pill">limen.platform.Platform</span>
+	</div>
+</div>
+<section class="article-section" id="usage">
+	<div class="section-head">
+		<h2>{{usage.heading}}</h2>
+		<a class="h-anchor" href="#/platform?s=usage" title="{{common.sectionLink}}" aria-label="{{common.sectionLink}} {{usage.heading}}">#</a>
+	</div>
+	<p>{{{usage.paragraph}}}</p>
+	<div class="code-card">
+		<div class="code-header">
+			<div class="code-header-left">
+				<span class="file-dot"></span><span class="filename">Main.hx</span>
+			</div>
+			<div class="code-header-right">
+				<span class="language">HAXE</span><button class="copy-btn" type="button" data-copy><svg viewBox="0 0 24 24" aria-hidden="true"><use href="{{assets.icons}}#copy"/></svg><span></span></button>
+			</div>
+		</div>
+		<pre><code>Platform.init(GraphicsDriver.None);
+
+// Polling pumps OS events and drains the queue.
+final event = new Event();
+while (Platform.pollEvent(event)) {
+    trace(event.type);
+}
+
+Platform.quit();</code></pre>
+	</div>
+	<div class="info-block ">
+		<span class="info-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="{{assets.icons}}#info"/></svg></span>
+		<div class="info-content">
+			<strong>{{usage.title}}</strong>
+			<p>{{{usage.paragraph2}}}</p>
+		</div>
+	</div>
+</section>
+<section class="article-section" id="methods">
+	<div class="section-head">
+		<h2>{{methods.heading}}</h2>
+		<a class="h-anchor" href="#/platform?s=methods" title="{{common.sectionLink}}" aria-label="{{common.sectionLink}} {{methods.heading}}">#</a>
+	</div>
+	<div class="api-table-wrap">
+		<table class="api-table">
+			<thead>
+				<tr>
+					<th>{{common.apiValue}}</th><th>{{common.purpose}}</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td><code>init(preferred, ?supported)</code></td><td>{{methods.row.init-preferred-supported.description}}</td>
+				</tr>
+				<tr>
+					<td><code>pollEvent(target)</code></td><td>{{methods.row.pollEvent-target.description}}</td>
+				</tr>
+				<tr>
+					<td><code>processEvents(onEvent)</code></td><td>{{methods.row.processEvents-onEvent.description}}</td>
+				</tr>
+				<tr>
+					<td><code>addEventWatchListener(listener)</code></td><td>{{methods.row.addEventWatchListener-listener.description}}</td>
+				</tr>
+				<tr>
+					<td><code>delay(milliseconds)</code></td><td>{{methods.row.delay-milliseconds.description}}</td>
+				</tr>
+				<tr>
+					<td><code>getTime()</code></td><td>{{methods.row.getTime.description}}</td>
+				</tr>
+				<tr>
+					<td><code>quit()</code></td><td>{{methods.row.quit.description}}</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</section>
+<section class="article-section" id="utilities">
+	<div class="section-head">
+		<h2>{{utilities.heading}}</h2>
+		<a class="h-anchor" href="#/platform?s=utilities" title="{{common.sectionLink}}" aria-label="{{common.sectionLink}} {{utilities.heading}}">#</a>
+	</div>
+	<div class="code-card">
+		<div class="code-header">
+			<div class="code-header-left">
+				<span class="file-dot"></span><span class="filename">Main.hx</span>
+			</div>
+			<div class="code-header-right">
+				<span class="language">HAXE</span><button class="copy-btn" type="button" data-copy><svg viewBox="0 0 24 24" aria-hidden="true"><use href="{{assets.icons}}#copy"/></svg><span></span></button>
+			</div>
+		</div>
+		<pre><code>Platform.getTime();              // Float
+Platform.delay(8);                // milliseconds
+Platform.getDisplays();           // displays
+Platform.detectKeyboardLayout();  // String
+Platform.getClipboardText();      // String
+Platform.getError();              // last native error</code></pre>
+	</div>
+	<a class="resource-row" href="https://github.com/NMB-Team/Limen/blob/master/limen/platform/Platform.hx" target="_blank" rel="noopener noreferrer"><span><strong>{{utilities.resource-row.Platform-hx.title}}</strong><small>{{utilities.resource-row.Platform-hx.description}}</small></span><span class="resource-arrow">↗</span></a>
+</section>
+<a class="next-card" href="#/window">
+<div>
+	<span class="next-label">{{common.nextPage}}</span><span class="next-title">{{pages.window.title}}</span>
+</div>
+<svg viewBox="0 0 24 24" aria-hidden="true"><use href="{{assets.icons}}#arrow"/></svg></a>

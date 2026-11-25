@@ -1,0 +1,125 @@
+<div class="crumbs">
+	<a href="{{links.hub}}">{{common.documentation}}</a><span class="crumb-divider">/</span><a href="#/start">LIMEN</a><span class="crumb-divider">/</span><span class="current">{{pages.opengl.title}}</span>
+</div>
+<div class="page-hero">
+	<div class="page-kicker">{{common.guides}}</div>
+	<h1>{{pages.opengl.title}}</h1>
+	<p class="lede">{{intro.summary}}</p>
+</div>
+<section class="article-section" id="overview">
+	<div class="section-head">
+		<h2>{{overview.heading}}</h2>
+		<a class="h-anchor" href="#/opengl?s=overview" title="{{common.sectionLink}}" aria-label="{{common.sectionLink}} {{overview.heading}}">#</a>
+	</div>
+	<p>{{overview.purpose}}</p>
+	<p>{{overview.choice}}</p>
+</section>
+<section class="article-section" id="requirements">
+	<div class="section-head">
+		<h2>{{requirements.heading}}</h2>
+		<a class="h-anchor" href="#/opengl?s=requirements" title="{{common.sectionLink}}" aria-label="{{common.sectionLink}} {{requirements.heading}}">#</a>
+	</div>
+	<p>{{{requirements.folder}}}</p>
+	<p>{{{requirements.paragraph}}}</p>
+</section>
+<section class="article-section" id="setup">
+	<div class="section-head">
+		<h2>{{program.heading}}</h2>
+		<a class="h-anchor" href="#/opengl?s=setup" title="{{common.sectionLink}}" aria-label="{{common.sectionLink}} {{program.heading}}">#</a>
+	</div>
+	<p>{{program.intro}}</p>
+	<div class="code-card">
+		<div class="code-header">
+			<div class="code-header-left">
+				<span class="file-dot"></span><span class="filename">Main.hx</span>
+			</div>
+			<div class="code-header-right">
+				<span class="language">HAXE</span><button class="copy-btn" type="button" data-copy><svg viewBox="0 0 24 24" aria-hidden="true"><use href="{{assets.icons}}#copy"/></svg><span></span></button>
+			</div>
+		</div>
+		<pre><code>import limen.graphics.GraphicsDriver;
+import limen.graphics.renderer.opengl.OpenGL;
+import limen.graphics.renderer.opengl.command.Commands;
+import limen.platform.Platform;
+import limen.platform.event.Event;
+import limen.platform.event.WindowStateChange;
+import limen.platform.window.Window;
+import limen.platform.window.WindowFlags;
+
+class Main {
+    static function main() {
+        // require OpenGL and disable driver fallback
+        Platform.init(GraphicsDriver.OpenGL, [GraphicsDriver.OpenGL]);
+
+        // change the title and starting size here
+        final window = Window.create({
+            title: &quot;LIMEN GL&quot;,
+            width: 960,
+            height: 540,
+            flags: WindowFlags.SDL_WINDOW_OPENGL,
+            resizable: true
+        });
+        // make this context current before issuing OpenGL commands
+        final context = OpenGL.create(window, {minimumMajor: 3, minimumMinor: 3});
+        context.makeCurrent();
+
+        // keep the window responsive until it closes
+        final event = new Event();
+        var running = true;
+
+        while (running) {
+            while (Platform.pollEvent(event)) {
+                switch (event.type) {
+                    case Quit:
+                        running = false;
+                    case WindowState if (event.windowId == window.id &amp;&amp; event.state == WindowStateChange.Close):
+                        running = false;
+                    default:
+                }
+            }
+
+            if (!running) break;
+
+            // change the first three values (red, green, blue) from 0 to 1
+            Commands.clearColor(0.12, 0.25, 0.48, 1);
+            Commands.clear(Commands.COLOR_BUFFER_BIT);
+            // swap buffers to show the cleared frame
+            context.present();
+            Platform.delay(8);
+        }
+
+        // release the context before destroying its window
+        context.destroy();
+        window.destroy();
+        Platform.quit();
+    }
+}</code></pre>
+	</div>
+</section>
+<section class="article-section" id="demo">
+	<div class="section-head">
+		<h2>{{run.heading}}</h2>
+		<a class="h-anchor" href="#/opengl?s=demo" title="{{common.sectionLink}}" aria-label="{{common.sectionLink}} {{run.heading}}">#</a>
+	</div>
+	<p>{{{run.runtime}}}</p>
+	<div class="code-card">
+		<div class="code-header">
+			<div class="code-header-left">
+				<span class="file-dot"></span><span class="filename">terminal</span>
+			</div>
+			<div class="code-header-right">
+				<span class="language">SHELL</span><button class="copy-btn" type="button" data-copy><svg viewBox="0 0 24 24" aria-hidden="true"><use href="{{assets.icons}}#copy"/></svg><span></span></button>
+			</div>
+		</div>
+		<pre><code>haxe -cp .. -main Main -hl main.hl
+hl main.hl</code></pre>
+	</div>
+	<p>{{{run.result}}}</p>
+	<p>{{{run.nextExample}}}</p>
+</section>
+<a class="next-card" href="#/renderer-api?s=opengl">
+	<div>
+		<span class="next-label">{{common.nextPage}}</span><span class="next-title">{{pages.renderer-api.title}} · OpenGL</span>
+	</div>
+	<svg viewBox="0 0 24 24" aria-hidden="true"><use href="{{assets.icons}}#arrow"/></svg>
+</a>

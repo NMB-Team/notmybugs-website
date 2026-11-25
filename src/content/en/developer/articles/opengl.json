@@ -1,0 +1,15 @@
+{
+  "intro.summary": "Create an OpenGL context and present your first frame with a solid background color.",
+  "overview.heading": "When to use OpenGL",
+  "overview.purpose": "OpenGL is a cross-platform API for 2D and 3D graphics. It's a good fit for learning shaders, building small games, creating visualizations, and writing graphics tools.",
+  "overview.choice": "Choose OpenGL if you want to start drawing quickly and need to support multiple operating systems. Rendering your first frame takes less setup than Vulkan or Direct3D 12. Direct3D 11 offers a similarly approachable start for Windows projects.",
+  "requirements.heading": "1. Set up the project",
+  "requirements.folder": "In the LIMEN source directory, create a folder named <code>first-opengl</code>. Save the next section's code as <code>Main.hx</code> inside it.",
+  "requirements.paragraph": "Follow the <a href=\"#/installation\">LIMEN installation guide</a> and copy <code>limen.hdll</code> and <code>opengl.limen</code> from the same build into the app directory. This example needs a driver that supports OpenGL 3.3. Use source files and native modules from the same LIMEN version.",
+  "program.heading": "2. Render your first frame",
+  "run.heading": "3. Build, run, and experiment",
+  "run.nextExample": "Next, try <a href=\"#/first-game\">building an OpenGL game</a> or run the <a href=\"#/examples?s=run\">shader example from the repository</a>.",
+  "program.intro": "Make the context current, then clear and present the buffer while the window is open.",
+  "run.runtime": "Run the commands from the directory containing <code>Main.hx</code>. If you use the bundled Windows runtime, copy <code>hl.exe</code> and <code>libhl.dll</code> from the build output into that directory and run <code>.\\hl.exe main.hl</code>.",
+  "run.result": "A window with a blue background should open. Close it, change the color or title in <code>Main.hx</code>, and run both commands again."
+}

@@ -1,0 +1,87 @@
+<div class="crumbs">
+	<a href="{{links.hub}}">{{common.documentation}}</a><span class="crumb-divider">/</span><a href="#/start">LIMEN</a><span class="crumb-divider">/</span><span class="current">{{pages.graphics.title}}</span>
+</div>
+<div class="page-hero">
+	<div class="page-kicker">
+		{{common.guides}}
+	</div>
+	<h1>{{intro.heading}}</h1>
+	<p class="lede">{{intro.summary}}</p>
+	<div class="metadata">
+		<span class="pill">None</span><span class="pill">OpenGL</span><span class="pill">Vulkan</span><span class="pill">Direct3D</span>
+	</div>
+</div>
+<section class="article-section" id="drivers">
+	<div class="section-head">
+		<h2>{{drivers.heading}}</h2>
+		<a class="h-anchor" href="#/graphics?s=drivers" title="{{common.sectionLink}}" aria-label="{{common.sectionLink}} {{drivers.heading}}">#</a>
+	</div>
+	<div class="api-table-wrap">
+		<table class="api-table">
+			<thead>
+				<tr>
+					<th>{{common.apiValue}}</th><th>{{common.purpose}}</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td><a href="#/first-window"><code>None</code></a></td><td>{{drivers.row.None.description}}</td>
+				</tr>
+				<tr>
+					<td><a href="#/opengl"><code>OpenGL</code></a></td><td>{{drivers.row.OpenGL.description}}</td>
+				</tr>
+				<tr>
+					<td><a href="#/vulkan"><code>Vulkan</code></a></td><td>{{drivers.row.Vulkan.description}}</td>
+				</tr>
+				<tr>
+					<td><a href="#/d3d11"><code>D3D11</code></a></td><td>{{drivers.row.D3D11.description}}</td>
+				</tr>
+				<tr>
+					<td><a href="#/d3d12"><code>D3D12</code></a></td><td>{{drivers.row.D3D12.description}}</td>
+				</tr>
+				<tr>
+					<td><code>Metal</code></td><td>{{drivers.row.Metal.description}}</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<p><a href="#/renderer-api">{{pages.renderer-api.title}}</a></p>
+</section>
+<section class="article-section" id="select-driver">
+	<div class="section-head">
+		<h2>{{select-driver.heading}}</h2>
+		<a class="h-anchor" href="#/graphics?s=select-driver" title="{{common.sectionLink}}" aria-label="{{common.sectionLink}} {{select-driver.heading}}">#</a>
+	</div>
+	<p>{{{select-driver.paragraph}}}</p>
+	<div class="code-card">
+		<div class="code-header">
+			<div class="code-header-left">
+				<span class="file-dot"></span><span class="filename">Main.hx</span>
+			</div>
+			<div class="code-header-right">
+				<span class="language">HAXE</span><button class="copy-btn" type="button" data-copy><svg viewBox="0 0 24 24" aria-hidden="true"><use href="{{assets.icons}}#copy"/></svg><span></span></button>
+			</div>
+		</div>
+		<pre><code>// change the preferred driver to match your renderer
+Platform.init(GraphicsDriver.Vulkan);
+trace(Platform.graphicsDriver);</code></pre>
+	</div>
+	<p>{{select-driver.paragraph2}}</p>
+	<div class="code-card">
+		<div class="code-header">
+			<div class="code-header-left">
+				<span class="file-dot"></span><span class="filename">Main.hx</span>
+			</div>
+			<div class="code-header-right">
+				<span class="language">HAXE</span><button class="copy-btn" type="button" data-copy><svg viewBox="0 0 24 24" aria-hidden="true"><use href="{{assets.icons}}#copy"/></svg><span></span></button>
+			</div>
+		</div>
+		<pre><code>// allow only OpenGL when the program requires it
+Platform.init(GraphicsDriver.OpenGL, [GraphicsDriver.OpenGL]);</code></pre>
+	</div>
+</section>
+<a class="next-card" href="#/opengl">
+<div>
+	<span class="next-label">{{common.nextPage}}</span><span class="next-title">OpenGL</span>
+</div>
+<svg viewBox="0 0 24 24" aria-hidden="true"><use href="{{assets.icons}}#arrow"/></svg></a>

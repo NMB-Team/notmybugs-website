@@ -1,0 +1,124 @@
+<div class="crumbs">
+	<a href="{{links.hub}}">{{common.documentation}}</a><span class="crumb-divider">/</span><a href="#/start">LIMEN</a><span class="crumb-divider">/</span><span class="current">{{pages.first-window.title}}</span>
+</div>
+<div class="page-hero">
+	<div class="page-kicker">
+		{{common.gettingStarted}}
+	</div>
+	<h1>{{intro.heading}}</h1>
+	<p class="lede">{{intro.summary}}</p>
+	<div class="metadata">
+		<span class="pill">{{intro.pill}}</span><span class="pill">{{common.noGpu}}</span>
+	</div>
+</div>
+<section class="article-section" id="create">
+	<div class="section-head">
+		<h2>{{create.heading}}</h2>
+		<a class="h-anchor" href="#/first-window?s=create" title="{{common.sectionLink}}" aria-label="{{common.sectionLink}} {{create.heading}}">#</a>
+	</div>
+	<p>{{{create.paragraph}}}</p>
+	<div class="code-card">
+		<div class="code-header">
+			<div class="code-header-left">
+				<span class="file-dot"></span><span class="filename">Main.hx</span>
+			</div>
+			<div class="code-header-right">
+				<span class="language">HAXE</span><button class="copy-btn" type="button" data-copy><svg viewBox="0 0 24 24" aria-hidden="true"><use href="{{assets.icons}}#copy"/></svg><span></span></button>
+			</div>
+		</div>
+		<pre><code>import limen.graphics.GraphicsDriver;
+import limen.platform.Platform;
+import limen.platform.window.Window;
+import limen.platform.event.Event;
+import limen.platform.event.EventType;
+import limen.platform.event.WindowStateChange;
+
+class Main {
+    static function main() {
+        Platform.init(GraphicsDriver.None);
+
+        final window = Window.create({
+            title: &quot;Hello, LIMEN!&quot;,
+            width: 800,
+            height: 500,
+            resizable: true
+        });
+
+        final event = new Event();
+        var running = true;
+
+        while (running) {
+            while (Platform.pollEvent(event)) {
+                if (event.type == EventType.Quit ||
+                    (event.type == EventType.WindowState &amp;&amp;
+                     event.windowId == window.id &amp;&amp; event.state == WindowStateChange.Close)) {
+                    running = false;
+                }
+            }
+            Platform.delay(8);
+        }
+
+        window.destroy();
+        Platform.quit();
+    }
+}</code></pre>
+	</div>
+</section>
+<section class="article-section" id="compile">
+	<div class="section-head">
+		<h2>{{compile.heading}}</h2>
+		<a class="h-anchor" href="#/first-window?s=compile" title="{{common.sectionLink}}" aria-label="{{common.sectionLink}} {{compile.heading}}">#</a>
+	</div>
+	<p>{{{compile.paragraph}}}</p>
+	<p>{{{compile.paragraph2}}}</p>
+	<div class="code-card">
+		<div class="code-header">
+			<div class="code-header-left">
+				<span class="file-dot"></span><span class="filename">build.hxml</span>
+			</div>
+			<div class="code-header-right">
+				<span class="language">TEXT</span><button class="copy-btn" type="button" data-copy><svg viewBox="0 0 24 24" aria-hidden="true"><use href="{{assets.icons}}#copy"/></svg><span></span></button>
+			</div>
+		</div>
+		<pre><code>-cp .
+-cp ..
+-main Main
+-hl main.hl</code></pre>
+	</div>
+	<p>{{{compile.run}}}</p>
+	<div class="code-card">
+		<div class="code-header">
+			<div class="code-header-left">
+				<span class="file-dot"></span><span class="filename">terminal</span>
+			</div>
+			<div class="code-header-right">
+				<span class="language">SHELL</span><button class="copy-btn" type="button" data-copy><svg viewBox="0 0 24 24" aria-hidden="true"><use href="{{assets.icons}}#copy"/></svg><span></span></button>
+			</div>
+		</div>
+		<pre><code>haxe build.hxml
+hl main.hl</code></pre>
+	</div>
+	<p>{{{compile.expected}}}</p>
+</section>
+<section class="article-section" id="how-it-works">
+	<div class="section-head">
+		<h2>{{how-it-works.heading}}</h2>
+		<a class="h-anchor" href="#/first-window?s=how-it-works" title="{{common.sectionLink}}" aria-label="{{common.sectionLink}} {{how-it-works.heading}}">#</a>
+	</div>
+	<p>{{{how-it-works.haxe}}}</p>
+	<div class="pathway">
+		<a href="#/platform" class="pathway-step"><span class="pathway-count">01</span><span class="pathway-content"><strong>{{how-it-works.pathway-step.platform.title}}</strong><span>{{how-it-works.pathway-step.platform.description}}</span></span><svg viewBox="0 0 24 24" aria-hidden="true"><use href="{{assets.icons}}#arrow"/></svg></a><a href="#/window" class="pathway-step"><span class="pathway-count">02</span><span class="pathway-content"><strong>{{how-it-works.pathway-step.window.title}}</strong><span>{{how-it-works.pathway-step.window.description}}</span></span><svg viewBox="0 0 24 24" aria-hidden="true"><use href="{{assets.icons}}#arrow"/></svg></a><a href="#/event-loop" class="pathway-step"><span class="pathway-count">03</span><span class="pathway-content"><strong>{{how-it-works.pathway-step.event-loop.title}}</strong><span>{{how-it-works.pathway-step.event-loop.description}}</span></span><svg viewBox="0 0 24 24" aria-hidden="true"><use href="{{assets.icons}}#arrow"/></svg></a>
+	</div>
+	<div class="info-block ">
+		<span class="info-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="{{assets.icons}}#info"/></svg></span>
+		<div class="info-content">
+			<strong>{{how-it-works.title}}</strong>
+			<p>{{{how-it-works.paragraph}}}</p>
+		</div>
+	</div>
+</section>
+<a class="next-card" href="#/event-loop">
+<div>
+	<span class="next-label">{{common.nextPage}}</span><span class="next-title">{{pages.event-loop.title}}</span>
+</div>
+<svg viewBox="0 0 24 24" aria-hidden="true"><use href="{{assets.icons}}#arrow"/></svg></a>

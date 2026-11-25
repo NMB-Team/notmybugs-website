@@ -1,0 +1,94 @@
+<div class="crumbs">
+	<a href="{{links.hub}}">{{common.documentation}}</a><span class="crumb-divider">/</span><a href="#/start">LIMEN</a><span class="crumb-divider">/</span><span class="current">{{intro.current}}</span>
+</div>
+<div class="page-hero">
+	<div class="page-kicker">
+		{{common.apiReference}}
+	</div>
+	<h1>{{intro.heading}}</h1>
+	<p class="lede">{{intro.summary}}</p>
+	<div class="metadata">
+		<span class="pill">limen.platform.event</span>
+	</div>
+</div>
+<section class="article-section" id="reading">
+	<div class="section-head">
+		<h2>{{reading.heading}}</h2>
+		<a class="h-anchor" href="#/events?s=reading" title="{{common.sectionLink}}" aria-label="{{common.sectionLink}} {{reading.heading}}">#</a>
+	</div>
+	<p>{{{reading.paragraph}}}</p>
+	<div class="code-card">
+		<div class="code-header">
+			<div class="code-header-left">
+				<span class="file-dot"></span><span class="filename">Main.hx</span>
+			</div>
+			<div class="code-header-right">
+				<span class="language">HAXE</span><button class="copy-btn" type="button" data-copy><svg viewBox="0 0 24 24" aria-hidden="true"><use href="{{assets.icons}}#copy"/></svg><span></span></button>
+			</div>
+		</div>
+		<pre><code>final event = new Event();
+var running = true;
+
+while (running) {
+    while (Platform.pollEvent(event)) {
+        switch (event.type) {
+            case EventType.Quit:
+                running = false;
+            case EventType.MouseMove:
+                trace(event.mouseX, event.mouseY);
+            case EventType.KeyDown:
+                trace(event.keyCode);
+            default:
+        }
+    }
+    Platform.delay(8);
+}</code></pre>
+	</div>
+</section>
+<section class="article-section" id="event-reference">
+	<div class="section-head">
+		<h2>{{event-reference.heading}}</h2>
+		<a class="h-anchor" href="#/events?s=event-reference" title="{{common.sectionLink}}" aria-label="{{common.sectionLink}} {{event-reference.heading}}">#</a>
+	</div>
+	<div class="api-table-wrap">
+		<table class="api-table">
+			<thead>
+				<tr>
+					<th>{{common.apiValue}}</th><th>{{common.purpose}}</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td><code>Quit / WindowState</code></td><td>{{event-reference.row.Quit-WindowState.description}}</td>
+				</tr>
+				<tr>
+					<td><code>MouseMove / MouseDown / MouseUp</code></td><td>{{event-reference.row.MouseMove-MouseDown-MouseUp.description}}</td>
+				</tr>
+				<tr>
+					<td><code>KeyDown / KeyUp / TextInput</code></td><td>{{event-reference.row.KeyDown-KeyUp-TextInput.description}}</td>
+				</tr>
+				<tr>
+					<td><code>GamepadAdded / GamepadAxis</code></td><td>{{event-reference.row.GamepadAdded-GamepadAxis.description}}</td>
+				</tr>
+				<tr>
+					<td><code>TouchDown / TouchMove</code></td><td>{{event-reference.row.TouchDown-TouchMove.description}}</td>
+				</tr>
+				<tr>
+					<td><code>PenDown / PenMove</code></td><td>{{event-reference.row.PenDown-PenMove.description}}</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</section>
+<section class="article-section" id="reference-source">
+	<div class="section-head">
+		<h2>{{reference-source.heading}}</h2>
+		<a class="h-anchor" href="#/events?s=reference-source" title="{{common.sectionLink}}" aria-label="{{common.sectionLink}} {{reference-source.heading}}">#</a>
+	</div>
+	<a class="resource-row" href="https://github.com/NMB-Team/Limen/blob/master/limen/platform/event/EventType.hx" target="_blank" rel="noopener noreferrer"><span><strong>{{reference-source.resource-row.EventType-hx.title}}</strong><small>{{reference-source.resource-row.EventType-hx.description}}</small></span><span class="resource-arrow">↗</span></a>
+</section>
+<a class="next-card" href="#/examples">
+<div>
+	<span class="next-label">{{common.nextPage}}</span><span class="next-title">{{pages.examples.title}}</span>
+</div>
+<svg viewBox="0 0 24 24" aria-hidden="true"><use href="{{assets.icons}}#arrow"/></svg></a>

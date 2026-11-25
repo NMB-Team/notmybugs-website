@@ -1,6 +1,5 @@
 import React, { ReactNode } from 'react'
 import { createRoot } from 'react-dom/client'
-import './styles/global.scss'
 
 export function renderPage(page: ReactNode) {
 	const root = document.getElementById('root')

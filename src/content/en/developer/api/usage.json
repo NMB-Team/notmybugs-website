@@ -1,0 +1,206 @@
+{
+  "platform.Platform": {
+    "": "Initialize Limen before creating windows or graphics objects. Use GraphicsDriver.None for a platform-only app. Drive the event loop with pollEvent or processEvents, release application-owned resources, then call quit.",
+    "init": "Starts SDL and selects a graphics backend. Limen may select a different supported backend if the preferred one fails. Read graphicsDriver before creating a renderer.",
+    "graphicsDriver": "The backend Limen actually loaded. Use it to choose which renderer to initialize. GraphicsDriver.None also represents platform-only mode.",
+    "videoBackend": "The active SDL window-system backend. Check it before using backend-specific features such as Wayland or Win32 interop.",
+    "isMobile": "Whether Limen detected a mobile platform during initialization.",
+    "setHint": "Sets an SDL setting from SDLHint. Set hints that affect initialization before starting the subsystem they configure.",
+    "addEventWatchListener": "Adds a callback on the SDL event producer thread. Synchronize shared state and keep calling pollEvent to pump and drain the main queue.",
+    "removeEventWatchListener": "Unregisters a callback. Pass the same listener you registered.",
+    "pollEvent": "Copies the next queued event into target. Reuse one Event in your loop and read it only when the call returns true.",
+    "processEvents": "Drains queued events through onEvent. It returns false when the callback handles a Quit event by returning true.",
+    "quit": "Shuts down Limen and clears queued events. Release application-owned windows and graphics objects before calling it.",
+    "getError": "Returns current native error text. Read it immediately after a failing call to associate the message with that operation."
+  },
+  "platform.window.Window": {
+    "": "Owns a native SDL window. Use Window.create for named configuration. Attach a renderer if needed and destroy the window during shutdown. Use pixelWidth and pixelHeight to size GPU attachments.",
+    "create": "Creates a window from named options after Platform.init. It is resizable by default. Add the backend's required flags before attaching a renderer.",
+    "new": "Creates a window from positional arguments. Window.create lets you name options such as size, position, and flags.",
+    "id": "The SDL window identifier. Compare it with Event.windowId to route events across multiple windows.",
+    "title": "The caption shown by the window system. Assign a new value to update it.",
+    "width": "The current width in window coordinates. Use pixelWidth for GPU attachments.",
+    "height": "The current height in window coordinates. Use pixelHeight for GPU attachments.",
+    "pixelWidth": "The drawable width in pixels. Read it after a resize to update the viewport or swapchain on high-density displays.",
+    "pixelHeight": "The drawable height in pixels. Read it after a resize to update the viewport or swapchain on high-density displays.",
+    "windowToPixelRatio": "The ratio of drawable pixels to window coordinates. Use it to convert window-space measurements for rendering.",
+    "minWidth": "The minimum width constraint in window coordinates. Change it with setMinSize.",
+    "minHeight": "The minimum height constraint in window coordinates. Change it with setMinSize.",
+    "maxWidth": "The maximum width constraint in window coordinates. Change it with setMaxSize.",
+    "maxHeight": "The maximum height constraint in window coordinates. Change it with setMaxSize.",
+    "x": "The horizontal window position reported by SDL. Use setPosition to request a move.",
+    "y": "The vertical window position reported by SDL. Use setPosition to request a move.",
+    "displayMode": "The current WindowMode. Assign it to switch between windowed and fullscreen modes.",
+    "displaySetting": "The display setting used when the window enters exclusive fullscreen mode.",
+    "currentMonitor": "The display containing the window. Pass it to Display.modes or Display.currentMode.",
+    "visible": "Controls whether the window is shown. Assign it directly or use show and hide.",
+    "opacity": "Controls overall window transparency when the window system supports it.",
+    "grab": "Controls input grab for this window. Release the grab when the interaction ends.",
+    "displayScale": "The display scale reported for the window. Use it when adapting UI sizes to the active display.",
+    "resize": "Requests a new size in window coordinates. Read the drawable size before resizing GPU resources.",
+    "setMinSize": "Sets the minimum allowed width and height in window coordinates.",
+    "setMaxSize": "Sets the maximum allowed width and height in window coordinates.",
+    "setIcon": "Sets the window icon from a Limen Surface.",
+    "setIconICO": "Decodes ICO bytes, applies the icon, and frees the temporary surface.",
+    "setIconFile": "Reads an ICO file and applies it as the window icon.",
+    "getNativeWindowInfo": "Reads backend-specific handles for native interop. Match the returned WindowNativeInfo variant before using its handles.",
+    "destroy": "Releases the native window. Finish using its renderer and native handles before calling it."
+  },
+  "platform.window.WindowOptions": {
+    "": "Named configuration for Window.create. Provide title, width, and height for a basic window. Supply renderer flags when your backend requires them.",
+    "title": "The initial caption shown by the window system.",
+    "width": "The requested initial width in window coordinates.",
+    "height": "The requested initial height in window coordinates.",
+    "x": "The initial horizontal position. Omit it to request centering.",
+    "y": "The initial vertical position. Omit it to request centering.",
+    "flags": "Additional window flags. For OpenGL, include WindowFlags.SDL_WINDOW_OPENGL before creating the context.",
+    "resizable": "Set to false to skip adding the resizable flag. Omit it to allow resizing by default.",
+    "visible": "Set to false to create the window hidden, then show it when setup is complete."
+  },
+  "platform.event.Event": {
+    "": "Reusable payload filled by Platform.pollEvent. Switch on Event.type before reading the corresponding fields. Copy values you need to retain before polling again.",
+    "type": "The event discriminator. Use switch to select the relevant payload fields.",
+    "new": "Allocates an event object. Reuse it on each iteration of the event loop.",
+    "windowId": "The SDL window identifier carried by window-specific events. Compare it with Window.id.",
+    "mouseX": "The pointer's horizontal position in window coordinates for mouse events with a position.",
+    "mouseY": "The pointer's vertical position in window coordinates for mouse events with a position.",
+    "mouseXRel": "Horizontal movement since the previous mouse motion event.",
+    "mouseYRel": "Vertical movement since the previous mouse motion event.",
+    "keyCode": "The logical key for keyboard events. Use scanCode when physical position matters.",
+    "scanCode": "The physical key position. Use keyCode for layout-dependent keys.",
+    "keyRepeat": "Whether a key-down event was generated by holding a key. Check it for one-shot shortcuts.",
+    "state": "The WindowStateChange carried by a WindowState event.",
+    "dropFile": "The dropped file path carried by a file drop event."
+  },
+  "platform.system.dialog.FileDialog": {
+    "": "Shows native file and folder pickers. Handle selection, cancellation, and errors through FileDialogResult.",
+    "openFile": "Opens a picker for existing files. Inspect the callback result before using any paths.",
+    "openFolder": "Opens a folder picker. Use the path only when the callback reports a selection.",
+    "saveFile": "Prompts for a destination. Write the file yourself after the callback reports a selection."
+  },
+  "platform.system.dialog.FileDialogResult": {
+    "Selected": "The user confirmed the dialog. Read the selected paths and optional filter index.",
+    "Cancelled": "The dialog closed without a selection.",
+    "Failed": "The native dialog could not complete. Use the message to report the failure."
+  },
+  "graphics.renderer.opengl.OpenGL": {
+    "": "Manages an OpenGL context for a Limen window. Make it current before issuing GL calls and present after drawing.",
+    "create": "Creates a context for a window opened with SDL_WINDOW_OPENGL. Pass ContextOptions to request a specific version, profile, or framebuffer configuration.",
+    "makeCurrent": "Binds this context for OpenGL calls on the current thread.",
+    "present": "Presents the rendered window buffer. Call it after issuing the frame's drawing commands.",
+    "presentMode": "The active presentation mode. It may be absent before a mode is established.",
+    "requestedPresentMode": "The requested presentation mode. Compare it with presentMode to see what took effect.",
+    "destroy": "Releases the OpenGL context. Complete context-dependent cleanup before calling it."
+  },
+  "graphics.renderer.vulkan.Vulkan": {
+    "": "Bootstraps Vulkan in Limen. Create a surface for the window, then create a context with your renderer's required capabilities.",
+    "createSurface": "Creates a Vulkan surface for the window. Request validation during setup when debugging Vulkan usage.",
+    "createContext": "Creates the Vulkan context for a surface. The queueFamily reference receives the selected queue family.",
+    "getCapabilities": "Reads the context's supported capabilities. Check these before enabling optional rendering features.",
+    "loaderApiVersion": "The API version reported by the Vulkan loader. Compare it with instanceApiVersion to see which version the instance uses.",
+    "instanceApiVersion": "The Vulkan API version selected for the instance.",
+    "validationEnabled": "Whether validation was enabled for the active Vulkan instance."
+  },
+  "graphics.renderer.vulkan.command.VkCommandBuffer": {
+    "": "Records Vulkan commands for a queue. Begin recording, encode the work, end recording, then submit it with the required synchronization."
+  },
+  "graphics.renderer.d3d12.command.CommandList": {
+    "": "Records GPU work for a D3D12 command queue. Close the list before submission and wait for the associated GPU work before reusing its allocator."
+  },
+  "graphics.renderer.d3d12.resource.ResourceDesc": {
+    "": "Describes the dimensions, format, layout, sampling, and usage of a resource. Fill this before creating a resource or querying its allocation size."
+  },
+  "graphics.postprocess.dlss.DLSS": {
+    "": "Provides NVIDIA Streamline hooks for DLSS and related features. Check feature support on the selected device before setting options or submitting work.",
+    "getNewFrameToken": "Gets the Streamline token for a frame. Reuse it when submitting that frame's constants, resource tags, and evaluation.",
+    "setTagForFrame": "Associates resources with their Streamline roles for a frame. Supply the matching frame token and resources expected by the feature.",
+    "evaluateFeature": "Submits evaluation after supplying the feature's frame resources and constants."
+  },
+  "graphics.postprocess.fsr.FSR": {
+    "": "Provides AMD FidelityFX features such as upscaling and frame generation. Check effect availability, create the required context, and release it during shutdown.",
+    "getRenderResolution": "Computes render dimensions for a display size and quality mode. Read the output width and height references on success.",
+    "createContext": "Creates an upscaling context for maximum render and output dimensions. Inspect the result code before using the context.",
+    "dispatch": "Records FSR work on the supplied command list. Configure the input and output resources in FSRDispatchParams."
+  },
+  "graphics.renderer.vulkan.memory.VkImageCreateInfo": {
+    "": "Describes a Vulkan image. Choose its format, extent, mip levels, samples, tiling, and usage before creating it."
+  },
+  "platform.input.Mouse": {
+    "": "Use these helpers for mouse capture, relative mode, or state outside the event loop. Use Event for individual movement and button events.",
+    "setRelative": "Toggles relative mouse mode. Use it for camera or pointer-lock style controls that consume movement deltas.",
+    "globalState": "Reads desktop pointer coordinates into x and y and returns the button mask.",
+    "relativeState": "Reads accumulated relative movement into x and y and returns the button mask.",
+    "warpGlobal": "Requests a pointer move to desktop coordinates. Support depends on the window system.",
+    "capture": "Requests mouse capture so drag gestures can keep receiving mouse events beyond the window."
+  },
+  "platform.system.Clipboard": {
+    "": "Use setText and getText for ordinary copy and paste. Use setData and getData when exchanging bytes under an explicit MIME type.",
+    "getText": "Reads clipboard text. Treat a null result as unavailable.",
+    "getData": "Reads bytes under a particular MIME type. Treat null as unavailable and decode the bytes according to their format.",
+    "setData": "Publishes bytes under the supplied MIME type. Inspect the result before assuming they were copied.",
+    "mimeTypes": "Lists the MIME types the clipboard currently advertises. Select a supported format before reading bytes."
+  },
+  "platform.display.Display": {
+    "": "Enumerates displays and their video modes. Use Window.currentMonitor to query the display containing an existing window.",
+    "all": "Lists the displays reported by SDL.",
+    "modes": "Lists the display modes available for the given display.",
+    "currentMode": "Reads the current or desktop mode for the display, according to the desktop argument."
+  },
+  "graphics.renderer.opengl.resource.Buffers": {
+    "": "Creates and updates OpenGL buffer objects. Bind the buffer to the target expected by the operation, or use a named-buffer method where supported.",
+    "bufferDataSize": "Allocates buffer storage without uploading an initial byte array. Bind the destination first.",
+    "bufferSubData": "Updates a byte range of the currently bound buffer without reallocating it.",
+    "deleteBuffer": "Deletes the OpenGL buffer object. Stop referencing it from future draw commands."
+  },
+  "graphics.PresentMode": {
+    "": "Selects how completed frames are presented. Use VSync to synchronize with the display. Query the actual mode if your application depends on a particular presentation policy.",
+    "Immediate": "Requests presentation without waiting for a vertical blank. This can reduce wait time and may allow tearing.",
+    "VSync": "Requests presentation synchronized to the display refresh.",
+    "Adaptive": "Requests adaptive synchronization when the backend supports it."
+  },
+  "graphics.renderer.vulkan.command.VkSubmitInfo": {
+    "": "Describes a queue submission. It pairs command buffers with semaphores that order their work with earlier and later submissions.",
+    "waitSemaphoreCount": "Number of semaphores the submission waits on. Match the entries in pWaitSemaphores and pWaitDstStageMask.",
+    "pWaitSemaphores": "Semaphores to wait on before the configured stages execute.",
+    "pWaitDstStageMask": "The pipeline stage mask for each wait semaphore. Keep the entries in the same order as pWaitSemaphores.",
+    "commandBufferCount": "Number of command buffers supplied in pCommandBuffers.",
+    "pCommandBuffers": "Recorded command buffers to submit. They must be valid for the queue used by the submission.",
+    "signalSemaphoreCount": "Number of semaphores supplied in pSignalSemaphores.",
+    "pSignalSemaphores": "Semaphores signaled by the submission. Later work can wait on them."
+  },
+  "graphics.renderer.vulkan.memory.VkBufferCreateInfo": {
+    "": "Describes a buffer to create. Set its size and usage according to the operations that will access it.",
+    "usage": "The permitted buffer uses, such as transfers, indexing, or shader access. Include each use that later commands require.",
+    "sharingMode": "Controls how queue families access the buffer. Supply the family indices when using concurrent sharing.",
+    "queueFamilyIndexCount": "Number of queue family indices in queueFamilyIndices when using concurrent sharing."
+  },
+  "graphics.renderer.vulkan.memory.VkImageLayout": {
+    "": "Specifies how a Vulkan image subresource is laid out for a particular use. Track its current layout and transition it before using it in a way that requires another layout.",
+    "UNDEFINED": "Use as the old layout when the previous contents may be discarded, such as the first transition of a newly created image.",
+    "GENERAL": "A general-purpose layout required by some usages, including typical storage-image access.",
+    "COLOR_ATTACHMENT_OPTIMAL": "Layout for color attachment access during rendering.",
+    "DEPTH_STENCIL_ATTACHMENT_OPTIMAL": "Layout for depth and stencil attachment access.",
+    "SHADER_READ_ONLY_OPTIMAL": "Layout for shader reads, such as sampling a texture after an upload.",
+    "TRANSFER_SRC_OPTIMAL": "Layout for the source image in a transfer operation.",
+    "TRANSFER_DST_OPTIMAL": "Layout for the destination image in a transfer operation.",
+    "PRESENT_SRC_KHR": "Layout required for presenting a swapchain image. Transition the image before handing it back for presentation."
+  },
+  "graphics.renderer.d3d12.command.CommandQueue": {
+    "": "Submits recorded D3D12 command lists. Use fence values to track when queued GPU work has progressed far enough to reuse its resources.",
+    "executeCommandList": "Submits a recorded command list for execution. Close the list before passing it to the queue.",
+    "executeCommandLists": "Submits multiple recorded command lists. Close each list before submitting it.",
+    "signal": "Schedules a fence update on the queue. Use the value to track completion of work submitted ahead of the signal.",
+    "wait": "Makes the queue wait until a fence reaches the specified value. Use it to order work between queues.",
+    "getTimestampFrequency": "Reads the frequency of timestamps on this queue so GPU timestamp deltas can be converted to elapsed time."
+  },
+  "graphics.renderer.d3d12.resource.ResourceState": {
+    "": "Describes how a D3D12 resource or subresource can be accessed. Use a resource barrier when changing between states that require an explicit transition.",
+    "RENDER_TARGET": "Allows writing to a resource as a render target.",
+    "UNORDERED_ACCESS": "Allows unordered access through a UAV.",
+    "DEPTH_WRITE": "Allows writing to a depth-stencil attachment.",
+    "DEPTH_READ": "Allows read-only depth-stencil access.",
+    "COPY_DEST": "Allows this resource to be written by a copy operation.",
+    "COPY_SOURCE": "Allows this resource to be read by a copy operation.",
+    "PRESENT": "Transition the back buffer to this state before presenting it."
+  }
+}

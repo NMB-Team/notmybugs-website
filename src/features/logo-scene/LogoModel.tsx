@@ -3,7 +3,7 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
 import * as THREE from 'three'
 
-const MODEL_PATH = '/models/NMB-logo.glb'
+const MODEL_PATH = `${import.meta.env.BASE_URL}models/NMB-logo.glb`
 const FRONT_FACE_ROTATION_X = -Math.PI * 0.5
 const SCREEN_Y_FLIP_SCALE = [1, -1, 1] as const
 const LOGO_MATERIAL = new THREE.MeshStandardMaterial({

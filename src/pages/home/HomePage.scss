@@ -14,6 +14,25 @@
 		linear-gradient(180deg, #050705 0%, #020302 100%);
 }
 
+.developer-link {
+	position: absolute;
+	z-index: 3;
+	top: clamp(16px, 4vw, 36px);
+	right: clamp(16px, 4vw, 36px);
+	padding: 10px 14px;
+	border: 1px solid #3c583d;
+	border-radius: 4px;
+	background: #0c160e;
+	color: #d0efd0;
+	font-size: 0.9rem;
+
+	&:hover,
+	&:focus-visible {
+		border-color: #9cda9c;
+		color: #f2fff2;
+	}
+}
+
 .animated-gradient {
 	position: absolute;
 	inset: auto -150vh -24vh;

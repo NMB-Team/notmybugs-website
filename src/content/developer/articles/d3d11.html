@@ -1,0 +1,130 @@
+<div class="crumbs">
+	<a href="{{links.hub}}">{{common.documentation}}</a><span class="crumb-divider">/</span><a href="#/start">LIMEN</a><span class="crumb-divider">/</span><span class="current">{{pages.d3d11.title}}</span>
+</div>
+<div class="page-hero">
+	<div class="page-kicker">{{common.guides}}</div>
+	<h1>{{pages.d3d11.title}}</h1>
+	<p class="lede">{{intro.summary}}</p>
+</div>
+<section class="article-section" id="overview">
+	<div class="section-head">
+		<h2>{{overview.heading}}</h2>
+		<a class="h-anchor" href="#/d3d11?s=overview" title="{{common.sectionLink}}" aria-label="{{common.sectionLink}} {{overview.heading}}">#</a>
+	</div>
+	<p>{{overview.purpose}}</p>
+	<p>{{overview.choice}}</p>
+</section>
+<section class="article-section" id="requirements">
+	<div class="section-head">
+		<h2>{{requirements.heading}}</h2>
+		<a class="h-anchor" href="#/d3d11?s=requirements" title="{{common.sectionLink}}" aria-label="{{common.sectionLink}} {{requirements.heading}}">#</a>
+	</div>
+	<p>{{{requirements.folder}}}</p>
+	<p>{{{requirements.paragraph}}}</p>
+</section>
+<section class="article-section" id="program">
+	<div class="section-head">
+		<h2>{{program.heading}}</h2>
+		<a class="h-anchor" href="#/d3d11?s=program" title="{{common.sectionLink}}" aria-label="{{common.sectionLink}} {{program.heading}}">#</a>
+	</div>
+	<p>{{program.intro}}</p>
+	<div class="code-card">
+		<div class="code-header">
+			<div class="code-header-left">
+				<span class="file-dot"></span><span class="filename">Main.hx</span>
+			</div>
+			<div class="code-header-right">
+				<span class="language">HAXE</span><button class="copy-btn" type="button" data-copy><svg viewBox="0 0 24 24" aria-hidden="true"><use href="{{assets.icons}}#copy"/></svg><span></span></button>
+			</div>
+		</div>
+		<pre><code>import limen.graphics.GraphicsDriver;
+import limen.graphics.renderer.d3d11.D3D11;
+import limen.graphics.renderer.d3d11.DX11Core.Format;
+import limen.graphics.renderer.d3d11.DX11Core.PresentFlags;
+import limen.graphics.renderer.d3d11.command.Commands;
+import limen.graphics.renderer.d3d11.descriptor.ResourceViews;
+import limen.graphics.renderer.d3d11.internal.D3D11Bindings;
+import limen.platform.Platform;
+import limen.platform.event.Event;
+import limen.platform.event.WindowStateChange;
+import limen.platform.window.Window;
+
+class Main {
+    static function main():Void {
+        // require Direct3D 11 and disable driver fallback
+        Platform.init(GraphicsDriver.D3D11, [GraphicsDriver.D3D11]);
+
+        // change the title and starting size here
+        final window = Window.create({
+            title: "LIMEN Direct3D 11",
+            width: 800,
+            height: 450,
+            resizable: false
+        });
+
+        final driver = D3D11.create(window, Format.R8G8B8A8_UNORM);
+        // get the back buffer and create a view the GPU can clear
+        final buffer = D3D11Bindings.getBackBuffer();
+        final target = ResourceViews.createRenderTargetView(buffer);
+        // the view keeps its own reference to the back buffer
+        buffer.release();
+
+        // change the red, green, and blue values from 0 to 1
+        Commands.clearColor(target, 0.12, 0.25, 0.48, 1);
+        // show the frame at the next screen refresh
+        driver.present(1, PresentFlags.None);
+
+        // keep the window responsive until it closes
+        final event = new Event();
+        var running = true;
+
+        while (running) {
+            while (Platform.pollEvent(event)) {
+                switch (event.type) {
+                    case Quit:
+                        running = false;
+                    case WindowState if (event.windowId == window.id &amp;&amp; event.state == WindowStateChange.Close):
+                        running = false;
+                    default:
+                }
+            }
+
+            if (running)
+                Platform.delay(10);
+        }
+
+        // release the render target view before destroying the driver
+        target.release();
+        driver.destroy();
+        window.destroy();
+        Platform.quit();
+    }
+}</code></pre>
+	</div>
+</section>
+<section class="article-section" id="run">
+	<div class="section-head">
+		<h2>{{run.heading}}</h2>
+		<a class="h-anchor" href="#/d3d11?s=run" title="{{common.sectionLink}}" aria-label="{{common.sectionLink}} {{run.heading}}">#</a>
+	</div>
+	<p>{{{run.runtime}}}</p>
+	<div class="code-card">
+		<div class="code-header">
+			<div class="code-header-left">
+				<span class="file-dot"></span><span class="filename">terminal</span>
+			</div>
+			<div class="code-header-right">
+				<span class="language">SHELL</span><button class="copy-btn" type="button" data-copy><svg viewBox="0 0 24 24" aria-hidden="true"><use href="{{assets.icons}}#copy"/></svg><span></span></button>
+			</div>
+		</div>
+		<pre><code>haxe -cp .. -main Main -hl main.hl
+hl main.hl</code></pre>
+	</div>
+	<p>{{{run.result}}}</p>
+</section>
+<a class="next-card" href="#/renderer-api?s=d3d11">
+	<div>
+		<span class="next-label">{{common.nextPage}}</span><span class="next-title">{{pages.renderer-api.title}} · Direct3D 11</span>
+	</div>
+	<svg viewBox="0 0 24 24" aria-hidden="true"><use href="{{assets.icons}}#arrow"/></svg>
+</a>

@@ -1,0 +1,18 @@
+{
+	"intro.heading": "Window",
+	"intro.summary": "Управление нативным окном: создание, размеры, заголовок, режим отображения и иконка.",
+	"create.heading": "Создание окна",
+	"create.paragraph": "<code>Window.create()</code> принимает параметры <code>title</code>, <code>width</code>, <code>height</code>, а также необязательные <code>resizable</code>, <code>visible</code>, <code>flags</code>, <code>x</code> и <code>y</code>.",
+	"methods.heading": "Свойства и методы",
+	"methods.row.title.description": "Заголовок окна; можно изменить после создания.",
+	"methods.row.width-height.description": "Размер окна в логических координатах.",
+	"methods.row.pixelWidth-pixelHeight.description": "Размер клиентской области в пикселях.",
+	"methods.row.resize-w-h.description": "Меняет размер окна.",
+	"methods.row.setMinSize-w-h.description": "Устанавливает минимальный размер.",
+	"methods.row.setDarkMode-enabled.description": "Запрашивает тёмный заголовок окна.",
+	"methods.row.setIconFile-path.description": "Устанавливает иконку из ICO-файла.",
+	"methods.row.destroy.description": "Уничтожает нативное окно.",
+	"references.heading": "Исходный код",
+	"references.resource-row.Window-hx.title": "Window.hx",
+	"references.resource-row.Window-hx.description": "Реализация и полный перечень методов"
+}

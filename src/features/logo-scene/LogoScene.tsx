@@ -1,4 +1,5 @@
 import { Canvas } from '@react-three/fiber'
+import copy from '../../content/en/home.json'
 import { preventProtectedAssetAction } from '../../shared/protectAsset'
 import LogoModel from './LogoModel'
 import './LogoScene.scss'
@@ -7,7 +8,7 @@ export default function LogoScene() {
 	return (
 		<section
 			className='logo-stage'
-			aria-label='NMB Team logo'
+			aria-label={copy.logoLabel}
 			onContextMenu={preventProtectedAssetAction}
 			onCopy={preventProtectedAssetAction}
 			onDragStart={preventProtectedAssetAction}
@@ -20,7 +21,7 @@ export default function LogoScene() {
 				<ambientLight intensity={1.8} />
 				<directionalLight position={[3, 4, 5]} intensity={2.8} />
 
-				<LogoModel modelPath='/models/NMB-logo.glb' />
+				<LogoModel />
 			</Canvas>
 		</section>
 	)

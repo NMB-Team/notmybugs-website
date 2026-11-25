@@ -1,0 +1,96 @@
+<div class="crumbs">
+	<a href="{{links.hub}}">{{common.documentation}}</a><span class="crumb-divider">/</span><a href="#/start">LIMEN</a><span class="crumb-divider">/</span><span class="current">{{pages.window.title}}</span>
+</div>
+<div class="page-hero">
+	<div class="page-kicker">
+		{{common.apiReference}}
+	</div>
+	<h1>{{intro.heading}}</h1>
+	<p class="lede">{{intro.summary}}</p>
+	<div class="metadata">
+		<span class="pill">limen.platform.window.Window</span>
+	</div>
+</div>
+<section class="article-section" id="create">
+	<div class="section-head">
+		<h2>{{create.heading}}</h2>
+		<a class="h-anchor" href="#/window?s=create" title="{{common.sectionLink}}" aria-label="{{common.sectionLink}} {{create.heading}}">#</a>
+	</div>
+	<p>{{{create.paragraph}}}</p>
+	<div class="code-card">
+		<div class="code-header">
+			<div class="code-header-left">
+				<span class="file-dot"></span><span class="filename">Main.hx</span>
+			</div>
+			<div class="code-header-right">
+				<span class="language">HAXE</span><button class="copy-btn" type="button" data-copy><svg viewBox="0 0 24 24" aria-hidden="true"><use href="{{assets.icons}}#copy"/></svg><span></span></button>
+			</div>
+		</div>
+		<pre><code>final window = Window.create({
+    title: &quot;LIMEN Example&quot;,
+    width: 800,
+    height: 500,
+    resizable: true
+});
+
+window.setMinSize(320, 240);
+window.setDarkMode(true);
+window.title = &quot;Updated title&quot;;
+window.resize(1024, 768);
+
+window.destroy();</code></pre>
+	</div>
+</section>
+<section class="article-section" id="methods">
+	<div class="section-head">
+		<h2>{{methods.heading}}</h2>
+		<a class="h-anchor" href="#/window?s=methods" title="{{common.sectionLink}}" aria-label="{{common.sectionLink}} {{methods.heading}}">#</a>
+	</div>
+	<div class="api-table-wrap">
+		<table class="api-table">
+			<thead>
+				<tr>
+					<th>{{common.apiValue}}</th><th>{{common.purpose}}</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td><code>title</code></td><td>{{methods.row.title.description}}</td>
+				</tr>
+				<tr>
+					<td><code>width / height</code></td><td>{{methods.row.width-height.description}}</td>
+				</tr>
+				<tr>
+					<td><code>pixelWidth / pixelHeight</code></td><td>{{methods.row.pixelWidth-pixelHeight.description}}</td>
+				</tr>
+				<tr>
+					<td><code>resize(w, h)</code></td><td>{{methods.row.resize-w-h.description}}</td>
+				</tr>
+				<tr>
+					<td><code>setMinSize(w, h)</code></td><td>{{methods.row.setMinSize-w-h.description}}</td>
+				</tr>
+				<tr>
+					<td><code>setDarkMode(enabled)</code></td><td>{{methods.row.setDarkMode-enabled.description}}</td>
+				</tr>
+				<tr>
+					<td><code>setIconFile(path)</code></td><td>{{methods.row.setIconFile-path.description}}</td>
+				</tr>
+				<tr>
+					<td><code>destroy()</code></td><td>{{methods.row.destroy.description}}</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</section>
+<section class="article-section" id="references">
+	<div class="section-head">
+		<h2>{{references.heading}}</h2>
+		<a class="h-anchor" href="#/window?s=references" title="{{common.sectionLink}}" aria-label="{{common.sectionLink}} {{references.heading}}">#</a>
+	</div>
+	<a class="resource-row" href="https://github.com/NMB-Team/Limen/blob/master/limen/platform/window/Window.hx" target="_blank" rel="noopener noreferrer"><span><strong>{{references.resource-row.Window-hx.title}}</strong><small>{{references.resource-row.Window-hx.description}}</small></span><span class="resource-arrow">↗</span></a>
+</section>
+<a class="next-card" href="#/events">
+<div>
+	<span class="next-label">{{common.nextPage}}</span><span class="next-title">{{pages.events.title}}</span>
+</div>
+<svg viewBox="0 0 24 24" aria-hidden="true"><use href="{{assets.icons}}#arrow"/></svg></a>

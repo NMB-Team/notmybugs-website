@@ -1,0 +1,110 @@
+<div class="crumbs">
+	<a href="{{links.hub}}">{{common.documentation}}</a><span class="crumb-divider">/</span><a href="#/start">LIMEN</a><span class="crumb-divider">/</span><span class="current">{{pages.recipes.title}}</span>
+</div>
+<div class="page-hero">
+	<h1>{{pages.recipes.title}}</h1>
+	<p class="lede">{{intro.summary}}</p>
+</div>
+<section class="article-section" id="desktop">
+	<div class="section-head">
+		<h2>{{desktop.heading}}</h2>
+		<a class="h-anchor" href="#/recipes?s=desktop" title="{{common.sectionLink}}" aria-label="{{common.sectionLink}} {{desktop.heading}}">#</a>
+	</div>
+	<p>{{{desktop.body}}}</p>
+	<div class="code-card">
+		<div class="code-header">
+			<div class="code-header-left"><span class="file-dot"></span><span class="filename">Main.hx</span></div>
+			<div class="code-header-right"><span class="language">HAXE</span><button class="copy-btn" type="button" data-copy><svg viewBox="0 0 24 24" aria-hidden="true"><use href="{{assets.icons}}#copy"/></svg><span></span></button></div>
+		</div>
+		<pre><code>import limen.platform.Platform;
+import limen.platform.display.Display;
+import limen.platform.system.Paths;
+import limen.platform.system.System;
+import sys.io.File;
+
+class Main {
+    static function main() {
+        Platform.init(None);
+
+        for (screen in Display.all()) {
+            Sys.println('${screen.name}: ${screen.width}x${screen.height}');
+        }
+
+        Sys.println('System theme: ${System.theme}');
+        final directory = Paths.preference("Limen Examples", "Target Rush");
+
+        if (directory != null) {
+            File.saveContent(directory + "record.txt", "10\n");
+            Sys.println(directory + "record.txt");
+        }
+
+        Platform.quit();
+    }
+}</code></pre>
+	</div>
+	<p>{{{desktop.more}}}</p>
+	<div class="resource-list">
+		<a class="resource-row" href="https://github.com/NMB-Team/Limen/tree/master/limen/platform/window"><span><strong>{{desktop.window.title}}</strong><small>{{desktop.window.description}}</small></span><span class="resource-arrow" aria-hidden="true">↗</span></a>
+		<a class="resource-row" href="https://github.com/NMB-Team/Limen/tree/master/limen/platform/system"><span><strong>{{desktop.system.title}}</strong><small>{{desktop.system.description}}</small></span><span class="resource-arrow" aria-hidden="true">↗</span></a>
+		<a class="resource-row" href="#/first-app"><span><strong>{{desktop.app.title}}</strong><small>{{desktop.app.description}}</small></span><span class="resource-arrow" aria-hidden="true">↗</span></a>
+	</div>
+</section>
+<section class="article-section" id="input">
+	<div class="section-head">
+		<h2>{{input.heading}}</h2>
+		<a class="h-anchor" href="#/recipes?s=input" title="{{common.sectionLink}}" aria-label="{{common.sectionLink}} {{input.heading}}">#</a>
+	</div>
+	<p>{{{input.body}}}</p>
+	<div class="code-card">
+		<div class="code-header">
+			<div class="code-header-left"><span class="file-dot"></span><span class="filename">Main.hx</span></div>
+			<div class="code-header-right"><span class="language">HAXE</span><button class="copy-btn" type="button" data-copy><svg viewBox="0 0 24 24" aria-hidden="true"><use href="{{assets.icons}}#copy"/></svg><span></span></button></div>
+		</div>
+		<pre><code>switch (event.type) {
+    case MouseMove:
+        trace(event.mouseX, event.mouseY);
+    case TouchDown, TouchMove:
+        trace(event.fingerId, event.touchX, event.touchY, event.pressure);
+    case PenMove:
+        trace(event.penX, event.penY);
+    case GamepadAxis, JoystickAxisMotion:
+        trace(event.reference, event.button, event.value);
+    default:
+}</code></pre>
+	</div>
+	<p>{{{input.more}}}</p>
+	<div class="resource-list">
+		<a class="resource-row" href="https://github.com/NMB-Team/Limen/tree/master/limen/platform/input"><span><strong>{{input.source.title}}</strong><small>{{input.source.description}}</small></span><span class="resource-arrow" aria-hidden="true">↗</span></a>
+		<a class="resource-row" href="https://github.com/NMB-Team/Limen/tree/master/examples/touch-pen"><span><strong>{{input.drawing.title}}</strong><small>{{input.drawing.description}}</small></span><span class="resource-arrow" aria-hidden="true">↗</span></a>
+		<a class="resource-row" href="#/events"><span><strong>{{input.events.title}}</strong><small>{{input.events.description}}</small></span><span class="resource-arrow" aria-hidden="true">↗</span></a>
+	</div>
+</section>
+<section class="article-section" id="rendering">
+	<div class="section-head">
+		<h2>{{rendering.heading}}</h2>
+		<a class="h-anchor" href="#/recipes?s=rendering" title="{{common.sectionLink}}" aria-label="{{common.sectionLink}} {{rendering.heading}}">#</a>
+	</div>
+	<p>{{{rendering.body}}}</p>
+	<div class="resource-list">
+		<a class="resource-row" href="#/first-game"><span><strong>{{rendering.game.title}}</strong><small>{{rendering.game.description}}</small></span><span class="resource-arrow" aria-hidden="true">↗</span></a>
+		<a class="resource-row" href="https://github.com/NMB-Team/Limen/tree/master/examples/gl"><span><strong>{{rendering.gl.title}}</strong><small>{{rendering.gl.description}}</small></span><span class="resource-arrow" aria-hidden="true">↗</span></a>
+		<a class="resource-row" href="https://github.com/NMB-Team/Limen/tree/master/limen/graphics/renderer/vulkan"><span><strong>{{rendering.vulkan.title}}</strong><small>{{rendering.vulkan.description}}</small></span><span class="resource-arrow" aria-hidden="true">↗</span></a>
+		<a class="resource-row" href="https://github.com/NMB-Team/Limen/tree/master/limen/graphics/renderer/d3d11"><span><strong>{{rendering.dx11.title}}</strong><small>{{rendering.dx11.description}}</small></span><span class="resource-arrow" aria-hidden="true">↗</span></a>
+		<a class="resource-row" href="https://github.com/NMB-Team/Limen/tree/master/limen/graphics/renderer/d3d12"><span><strong>{{rendering.dx12.title}}</strong><small>{{rendering.dx12.description}}</small></span><span class="resource-arrow" aria-hidden="true">↗</span></a>
+		<a class="resource-row" href="https://github.com/NMB-Team/Limen/tree/master/limen/graphics/postprocess"><span><strong>{{rendering.post.title}}</strong><small>{{rendering.post.description}}</small></span><span class="resource-arrow" aria-hidden="true">↗</span></a>
+	</div>
+	<p>{{{rendering.status}}}</p>
+</section>
+<section class="article-section" id="ideas">
+	<div class="section-head">
+		<h2>{{ideas.heading}}</h2>
+		<a class="h-anchor" href="#/recipes?s=ideas" title="{{common.sectionLink}}" aria-label="{{common.sectionLink}} {{ideas.heading}}">#</a>
+	</div>
+	<p>{{{ideas.body}}}</p>
+	<div class="resource-list">
+		<a class="resource-row" href="https://github.com/NMB-Team/Limen/tree/master/examples/tray"><span><strong>{{ideas.tray.title}}</strong><small>{{ideas.tray.description}}</small></span><span class="resource-arrow" aria-hidden="true">↗</span></a>
+		<a class="resource-row" href="https://github.com/NMB-Team/Limen/tree/master/examples/clipboard"><span><strong>{{ideas.clipboard.title}}</strong><small>{{ideas.clipboard.description}}</small></span><span class="resource-arrow" aria-hidden="true">↗</span></a>
+		<a class="resource-row" href="https://github.com/NMB-Team/Limen/tree/master/examples/file-dialog"><span><strong>{{ideas.dialog.title}}</strong><small>{{ideas.dialog.description}}</small></span><span class="resource-arrow" aria-hidden="true">↗</span></a>
+		<a class="resource-row" href="#/examples"><span><strong>{{ideas.examples.title}}</strong><small>{{ideas.examples.description}}</small></span><span class="resource-arrow" aria-hidden="true">↗</span></a>
+	</div>
+</section>

@@ -1,0 +1,136 @@
+{
+  "copy": "Copy",
+  "copied": "Copied to clipboard",
+  "copyFailed": "Couldn't copy to clipboard",
+  "loadFailed": "Couldn't load this article. Refresh the page and try again.",
+  "api": {
+    "apiTitle": "Limen API",
+    "apiDescription": "Search Limen types and members for Haxe and HashLink.",
+    "apiBrowse": "Browse and search API",
+    "apiGuides": "Limen guides"
+  },
+  "pages": {
+    "start": {
+      "title": "Overview",
+      "description": "Native windows, events, and graphics with Haxe and HashLink."
+    },
+    "installation": {
+      "title": "Installation",
+      "description": "Dependencies, build steps, and environment setup."
+    },
+    "first-window": {
+      "title": "First window",
+      "description": "A minimal app with a native SDL3 window."
+    },
+    "event-loop": {
+      "title": "Event loop",
+      "description": "Poll and handle window and input events."
+    },
+    "graphics": {
+      "title": "Graphics backends",
+      "description": "None, OpenGL, Vulkan, and Direct3D."
+    },
+    "first-app": {
+      "title": "First app: Word counter",
+      "navTitle": "Word counter",
+      "description": "Build an app that opens a text file, counts words, and copies the result."
+    },
+    "first-game": {
+      "title": "Target Rush",
+      "description": "Build a 2D OpenGL game with targets, a timer, a score, and a restart action."
+    },
+    "recipes": {
+      "title": "Features and recipes",
+      "description": "Displays, files, cursors, controllers, touch, pen, the system tray, Vulkan, Direct3D, DLSS, and FSR."
+    },
+    "opengl": {
+      "title": "OpenGL",
+      "description": "Create a graphics context and render your first frame."
+    },
+    "vulkan": {
+      "title": "Vulkan",
+      "description": "Create a surface and swapchain, then render your first frame with dynamic rendering."
+    },
+    "d3d11": {
+      "title": "Direct3D 11",
+      "description": "Create a device and render target, then render your first frame on Windows."
+    },
+    "d3d12": {
+      "title": "Direct3D 12",
+      "description": "Set up a GPU queue and command list, then render your first frame on Windows."
+    },
+    "modules": {
+      "title": "Native modules",
+      "description": "What HashLink loads and which DLLs you need."
+    },
+    "platform": {
+      "title": "Platform",
+      "description": "Initialize the platform, handle events, and shut down."
+    },
+    "window": {
+      "title": "Window",
+      "description": "Create and manage a native window."
+    },
+    "events": {
+      "title": "Event & EventType",
+      "description": "Event types, input, mouse events, and window state."
+    },
+    "renderer-api": {
+      "title": "Rendering API",
+      "description": "OpenGL, Vulkan, Direct3D 11, and Direct3D 12 calls for your first frame."
+    },
+    "examples": {
+      "title": "Code examples",
+      "description": "Official examples from the LIMEN repository."
+    },
+    "build": {
+      "title": "Building from source",
+      "description": "Build native modules using CMake and build.sh or build.bat."
+    }
+  },
+  "navigationLabels": {
+    "setup": "Setup and builds",
+    "firstSteps": "First steps",
+    "projects": "Projects and examples",
+    "platformFeatures": "Platform features",
+    "platformApi": "Platform API"
+  },
+  "articleLabels": {
+    "documentation": "Documentation",
+    "nextPage": "Next page",
+    "sectionLink": "Link to this section",
+    "gettingStarted": "Getting started",
+    "guides": "Guides",
+    "apiReference": "API reference",
+    "apiValue": "API / value",
+    "purpose": "Purpose",
+    "noGpu": "No GPU",
+    "buildCommands": "Build commands",
+    "buildPlatform": "Select a platform",
+    "terminal": "terminal",
+    "buildPrerequisites": "Before building, make sure HashLink works and you have a suitable C/C++ toolchain.",
+    "optional": "as needed",
+    "separateBuild": "separate build",
+    "required": "required"
+  },
+  "shell": {
+    "language": "en",
+    "description": "Guides, code examples, and API references for NMB Team projects.",
+    "title": "NMB Team Developer Wiki",
+    "returnToHome": "← NMB Team site",
+    "languageSwitcher": "Documentation language",
+    "navigation": "Main navigation",
+    "menu": "☰ Menu",
+    "overview": "Docs overview",
+    "nmbProjects": "NMB projects",
+    "limenRepository": "LIMEN repository",
+    "developersLink": "Developers",
+    "wikiNavigation": "Wiki navigation",
+    "limenSections": "LIMEN sections",
+    "links": "Links",
+    "sourceCode": "Source code",
+    "reportIssue": "Report an issue",
+    "noscript": "Enable JavaScript to browse the documentation.",
+    "sourceCredit": "Based on the LIMEN source code ·"
+  }
+}

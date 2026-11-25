@@ -1,0 +1,17 @@
+{
+  "intro.current": "Event & EventType",
+  "intro.heading": "Event and EventType",
+  "intro.summary": "Events describe user input and changes in application state.",
+  "reading.heading": "Usage",
+  "reading.paragraph": "Create an <code>Event</code> and pass it to <code>Platform.pollEvent()</code>. Then check <code>event.type</code>.",
+  "event-reference.heading": "Common event categories",
+  "event-reference.row.Quit-WindowState.description": "Close, resize, and other window changes.",
+  "event-reference.row.MouseMove-MouseDown-MouseUp.description": "Pointer position and button presses.",
+  "event-reference.row.KeyDown-KeyUp-TextInput.description": "Keyboard and text input.",
+  "event-reference.row.GamepadAdded-GamepadAxis.description": "Controller connections and axis changes.",
+  "event-reference.row.TouchDown-TouchMove.description": "Touch input.",
+  "event-reference.row.PenDown-PenMove.description": "Pen input and movement.",
+  "reference-source.heading": "Full list",
+  "reference-source.resource-row.EventType-hx.title": "EventType.hx",
+  "reference-source.resource-row.EventType-hx.description": "All event types and field descriptions"
+}

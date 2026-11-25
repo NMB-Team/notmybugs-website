@@ -1,0 +1,142 @@
+<div class="crumbs">
+	<a href="{{links.hub}}">{{common.documentation}}</a><span class="crumb-divider">/</span><a href="#/start">LIMEN</a><span class="crumb-divider">/</span><span class="current">{{pages.build.title}}</span>
+</div>
+<div class="page-hero">
+	<div class="page-kicker">
+		{{common.gettingStarted}}
+	</div>
+	<h1>{{intro.heading}}</h1>
+	<p class="lede">{{intro.summary}}</p>
+	<div class="metadata">
+		<span class="pill">CMake</span><span class="pill">Native</span>
+	</div>
+</div>
+<section class="article-section" id="quick-build">
+	<div class="section-head">
+		<h2>{{quick-build.heading}}</h2>
+		<a class="h-anchor" href="#/build?s=quick-build" title="{{common.sectionLink}}" aria-label="{{common.sectionLink}} {{quick-build.heading}}">#</a>
+	</div>
+	<div class="backend-switcher">
+		<div class="switcher-top">
+			<strong>{{common.buildCommands}}</strong><span>{{common.terminal}}</span>
+		</div>
+		<div class="tabs" role="group" aria-label="{{common.buildPlatform}}">
+			<button type="button" class="tab-button selected" aria-pressed="true" data-example="unix">Linux / macOS</button><button type="button" class="tab-button" aria-pressed="false" data-example="windows">Windows</button>
+		</div>
+		<div data-example-panel="unix">
+			<div class="code-card">
+				<div class="code-header">
+					<div class="code-header-left">
+						<span class="file-dot"></span><span class="filename">terminal</span>
+					</div>
+					<div class="code-header-right">
+						<span class="language">SHELL</span><button class="copy-btn" type="button" data-copy><svg viewBox="0 0 24 24" aria-hidden="true"><use href="{{assets.icons}}#copy"/></svg><span></span></button>
+					</div>
+				</div>
+				<pre><code>git clone https://github.com/NMB-Team/Limen.git
+cd Limen
+bash build.sh --no-open</code></pre>
+			</div>
+		</div>
+		<div data-example-panel="windows" hidden>
+			<div class="code-card">
+				<div class="code-header">
+					<div class="code-header-left">
+						<span class="file-dot"></span><span class="filename">terminal</span>
+					</div>
+					<div class="code-header-right">
+						<span class="language">SHELL</span><button class="copy-btn" type="button" data-copy><svg viewBox="0 0 24 24" aria-hidden="true"><use href="{{assets.icons}}#copy"/></svg><span></span></button>
+					</div>
+				</div>
+				<pre><code>git clone https://github.com/NMB-Team/Limen.git
+cd Limen
+build.bat --no-open</code></pre>
+			</div>
+		</div>
+		<div class="switcher-note">
+			{{common.buildPrerequisites}}
+		</div>
+	</div>
+	<p>{{{quick-build.paragraph}}}</p>
+	<div class="code-card">
+		<div class="code-header">
+			<div class="code-header-left">
+				<span class="file-dot"></span><span class="filename">terminal</span>
+			</div>
+			<div class="code-header-right">
+				<span class="language">SHELL</span><button class="copy-btn" type="button" data-copy><svg viewBox="0 0 24 24" aria-hidden="true"><use href="{{assets.icons}}#copy"/></svg><span></span></button>
+			</div>
+		</div>
+		<pre><code>bash build.sh --config Debug --no-open</code></pre>
+	</div>
+</section>
+<section class="article-section" id="hashlink">
+	<div class="section-head">
+		<h2>{{hashlink.heading}}</h2>
+		<a class="h-anchor" href="#/build?s=hashlink" title="{{common.sectionLink}}" aria-label="{{common.sectionLink}} {{hashlink.heading}}">#</a>
+	</div>
+	<p>{{{hashlink.paragraph}}}</p>
+	<div class="code-card">
+		<div class="code-header">
+			<div class="code-header-left">
+				<span class="file-dot"></span><span class="filename">terminal</span>
+			</div>
+			<div class="code-header-right">
+				<span class="language">SHELL</span><button class="copy-btn" type="button" data-copy><svg viewBox="0 0 24 24" aria-hidden="true"><use href="{{assets.icons}}#copy"/></svg><span></span></button>
+			</div>
+		</div>
+		<pre><code>bash build.sh --hashlink-root /path/to/hashlink --no-open</code></pre>
+	</div>
+</section>
+<section class="article-section" id="output">
+	<div class="section-head">
+		<h2>{{output.heading}}</h2>
+		<a class="h-anchor" href="#/build?s=output" title="{{common.sectionLink}}" aria-label="{{common.sectionLink}} {{output.heading}}">#</a>
+	</div>
+	<p>{{{output.paragraph}}}</p>
+	<div class="module-list">
+		<div class="module-row">
+			<div class="module-main">
+				<strong>limen.hdll</strong><span>{{output.module.limen-hdll.description}}</span>
+			</div>
+			<span class="module-tag">{{common.required}}</span>
+		</div>
+		<div class="module-row">
+			<div class="module-main">
+				<strong>opengl.limen</strong><span>{{output.module.opengl-limen.description}}</span>
+			</div>
+			<span class="module-tag">{{common.optional}}</span>
+		</div>
+		<div class="module-row">
+			<div class="module-main">
+				<strong>{{output.module.vulkan-limen.title}}</strong><span>{{output.module.vulkan-limen.description}}</span>
+			</div>
+			<span class="module-tag">{{common.optional}}</span>
+		</div>
+		<div class="module-row">
+			<div class="module-main">
+				<strong>{{output.module.d3d11-limen.title}}</strong><span>{{output.module.d3d11-limen.description}}</span>
+			</div>
+			<span class="module-tag">{{common.optional}}</span>
+		</div>
+		<div class="module-row">
+			<div class="module-main">
+				<strong>{{output.module.d3d12-limen.title}}</strong><span>{{output.module.d3d12-limen.description}}</span>
+			</div>
+			<span class="module-tag">{{common.optional}}</span>
+		</div>
+		<div class="module-row">
+			<div class="module-main">
+				<strong>{{output.module.dlss-limen.title}}</strong><span>{{output.module.dlss-limen.description}}</span>
+			</div>
+			<span class="module-tag">{{common.separateBuild}}</span>
+		</div>
+		<div class="module-row">
+			<div class="module-main">
+				<strong>{{output.module.fsr-limen.title}}</strong><span>{{output.module.fsr-limen.description}}</span>
+			</div>
+			<span class="module-tag">{{common.separateBuild}}</span>
+		</div>
+	</div>
+	<a class="resource-row" href="https://github.com/NMB-Team/Limen/blob/master/README.md" target="_blank" rel="noopener noreferrer"><span><strong>{{output.resource-row.README-md.title}}</strong><small>{{output.resource-row.README-md.description}}</small></span><span class="resource-arrow">↗</span></a>
+</section>

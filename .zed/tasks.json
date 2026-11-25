@@ -1,0 +1,19 @@
+[
+	{
+		"label": "Start NMB Team site",
+		"command": "npm",
+		"args": ["run", "dev", "--", "--open"],
+		"save": "all"
+	},
+	{
+		"label": "Build NMB Team site",
+		"command": "npm",
+		"args": ["run", "build"],
+		"save": "all"
+	},
+	{
+		"label": "Preview NMB Team site",
+		"command": "npm",
+		"args": ["run", "preview", "--", "--open"]
+	}
+]

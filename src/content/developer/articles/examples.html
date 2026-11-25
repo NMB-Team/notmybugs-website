@@ -1,0 +1,84 @@
+<div class="crumbs">
+	<a href="{{links.hub}}">{{common.documentation}}</a><span class="crumb-divider">/</span><a href="#/start">LIMEN</a><span class="crumb-divider">/</span><span class="current">{{pages.examples.title}}</span>
+</div>
+<div class="page-hero">
+	<div class="page-kicker">
+		{{common.guides}}
+	</div>
+	<h1>{{intro.heading}}</h1>
+	<p class="lede">{{intro.summary}}</p>
+	<p>{{{intro.rendererGuides}}}</p>
+	<div class="metadata">
+		<span class="pill">examples/</span>
+	</div>
+</div>
+<section class="article-section" id="example-list">
+	<div class="section-head">
+		<h2>{{example-list.heading}}</h2>
+		<a class="h-anchor" href="#/examples?s=example-list" title="{{common.sectionLink}}" aria-label="{{common.sectionLink}} {{example-list.heading}}">#</a>
+	</div>
+	<div class="resource-list">
+		<a class="resource-row" href="https://github.com/NMB-Team/Limen/tree/master/examples/window" target="_blank" rel="noopener noreferrer"><span><strong>{{example-list.resource-row.window.title}}</strong><small>{{example-list.resource-row.window.description}}</small></span><span class="resource-arrow">↗</span></a><a class="resource-row" href="https://github.com/NMB-Team/Limen/tree/master/examples/gl" target="_blank" rel="noopener noreferrer"><span><strong>OpenGL</strong><small>{{example-list.resource-row.gl.description}}</small></span><span class="resource-arrow">↗</span></a><a class="resource-row" href="https://github.com/NMB-Team/Limen/tree/master/examples/clipboard" target="_blank" rel="noopener noreferrer"><span><strong>{{example-list.resource-row.clipboard.title}}</strong><small>{{example-list.resource-row.clipboard.description}}</small></span><span class="resource-arrow">↗</span></a><a class="resource-row" href="https://github.com/NMB-Team/Limen/tree/master/examples/file-dialog" target="_blank" rel="noopener noreferrer"><span><strong>{{example-list.resource-row.file-dialog.title}}</strong><small>{{example-list.resource-row.file-dialog.description}}</small></span><span class="resource-arrow">↗</span></a><a class="resource-row" href="https://github.com/NMB-Team/Limen/tree/master/examples/tray" target="_blank" rel="noopener noreferrer"><span><strong>{{example-list.resource-row.tray.title}}</strong><small>{{example-list.resource-row.tray.description}}</small></span><span class="resource-arrow">↗</span></a><a class="resource-row" href="https://github.com/NMB-Team/Limen/tree/master/examples/touch-pen" target="_blank" rel="noopener noreferrer"><span><strong>{{example-list.resource-row.touch-pen.title}}</strong><small>{{example-list.resource-row.touch-pen.description}}</small></span><span class="resource-arrow">↗</span></a>
+	</div>
+</section>
+<section class="article-section" id="run">
+	<div class="section-head">
+		<h2>{{run.heading}}</h2>
+		<a class="h-anchor" href="#/examples?s=run" title="{{common.sectionLink}}" aria-label="{{common.sectionLink}} {{run.heading}}">#</a>
+	</div>
+	<p>{{{run.paragraph}}}</p>
+	<div class="code-card">
+		<div class="code-header">
+			<div class="code-header-left">
+				<span class="file-dot"></span><span class="filename">terminal / Window</span>
+			</div>
+			<div class="code-header-right">
+				<span class="language">SHELL</span><button class="copy-btn" type="button" data-copy><svg viewBox="0 0 24 24" aria-hidden="true"><use href="{{assets.icons}}#copy"/></svg><span></span></button>
+			</div>
+		</div>
+		<pre><code>cd examples/window
+haxe build-window.hxml
+hl exwindow.hl</code></pre>
+	</div>
+	<p>{{{run.paragraph2}}}</p>
+	<div class="code-card">
+		<div class="code-header">
+			<div class="code-header-left">
+				<span class="file-dot"></span><span class="filename">terminal / OpenGL</span>
+			</div>
+			<div class="code-header-right">
+				<span class="language">SHELL</span><button class="copy-btn" type="button" data-copy><svg viewBox="0 0 24 24" aria-hidden="true"><use href="{{assets.icons}}#copy"/></svg><span></span></button>
+			</div>
+		</div>
+		<pre><code>cd examples/gl
+haxe build-gl.hxml
+hl exgl.hl</code></pre>
+	</div>
+	<p>{{{run.otherExamples}}}</p>
+	<div class="code-card">
+		<div class="code-header">
+			<div class="code-header-left"><span class="file-dot"></span><span class="filename">terminal</span></div>
+			<div class="code-header-right"><span class="language">SHELL</span><button class="copy-btn" type="button" data-copy><svg viewBox="0 0 24 24" aria-hidden="true"><use href="{{assets.icons}}#copy"/></svg><span></span></button></div>
+		</div>
+		<pre><code># clipboard
+haxe build-clipboard.hxml
+hl exclipboard.hl
+
+# file-dialog
+haxe build-file-dialog.hxml
+hl exfiledialog.hl
+
+# tray
+haxe build-tray.hxml
+hl extray.hl
+
+# touch-pen
+haxe build-touch-pen.hxml
+hl touch-pen.hl</code></pre>
+	</div>
+</section>
+<a class="next-card" href="#/build">
+<div>
+	<span class="next-label">{{common.nextPage}}</span><span class="next-title">{{pages.build.title}}</span>
+</div>
+<svg viewBox="0 0 24 24" aria-hidden="true"><use href="{{assets.icons}}#arrow"/></svg></a>

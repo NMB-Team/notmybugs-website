@@ -1,0 +1,18 @@
+{
+  "intro.summary": "Build a tool that opens a text file, counts its words, and copies the result to the clipboard. You only need LIMEN's platform module.",
+  "prepare.heading": "1. Set up the project",
+  "prepare.body": "Complete the <a href=\"#/first-window\">first window tutorial</a>. Create a <code>text-counter</code> directory next to <code>my-window</code> and copy <code>build.hxml</code> and the same native files into it. Both project folders sit directly inside <code>Limen</code>.",
+  "source.heading": "2. Add the program",
+  "source.body": "Save the code as <code>text-counter/Main.hx</code>. The app uses the window title to show instructions and the word count.",
+  "try.heading": "3. Build and try it",
+  "try.step.1": "Create a UTF-8 file named <code>sample.txt</code> containing <code>Hello from Limen</code>.",
+  "try.step.2": "Open a terminal in <code>text-counter</code>, run <code>haxe build.hxml</code>, then run <code>hl main.hl</code>. If you copied the bundled Windows runtime, use <code>.\\hl.exe main.hl</code>.",
+  "try.step.3": "Click the app window, press <kbd>O</kbd>, and select <code>sample.txt</code>. The title should show <code>3 words</code>.",
+  "try.step.4": "Press <kbd>C</kbd>, open a text editor, and paste the result. Also try opening an empty file and clicking Cancel in the file picker.",
+  "explain.heading": "How it works",
+  "explain.step.1": "<code>Platform.pollEvent</code> reads key presses and close requests. <code>scanCode</code> identifies the physical key, and <code>keyRepeat</code> lets you ignore auto-repeat. See the <a href=\"https://wiki.libsdl.org/SDL3/SDL_Scancode\">SDL scancode reference</a> for key codes.",
+  "explain.step.2": "<code>FileDialog.openFile</code> returns its result asynchronously. The callback puts it into a thread-safe queue, and the main loop reads the file and updates the title.",
+  "explain.step.3": "<code>File.getContent</code> reads the entire small UTF-8 file. The <code>\\s+</code> pattern splits the text on runs of whitespace. <code>Clipboard.setText</code> writes the result to the system clipboard.",
+  "extend.heading": "Make it your own",
+  "extend.body": "Start by showing the file length alongside the word count. Then enable <code>allowMultiple: true</code> and add up the counts across all returned <code>paths</code>. For large files, try reading line by line."
+}

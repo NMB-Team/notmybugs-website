@@ -1,0 +1,14 @@
+{
+	"intro.heading": "Графические backend-ы",
+	"intro.summary": "LIMEN может работать без GPU или использовать отдельный backend. Выбирайте драйвер в зависимости от приложения и целевой платформы.",
+	"drivers.heading": "Драйверы и руководства",
+	"drivers.row.None.description": "Окна, системные события, ввод. GPU не нужен.",
+	"drivers.row.OpenGL.description": "Графический контекст и команды OpenGL.",
+	"drivers.row.Vulkan.description": "Явное управление GPU и графическими ресурсами.",
+	"drivers.row.D3D11.description": "Графика Direct3D 11 на Windows.",
+	"drivers.row.D3D12.description": "Графика Direct3D 12 на Windows.",
+	"drivers.row.Metal.description": "Зарезервировано под будущий backend, сейчас не реализован.",
+	"select-driver.heading": "Выбор при инициализации",
+	"select-driver.paragraph": "<code>Platform.init()</code> принимает предпочитаемый драйвер. Если доступно несколько backend-ов, LIMEN может выбрать поддерживаемый fallback. Фактически выбранный вариант хранится в <code>Platform.graphicsDriver</code>.",
+	"select-driver.paragraph2": "Если допустим только OpenGL, передайте список поддерживаемых драйверов:"
+}
