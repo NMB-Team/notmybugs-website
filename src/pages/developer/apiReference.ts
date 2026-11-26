@@ -5,6 +5,10 @@ import { highlightHaxe } from './haxeHighlight'
 import { mountSiteHeader } from './SiteHeader'
 import { api as englishApi } from '../../content/en/developer/ui.json'
 import { api as russianApi } from '../../content/ru/developer/ui.json'
+import openglLogo from './assets/gfx/opengl.svg?raw'
+import vulkanLogo from './assets/gfx/vulkan.svg?raw'
+import nvidiaLogo from './assets/gfx/nvidia.svg?raw'
+import amdLogo from './assets/gfx/amd.svg?raw'
 import './styles/_api-reference.scss'
 
 type Member = {
@@ -107,6 +111,34 @@ const groups: Record<Member['kind'], [string, string]> = {
 	field: ['Fields and properties', 'Поля и свойства'],
 	method: ['Instance methods', 'Методы экземпляра'],
 	operator: ['Operators', 'Операторы'],
+}
+const badgeShapes: Record<string, [string, string]> = {
+	'limen.graphics.renderer.opengl': ['gl', '<path d="M8 2 14 5.5v5L8 14 2 10.5v-5Z"/><path d="M2 5.5 8 9l6-3.5M8 9v5"/>'],
+	'limen.graphics.renderer.vulkan': ['vk', '<path d="M2 3h3l3 7 3-7h3l-6 11Z"/>'],
+	'limen.graphics.renderer.d3d11': ['dx', '<rect x="3" y="3" width="10" height="10"/><path d="M8 3v10M3 8h10"/>'],
+	'limen.graphics.renderer.d3d12': ['dx', '<rect x="2" y="2" width="7" height="7"/><rect x="7" y="7" width="7" height="7"/>'],
+	'limen.graphics.postprocess': ['fx', '<path d="M8 1.5 9.6 6.4 14.5 8 9.6 9.6 8 14.5 6.4 9.6 1.5 8 6.4 6.4Z"/>'],
+	'limen.platform.Platform': ['core', '<circle cx="8" cy="8" r="2.5"/><path d="M8 1.5v3M8 11.5v3M1.5 8h3M11.5 8h3M3.4 3.4l2.1 2.1M10.5 10.5l2.1 2.1M12.6 3.4l-2.1 2.1M5.5 10.5l-2.1 2.1"/>'],
+	'limen.platform.window.Window': ['core', '<rect x="2" y="3" width="12" height="10"/><path d="M2 6h12"/>'],
+	'limen.platform.event.Event': ['core', '<path d="M9 1.5 3.5 9H8l-1 5.5L12.5 7H8Z"/>'],
+	'limen.platform.event.EventType': ['core', '<path d="M2.5 4h11M2.5 8h11M2.5 12h7"/>'],
+}
+const logos: Record<string, [string, string][]> = {
+	'limen.graphics.renderer.opengl': [['gl', openglLogo]],
+	'limen.graphics.renderer.vulkan': [['vk', vulkanLogo]],
+	'limen.graphics.postprocess': [['nv', nvidiaLogo], ['amd', amdLogo]],
+}
+const logoViewBox: Record<string, string> = { gl: '0 7 24 10', vk: '0 8.8 24 6.4', nv: '0 4 24 16', amd: '0 9 24 5.8' }
+const logoBadges = (path: string) => (logos[path] ?? []).map(([kind, svg]) =>
+	`<span class="gfx-badge gfx-logo gfx-${kind}" aria-hidden="true">${svg.replace(/<title>.*?<\/title>/, '').replace('role="img"', '').replace('viewBox="0 0 24 24"', `viewBox="${logoViewBox[kind]}"`)}</span>`,
+).join('<span class="gfx-x" aria-hidden="true">×</span>')
+const badge = (path: string) => {
+	if (logos[path]) {
+		return logoBadges(path)
+	}
+
+	const [kind, shape] = badgeShapes[path] ?? ['core', '<circle cx="8" cy="8" r="4"/>']
+	return `<span class="gfx-badge gfx-${kind}" aria-hidden="true"><svg viewBox="0 0 16 16">${shape}</svg></span>`
 }
 const guides = [
 	['limen.platform.window', 'window', 'Windows', 'Окна'],
@@ -229,63 +261,45 @@ function renderInlineCode(value: string) {
 	return escape(value).replace(/`([^`]+)`/g, '<code>$1</code>')
 }
 
-function renderPackageTree(types: ApiType[], selected: string, current?: ApiType) {
-	const root: PackageFolder = { name: '', folders: new Map(), modules: new Map() }
+function renderPackageTree(types: ApiType[], level: string, current?: ApiType) {
+	const suffix = current ? '&type=' + current.path : ''
+	const levelHref = (name: string) => `${indexHref}?package=${name}${suffix}`
+	const folders = new Map<string, number>()
+	const here: ApiType[] = []
 
 	for (const type of types) {
-		let folder = root
+		const pkg = packageName(type.path)
 
-		for (const segment of packageName(type.path).split('.')) {
-			let child = folder.folders.get(segment)
-
-			if (!child) {
-				const name = folder.name ? folder.name + '.' + segment : segment
-				child = { name, folders: new Map(), modules: new Map() }
-				folder.folders.set(segment, child)
-			}
-
-			folder = child
+		if (pkg === level) {
+			here.push(type)
+		} else if (pkg.startsWith(level + '.')) {
+			const next = level + '.' + pkg.slice(level.length + 1).split('.')[0]
+			folders.set(next, (folders.get(next) ?? 0) + 1)
 		}
-
-		const module = type.file.slice(type.file.lastIndexOf('/') + 1)
-		const entries = folder.modules.get(module) ?? []
-		entries.push(type)
-		folder.modules.set(module, entries)
 	}
 
-	function typeLink(type: ApiType, filename = shortName(type.path)) {
-		return `<li><a class="api-tree-type" href="${href(type)}"${type === current ? ' aria-current="page"' : ''}>
-			<code>${escape(filename)}</code>
-			<span>${kinds[type.kind][isRussian ? 1 : 0]}</span>
-		</a></li>`
-	}
+	const segments = level.split('.')
+	const path = segments.map((segment, index) =>
+		`<a href="${levelHref(segments.slice(0, index + 1).join('.'))}">${escape(segment)}</a>`,
+	).join('<span aria-hidden="true"> / </span>')
+	const parent = segments.slice(0, -1).join('.')
+	const order = ['class', 'abstract', 'enumAbstract', 'enum', 'typedef']
+	const sorted = here.sort((a, b) =>
+		order.indexOf(a.kind) - order.indexOf(b.kind) || shortName(a.path).localeCompare(shortName(b.path)))
 
-	function contents(folder: PackageFolder): string {
-		const folders = [...folder.folders.values()].sort((a, b) => a.name.localeCompare(b.name))
-		const modules = [...folder.modules].sort(([a], [b]) => a.localeCompare(b))
-
-		return `<ul>
-			${folders.map(child => {
-				const onSelectedPath = selected === child.name || selected.startsWith(child.name + '.')
-				const open = onSelectedPath || (expandedFolders.get(child.name) ?? child.name === 'limen')
-				return `<li><details data-folder="${child.name}"${open ? ' open' : ''}><summary><code>${shortName(child.name)}/</code></summary>
-					${contents(child)}</details></li>`
-			}).join('')}
-			${modules.map(([module, entries]) => {
-				if (entries.length === 1 && module === shortName(entries[0].path) + '.hx') {
-					return typeLink(entries[0], module)
-				}
-
-				const key = folder.name + '/' + module
-				const open = entries.some(type => type === current) || expandedFolders.get(key)
-				return `<li><details data-folder="${key}"${open ? ' open' : ''}>
-					<summary><code>${escape(module)}</code></summary>
-					<ul>${entries.map(entry => typeLink(entry)).join('')}</ul></details></li>`
-			}).join('')}
-		</ul>`
-	}
-
-	return `<nav class="api-tree" aria-label="${labels.tree}">${contents(root)}</nav>`
+	return `<nav class="api-tree api-level" aria-label="${labels.tree}">
+		<p class="api-level-path">${path}</p>
+		<ul>
+			${parent ? `<li><a class="api-level-up" href="${levelHref(parent)}"><code>[..]</code></a></li>` : ''}
+			${[...folders].sort(([a], [b]) => a.localeCompare(b)).map(([name, count]) =>
+				`<li><a class="api-level-folder" href="${levelHref(name)}"><code>${escape(shortName(name))}/</code><span>${count}</span></a></li>`,
+			).join('')}
+			${sorted.map(type => `<li><a class="api-tree-type" href="${href(type)}"${type === current ? ' aria-current="page"' : ''}>
+				<code>${escape(shortName(type.path))}</code>
+				<span>${kinds[type.kind][isRussian ? 1 : 0]}</span>
+			</a></li>`).join('')}
+		</ul>
+	</nav>`
 }
 
 function renderType(catalog: Catalog, type: ApiType) {
@@ -384,6 +398,38 @@ function renderType(catalog: Catalog, type: ApiType) {
 	`
 }
 
+function renderPackage(catalog: Catalog, pkg: string) {
+	const types = catalog.types.filter(type => !type.internal && packageName(type.path) === pkg)
+		.sort((a, b) => shortName(a.path).localeCompare(shortName(b.path)))
+	const folders = new Map<string, number>()
+
+	for (const type of catalog.types) {
+		const name = packageName(type.path)
+
+		if (!type.internal && name.startsWith(pkg + '.')) {
+			const next = pkg + '.' + name.slice(pkg.length + 1).split('.')[0]
+			folders.set(next, (folders.get(next) ?? 0) + 1)
+		}
+	}
+
+	const summary = (type: ApiType) => escape((type.doc ?? '').split('\n')[0])
+
+	return `
+		<header class="page-hero">
+			<h1>${escape(pkg)}</h1>
+			<p class="lede"><a href="${indexHref}">${labels.index}</a></p>
+		</header>
+		${folders.size ? `<section class="article-section"><div class="section-head"><h2>${isRussian ? 'Пакеты' : 'Packages'}</h2></div>
+			<ul class="api-members api-package-list">${[...folders].sort(([a], [b]) => a.localeCompare(b)).map(([name, count]) =>
+				`<li><div class="api-member-heading"><a href="${indexHref}?package=${name}"><code>${escape(shortName(name))}/</code></a></div><div class="api-description"><p>${count}</p></div></li>`,
+			).join('')}</ul></section>` : ''}
+		${types.length ? `<section class="article-section"><div class="section-head"><h2>${isRussian ? 'Типы' : 'Types'}</h2></div>
+			<ul class="api-members api-package-list">${types.map(type =>
+				`<li><div class="api-member-heading"><a href="${href(type)}"><code>${escape(shortName(type.path))}</code></a> <small>${kinds[type.kind][isRussian ? 1 : 0]}</small></div><div class="api-description"><p>${summary(type)}</p></div></li>`,
+			).join('')}</ul></section>` : ''}
+	`
+}
+
 function renderIndex(catalog: Catalog, missing: boolean) {
 	const repository = 'https://github.com/NMB-Team/Limen'
 	const featuredPaths = [
@@ -405,12 +451,12 @@ function renderIndex(catalog: Catalog, missing: boolean) {
 		${missing ? `<p role="status">${labels.missingType}</p>` : ''}
 		<section class="article-section api-landing">
 			<h2>${labels.featured}</h2>
-			<ul>${featured.map(type => `<li><a class="resource-row" href="${href(type)}"><code>${shortName(type.path)}</code></a></li>`).join('')}</ul>
+			<ul>${featured.map(type => `<li><a class="resource-row" href="${href(type)}">${badge(type.path)}<code>${shortName(type.path)}</code></a></li>`).join('')}</ul>
 		</section>
 		<section class="article-section api-landing">
 			<h2>${labels.backends}</h2>
 			<ul>${guides.filter(([path]) => path.startsWith('limen.graphics.')).map(([path, , en, ru]) =>
-				`<li><a class="resource-row" href="${indexHref}?package=${path}">${isRussian ? ru : en}</a></li>`,
+				`<li><a class="resource-row" href="${indexHref}?package=${path}">${badge(path)}<span>${isRussian ? ru : en}</span></a></li>`,
 			).join('')}</ul>
 		</section>
 		<p class="api-muted">${labels.apiNotes}</p>
@@ -470,8 +516,8 @@ async function startReference() {
 
 		if (!terms.length) {
 			status.textContent = visible.length ? '' : labels.noResults
-			const expandedPackage = packageFilter || (current ? packageName(current.path) : '')
-			results.innerHTML = visible.length ? renderPackageTree(visible, expandedPackage, current) : ''
+			const level = packageFilter || (current ? packageName(current.path) : 'limen')
+			results.innerHTML = visible.length ? renderPackageTree(visible, level, current) : ''
 			more.hidden = true
 			return
 		}
@@ -525,10 +571,14 @@ async function startReference() {
 		internal.checked = params.has('internal')
 		limit = pageSize
 
-		if (requested !== renderedType) {
-			content.innerHTML = current ? renderType(catalog, current) : renderIndex(catalog, Boolean(requested))
-			document.title = current ? shortName(current.path) + ' | ' + labels.title : labels.title
-			renderedType = requested
+		const renderKey = requested ?? (packageFilter ? 'package:' + packageFilter : null)
+
+		if (renderKey !== renderedType) {
+			content.innerHTML = current ? renderType(catalog, current)
+				: packageFilter && !requested ? renderPackage(catalog, packageFilter)
+				: renderIndex(catalog, Boolean(requested))
+			document.title = current ? shortName(current.path) + ' | ' + labels.title : packageFilter && !requested ? packageFilter + ' | ' + labels.title : labels.title
+			renderedType = renderKey
 		}
 
 		updateBrowser()
@@ -635,7 +685,7 @@ async function startReference() {
 			if (search.value.trim()) {
 				target.searchParams.set('q', search.value.trim())
 			}
-			if (packageFilter) {
+			if (packageFilter && !target.searchParams.has('package')) {
 				target.searchParams.set('package', packageFilter)
 			}
 		}

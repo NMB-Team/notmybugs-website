@@ -6,30 +6,39 @@
 	min-height: 100vh;
 	overflow: hidden;
 	background:
-		radial-gradient(
-			circle at 50% 43%,
-			rgba(37, 254, 42, 0.06),
-			transparent 32%
-		),
+		radial-gradient(circle at 50% 43%, rgba(37, 254, 42, 0.06), transparent 32%),
 		linear-gradient(180deg, #050705 0%, #020302 100%);
+
+	&:after {
+		content: '';
+		position: absolute;
+		inset: 0;
+		z-index: 4;
+		pointer-events: none;
+		background: repeating-linear-gradient(180deg, rgba(0, 0, 0, 0.18) 0, rgba(0, 0, 0, 0.18) 1px, transparent 1px, transparent 3px);
+	}
 }
 
 .developer-link {
 	position: absolute;
-	z-index: 3;
+	z-index: 5;
 	top: clamp(16px, 4vw, 36px);
 	right: clamp(16px, 4vw, 36px);
-	padding: 10px 14px;
-	border: 1px solid #3c583d;
-	border-radius: 4px;
+	padding: 8px 14px;
+	border: 1px solid #5c9468;
 	background: #0c160e;
-	color: #d0efd0;
+	box-shadow: inset 1px 1px 0 #2a4e33, 2px 2px 0 #000;
+	color: #e8f2e6;
 	font-size: 0.9rem;
 
 	&:hover,
 	&:focus-visible {
-		border-color: #9cda9c;
-		color: #f2fff2;
+		border-color: #e6c75a;
+		color: #e6c75a;
+	}
+
+	&:active {
+		box-shadow: inset 1px 1px 0 #000;
 	}
 }
 
@@ -38,11 +47,7 @@
 	inset: auto -150vh -24vh;
 	height: 48vh;
 	pointer-events: none;
-	background: radial-gradient(
-		ellipse at 50% 100%,
-		rgba(25, 255, 29, 0.6),
-		transparent 58%
-	);
+	background: radial-gradient(ellipse at 50% 100%, rgba(25, 255, 29, 0.6), transparent 58%);
 	filter: blur(28px);
 	opacity: 0.66;
 	animation: green-glow 2.5s ease-in-out infinite alternate;

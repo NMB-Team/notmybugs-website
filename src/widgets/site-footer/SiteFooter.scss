@@ -61,6 +61,11 @@
 	flex-wrap: wrap;
 	font-size: 0.9rem;
 	color: rgba(242, 247, 240, 0.72);
+
+	a:hover {
+		color: #e6c75a;
+		text-decoration: underline;
+	}
 }
 
 @media (max-width: 640px) {

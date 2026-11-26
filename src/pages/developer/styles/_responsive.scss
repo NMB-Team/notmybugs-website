@@ -15,7 +15,7 @@
 	.mobile-toggle {
 		display: block;
 		border: 0;
-		color: #e2f4e3;
+		color: #dfdab9;
 		font-size: 11px;
 		padding: 0 12px;
 	}
@@ -38,11 +38,10 @@
 		width: min(290px, 85vw);
 		padding-top: 18px;
 		padding-left: 17px;
-		background: #0a110b;
-		border-right: 1px solid #566b57;
+		background: #09110b;
+		border-right: 1px solid #142619;
 		transform: translateX(-102%);
-		transition: transform .18s;
-		box-shadow: 10px 0 30px #0009;
+		
 
 		&.open {
 			transform: translateX(0);
@@ -57,7 +56,6 @@
 		background: #000a;
 		pointer-events: none;
 		opacity: 0;
-		transition: opacity .18s;
 
 		&.visible {
 			opacity: 1;
@@ -80,7 +78,7 @@
 	}
 
 	.wiki-article-surface {
-		border-radius: 6px;
+		border-radius: 0;
 	}
 
 	.sidebar:not(.open) {
@@ -122,7 +120,7 @@
 		}
 
 		&:nth-last-child(2) {
-			border-bottom: 1px solid #374c3a;
+			border-bottom: 1px solid #0f1c13;
 		}
 	}
 

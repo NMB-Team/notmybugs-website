@@ -18,8 +18,8 @@
 
 .mobile-toggle {
 	display: none;
-	border-radius: 4px;
-	background: linear-gradient(180deg, #1c291d, #142016);
+	border-radius: 0;
+	background: #0a140d;
 }
 
 .workspace {
@@ -35,8 +35,6 @@
 	top: 0;
 	max-height: 100vh;
 	overflow: auto;
-	scrollbar-width: thin;
-	scrollbar-color: #425043 #0b120b;
 }
 
 .sidebar-group {
@@ -47,8 +45,8 @@
 .group-label,
 .sidebar-heading {
 	display: block;
-	color: #c0d6c1;
-	border-bottom: 1px solid #384939;
+	color: #dfd9b7;
+	border-bottom: 1px solid #0f1c13;
 	padding: 0 3px 5px;
 	font-size: 11px;
 	font-weight: bold;
@@ -72,7 +70,7 @@
 .nav-subgroup-title {
 	display: block;
 	padding: 3px 7px;
-	color: #9fb9a2;
+	color: #acb3a5;
 	font-size: 11px;
 	font-weight: 600;
 	line-height: 1.4;
@@ -81,7 +79,7 @@
 .nav-branch {
 	margin: 2px 0 0 12px;
 	padding-left: 5px;
-	border-left: 1px solid #384939;
+	border-left: 1px solid #0f1c13;
 }
 
 #sideNav {
@@ -93,9 +91,8 @@
 	inset: 0 auto auto 0;
 	pointer-events: none;
 	border-left: 2px solid var(--accent);
-	border-radius: 3px;
-	background: linear-gradient(90deg, #263b29, #19281c);
-	transition: transform 230ms cubic-bezier(.2, .75, .25, 1), width 230ms ease, height 230ms ease;
+	border-radius: 0;
+	background: #0c150e;
 }
 
 .sidebar-group {
@@ -108,38 +105,37 @@
 		padding: 4px 5px;
 		line-height: 1.35;
 		overflow-wrap: anywhere;
-		color: #adcab0;
+		color: #d5cea2;
 		border-left: 2px solid transparent;
-		border-radius: 3px;
-		transition: color 140ms ease;
+		border-radius: 0;
 
 		svg {
 			width: 13px;
 			height: 13px;
 			flex: none;
-			color: #8baa8f;
+			color: #9aa392;
 		}
 	}
 
 	.nav-subgroup > .nav-link {
 		font-weight: 600;
-		color: #c0d6c1;
+		color: #dfd9b7;
 	}
 
 	.nav-link {
 		&:hover {
-			color: #e4ffe4;
-			background: #1c281e;
+			color: #dfdab9;
+			background: #0c160e;
 			text-decoration: underline;
 		}
 
 		&.active {
 			background: transparent;
-			color: #eef7ee;
+			color: #dfdab9;
 		}
 
 		&.active svg {
-			color: #a3f7a4;
+			color: #dfdab9;
 		}
 	}
 }
@@ -161,7 +157,7 @@
 			content: '›';
 			position: absolute;
 			left: 1px;
-			color: #718a73;
+			color: #839179;
 		}
 	}
 
@@ -194,25 +190,25 @@
 }
 
 .wiki-tab {
-	background: linear-gradient(180deg, #1b261c, #131a14);
-	border: 1px solid #3c4a3d;
+	background: #0a130d;
+	border: 1px solid #0f1d13;
 	border-bottom: 0;
 	padding: 7px 13px 6px;
 	line-height: 1.2;
 	font-size: 11px;
-	color: #a4cbaa;
+	color: #d3cb9c;
 	white-space: nowrap;
 	border-radius: 5px 5px 0 0;
 
 	&:hover {
-		background: #243124;
+		background: #0d170f;
 		text-decoration: none;
 	}
 
 	&.current {
-		background: linear-gradient(180deg, #1c271d, #162017);
-		color: #f1f7f0;
-		border-top: 2px solid #668f67;
+		background: #0b140d;
+		color: #dfdab9;
+		border-top: 2px solid #809173;
 		padding-top: 6px;
 		position: relative;
 		top: 1px;
@@ -223,10 +219,10 @@
 .wiki-article-surface {
 	position: relative;
 	overflow-x: clip;
-	border: 1px solid #455447;
-	background: linear-gradient(180deg, #172018 0%, #121712 160px, #121712 100%);
-	box-shadow: 0 1px 0 #000 inset;
-	border-radius: 8px;
+	border: 1px solid var(--bevel-lo);
+	background: var(--panel);
+	box-shadow: inset 1px 1px 0 var(--bevel-hi), 2px 2px 0 #060a07;
+	border-radius: 0;
 
 	> .is-leaving {
 		position: absolute;
@@ -238,11 +234,11 @@
 
 .crumbs {
 	font-size: 11px;
-	color: #879b89;
+	color: #97a28f;
 	margin: 0 0 13px;
 
 	a {
-		color: #a9d1ac;
+		color: #d6cfa4;
 	}
 
 	span {
@@ -250,7 +246,7 @@
 
 		&:nth-child(2),
 		&:nth-child(4) {
-			color: #637e66;
+			color: #172b1c;
 		}
 	}
 }
